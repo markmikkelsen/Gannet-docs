@@ -11,7 +11,7 @@
 
 
 
-<title>Gannet</title>
+<title>Additional tools</title>
 
 <script src="site_libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -20,6 +20,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
@@ -327,6 +330,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -334,6 +406,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -440,7 +522,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Gannet</h1>
+<h1 class="title toc-ignore">Additional tools</h1>
 <h4 class="date">Last updated: 02-May-20</h4>
 
 </div>
@@ -448,114 +530,67 @@ $(document).ready(function () {
 
 <style>
 body .main-container {
-max-width: 1000px;
+max-width: 1200px;
 }
-div.release {
-margin-bottom: 25px; margin-top: 25px;
+div.danger {
+background-color:#D85746; color:#FFFFFF;  border-radius: 5px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; margin-bottom: 10px; margin-top: 10px;
 }
 </style>
 <p><br></p>
-<p><img src="images/logo.png" width="50%" style="display: block; margin: auto auto auto 0;" /></p>
-<div class="release">
-<h4>
-Current stable release:  <span class="badge badge-secondary">3.1.6</span>
-</h4>
+<p>In addition to the five basic commands, Gannet comes with a few additional tools that you may find useful.</p>
+<div id="paperplot" class="section level2">
+<h2>PaperPlot</h2>
+<p><code>PaperPlot.m</code> will plot the difference spectra saved in the Gannet output structure. The corresponding model fits optionally can also be plotted. Users can choose to plot a single spectrum, a select number of spectra, or all spectra. Multiple spectra will be overlaid in the same figure. If data were acquired with HERMES, then each Hadamard-combined difference spectrum will be plotted in separate subplots.</p>
+<p>Type <code>help PaperPlot</code> in the MATLAB command window for usage instructions.</p>
+<p>To export plots at publication quality, consider using <code>PaperPlot.m</code> with Yair Altman’s excellent <a href="https://github.com/altmany/export_fig/" target="_blank">export_fig</a> MATLAB toolbox.</p>
 </div>
-<div id="overview" class="section level2">
-<h2>Overview</h2>
-<p>Gannet is an open-source MATLAB-based toolkit for analyzing edited <sup>1</sup>H magnetic resonance spectroscopy (MRS) data. It has purposely been designed to be easy-to-use . Its largely automated functions include the critical steps of loading raw data, substantial preprocessing, signal modeling, voxel co-registration with anatomical images, and concentration estimation based on tissue composition.</p>
-<p>Many existing software packages for MRS data analysis require substantial user input or offer a wide selection of processing parameters. In contrast, the purpose of Gannet is to provide users with an automated pipeline with the lowest possible degree of operator input, while presenting enough useful information to judge whether the MRS experiment has been performed successfully.</p>
-<p>Visit our <a href="http://www.gabamrs.com/" target="_blank">blog</a> for the latest news on Gannet and our developments in edited MRS methodology.</p>
-</div>
-<div id="installation" class="section level2">
-<h2>Installation</h2>
-<div id="prerequisites" class="section level3">
-<h3>Prerequisites</h3>
-<p>Gannet runs in <a href="https://www.mathworks.com/products/matlab.html" target="_blank">MATLAB</a>. For best performance, we recommend using the latest release if possible. Additionally, Gannet requires that the following MATLAB toolboxes are installed:</p>
+<div id="de-identification" class="section level2">
+<h2>De-identification</h2>
+<p>MRI examinations in clinical environments routinely store sensitive protected health information (PHI) in the exported data files. It is of vital importance to protect participants’ privacy. To comply with privacy legislation, you need to ensure that the data you handle, process, and share is appropriately and thoroughly de-identified, i.e., stripped of all PHI that allows the data to be linked to an individual. This is particularly true if you intend to share data, e.g., with collaborators.</p>
+<p>Gannet includes several functions to remove PHI from the most commonly used file formats. Currently, we offer functions to remove PHI from GE P-files (.7), Siemens TWIX (.dat), Philips (.sdat), and generic DICOM (.dcm) files. We plan to add support for other formats in the future. Please contact us via <a href="mailto:gabamrs@gmail.com" target="_blank">gabamrs@gmail.com</a> if you urgently require this support.</p>
+<p>Please note the following:</p>
 <ul>
-<li>Image Processing</li>
-<li>Optimization</li>
-<li>Signal Processing</li>
-<li>Statistics and Machine Learning</li>
+<li>Gannet does not remove PHI from the filenames themselves; this is solely your responsibility.</li>
+<li>In addition to any PHI associated with the NIfTI file itself, the structural image needs to be defaced. Please either use a skull-stripping tool (as, for example, implemented in FSL) or a defacing tool (e.g., <a href="https://github.com/poldracklab/pydeface/" target="_blank">pydeface</a>).</li>
 </ul>
-<p>To run the voxel co-registration and structural image segmentation modules, <a href="https://www.fil.ion.ucl.ac.uk/spm/software/spm12/" target="_blank">SPM12</a> must be installed.</p>
+<div id="how-to-de-identify-your-files" class="section level3">
+<h3>How to de-identify your files</h3>
+<p>The Gannet de-identification functions create de-identified copies of the original data. The original files are not overwritten.</p>
+<div id="ge-p-files-siemens-twix-and-philips-sdat" class="section level4">
+<h4><u>GE P-files, Siemens TWIX, and Philips SDAT</u></h4>
+<p>For GE P-files (.7), Siemens TWIX (.dat), and Philips (.sdat) files, the Gannet functions <code>GEDeIdentify.m</code>, <code>TWIXDeIdentify.m</code>, and <code>PhilipsDeIdentify.m</code> create de-identified copies of the respective files, appended with ’_noID’. All three functions can either be run by themselves (without any input arguments) to de-identify all relevant files within the current folder or fed with a cell array of filenames that you want to de-identify.</p>
 </div>
-<div id="installing" class="section level3">
-<h3>Installing</h3>
-<p>The simplest way to install Gannet 3.1 is to download the zipped <a href="https://github.com/richardedden/Gannet3.1/archive/master.zip">master folder</a> from GitHub, unzip it, and then move the Gannet3.1-master folder into your MATLAB directory.</p>
-<p>Git-savvy users can simply clone the Gannet repository into a folder of their choice:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">git</span> clone https://github.com/richardedden/Gannet3.1.git</span></code></pre></div>
-<p>To add the folder to your search path, run the following line of code in the command window:</p>
-<p><strong>macOS</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1"></a><span class="va">addpath</span>(<span class="va">genpath</span>(<span class="ss">&#39;~/Documents/MATLAB/Gannet3.1-master&#39;</span>))<span class="op">;</span></span></code></pre></div>
-<p><strong>Windows</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1"></a><span class="va">addpath</span>(<span class="va">genpath</span>(<span class="ss">&#39;C:\Users\username\Documents\MATLAB\Gannet3.1-master&#39;</span>))<span class="op">;</span></span></code></pre></div>
-<p>Running <code>savepath</code> will permanently save all the paths currently in your search path in MATLAB’s default search path.</p>
-<p>Alternatively, open the Set Path dialog box from the MATLAB menu, click ‘Add with Subfolders’, find the Gannet3.1-master folder and then select it. When done, press ‘Save’ to permanently save the Gannet folder in MATLAB’s default search path.</p>
+<div id="dicom" class="section level4">
+<h4><u>DICOM</u></h4>
+<p>Generic DICOM data usually feature many separate .dcm files for each acquisition. <code>DICOMDeIdentify.m</code> requires a top-level directory containing subdirectories for each subject (e.g. ‘S01’, ‘S02’, ‘S03’, etc.) that contain all DICOM files for the respective subjects. Running <code>DICOMDeIdentify.m</code> from the top-level directory will create a separate folder containing the de-identified files for each subject, appended with ’_anon’.</p>
 </div>
 </div>
-<div id="compatibility" class="section level2">
-<h2>Compatibility</h2>
-<p>Gannet is currently developed in MATLAB R2019b in macOS 10.15 Catalina. While reasonable effort is made to ensure version-backward and cross-OS compatibility, an error-free user experience is not guaranteed.</p>
-</div>
-<div id="supported-file-formats" class="section level2">
-<h2>Supported file formats</h2>
-<p>At present, the following MRS data file formats are supported:</p>
+<div id="list-of-de-identified-information" class="section level3">
+<h3>List of de-identified information</h3>
+<p>The Gannet de-identification functions currently remove the following PHI (if present), as required by the United States HIPAA (Health Insurance Portability and Accountability Act) legislation:</p>
 <ul>
-<li>DICOM (.dcm)</li>
-<li>GE P-file (.7)</li>
-<li>Philips .data/.list</li>
-<li>Philips .raw</li>
-<li>Philips .sdat/.spar</li>
-<li>Siemens DICOM (.ima)</li>
-<li>Siemens .rda</li>
-<li>Siemens TWIX (.dat)</li>
+<li>Subject names</li>
+<li>Subject ID numbers</li>
+<li>Birth dates</li>
+<li>Sex</li>
+<li>Height and weight</li>
+<li>Study ID numbers and study dates</li>
+<li>Institutional names and addresses</li>
+<li>Device identifiers and serial numbers</li>
 </ul>
-<p>For creating and co-registering voxel masks, structural images need to be NIfTI (Philips and Siemens) or DICOM (GE) format. (NB: Do not export structural images using the ‘fsl-nifti’ option in the Philips platform as this creates problems with co-registration in Gannet)</p>
+<p>Should the regulations in your country or your institution require additional information to be removed from the files, please contact us via <a href="mailto:gabamrs@gmail.com" target="_blank">gabamrs@gmail.com</a>.</p>
+<div class="danger">
+<p>There is <u>no way</u> to retrieve PHI from a de-identified file! Make sure that you either retain a copy of the original file or that you keep a separate record that uniquely links all necessary subject information to the name of the de-identified file.</p>
 </div>
-<div id="getting-help" class="section level2">
-<h2>Getting help</h2>
-<p>If you encounter any problems, it is likely that you will find the solution in either the Documentation or the FAQ.</p>
-<p>For bug reporting, contribution requests, and other queries, please contact us at: <a href="mailto:gabamrs@gmail.com" target="_blank">gabamrs@gmail.com</a></p>
 </div>
-<div id="versioning" class="section level2">
-<h2>Versioning</h2>
-<p><a href="https://semver.org/" target="_blank">Semantic versioning</a> is used when updates are made to Gannet using the style 3.x.x. Versioning is also conducted on a module-specific basis using the style YYMMDD. That is, each Gannet module has its own release version.</p>
 </div>
-<div id="developers" class="section level2">
-<h2>Developers</h2>
-<ul>
-<li>Richard Edden (The Johns Hopkins University)</li>
-<li>Mark Mikkelsen (The Johns Hopkins University)</li>
-<li>Georg Oeltzschner (The Johns Hopkins University)</li>
-<li>Muhammad Saleh (The Johns Hopkins University)</li>
-<li>C. John Evans (Cardiff University)</li>
-<li>Ashley Harris (University of Calgary)</li>
-<li>Nicolaas Puts (King’s College London)</li>
-</ul>
-</div>
-<div id="license" class="section level2">
-<h2>License</h2>
-<p>This software is open-source and does not have a specific license, but should you publish material that made use of Gannet please cite the following publications (as appropriate):</p>
-<ul>
-<li>Edden RAE, Puts NAJ, Harris AD, Barker PB, Evans CJ. <a href="https://doi.org/10.1002/jmri.24478" target="_blank">Gannet: A batch-processing tool for the quantitative analysis of gamma-aminobutyric acid-edited MR spectroscopy spectra.</a> J. Magn. Reson. Imaging 2014;40:1445–1452</li>
-<li>Ashburner J, Friston KJ. <a href="https://doi.org/10.1016/j.neuroimage.2005.02.018" target="_blank">Unified segmentation.</a> NeuroImage 2005;26:839–851 (if you perform tissue segmentation)</li>
-<li>Harris AD, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/jmri.24903" target="_blank">Tissue correction for GABA-edited MRS: Considerations of voxel composition, tissue segmentation, and tissue relaxations.</a> J. Magn. Reson. Imaging 2015;42:1431–1440 (if you report tissue-corrected, water-referenced measurements based on the Harris et al. method)</li>
-<li>Gasparovic C, Song T, Devier D, et al. <a href="https://doi.org/10.1002/mrm.20901" target="_blank">Use of tissue water as a concentration reference for proton spectroscopic imaging.</a> Magn. Reson. Med. 2006;55:1219–1226 (if you report tissue-corrected, water-referenced measurements based on the Gasparovic et al. method)</li>
-</ul>
-</div>
-<div id="acknowledgments" class="section level2">
-<h2>Acknowledgments</h2>
-<p>The development and dissemination of Gannet has been supported by NIH grants R01 EB016089, R01 EB023963, P41 EB015909, R01 MH106564, R21 NS077300, R21 MH098228, and R01 MH096263.</p>
-<p>We wish to thank the following individuals for their contributions:</p>
-<ul>
-<li>Peter Barker (The Johns Hopkins University)</li>
-<li>Philipp Ehses (Max Planck Institute for Biological Cybernetics, Tübingen)</li>
-<li>Robin de Graaf (Yale School of Medicine)</li>
-<li>Ralph Noeske (GE Berlin)</li>
-<li>Jamie Near (McGill University)</li>
-<li>Wouter Potters (UMC Amsterdam)</li>
-</ul>
+<div id="coregstandalone" class="section level2">
+<h2>CoRegStandAlone</h2>
+<p>By popular demand, we have programmed a standalone version of the voxel co-registration and segmentation pipeline for use with any (non-edited) MRS data. <code>CoRegStandAlone.m</code> contains stripped-to-the-bone modifications of GannetLoad, GannetCoRegister, and GannetSegment. It doesn’t bother loading any data at all, besides the geometrical information about voxel dimensions, positions, and rotations, and the structural NIfTI file.</p>
+<p><code>CoRegStandAlone.m</code> supports the same input formats as the main Gannet functions. Upon being called, it produces CoRegister and Segment outputs for each provided dataset. However, the Segment output does not contain any quantitative information except for the tissue composition (voxel tissue fractions of GM, WM, and CSF).</p>
+<p>The syntax is similar to the <code>GannetLoad.m</code> syntax, where the first cell array contains the MRS filenames and the second cell array contains the respective NIfTI filenames:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">CoRegStandAlone</span>({<span class="ss">&#39;data1.dat&#39;</span> <span class="ss">&#39;data2.dat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;structural1.nii&#39;</span> <span class="ss">&#39;structural2.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
+<p>Please note that the number of NIfTI files needs to match the number of MRS data files, i.e., if you want to register <em>n</em> voxels to the same structural image, you’ll need to repeat the name of the NIfTI file <em>n</em> times.</p>
 </div>
 
 <br>
@@ -565,6 +600,8 @@ Current stable release:  <span class="badge badge-secondary">3.1.6</span>
 <p style="text-align: right;">Copyright &copy; 2020 Mark Mikkelsen. All rights reserved.</p>
 
 
+</div>
+</div>
 
 </div>
 
@@ -597,6 +634,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

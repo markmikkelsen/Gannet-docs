@@ -13,6 +13,7 @@
 
 <title>An introduction to spectral editing</title>
 
+<script src="site_libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -22,6 +23,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
 
 
 
@@ -272,7 +274,7 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="quick-start-guide.html">Quick start guide</a>
+      <a href="getting-started.html">Getting started</a>
     </li>
     <li>
       <a href="reference.html">Reference</a>
@@ -280,7 +282,25 @@ $(document).ready(function () {
     <li>
       <a href="tissue-correction.html">Tissue correction</a>
     </li>
+    <li>
+      <a href="additional-tools.html">Additional tools</a>
+    </li>
   </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="batch-script.html">Batch processing script</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="faq.html">FAQ</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -296,9 +316,6 @@ $(document).ready(function () {
       <a href="gaba-phantom-recipe.html">GABA phantom recipe</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="faq.html">FAQ</a>
 </li>
 <li>
   <a href="release-notes.html">Release notes</a>
@@ -318,7 +335,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
-  <a href="http://www.gabamrs.com/contact">
+  <a href="mailto:gabamrs@gmail.com">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -333,6 +350,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">An introduction to spectral editing</h1>
+<h4 class="date">Last updated: 02-May-20</h4>
 
 </div>
 
@@ -345,26 +363,25 @@ max-width: 1000px;
 <p><br></p>
 <p>Gannet was developed to handle data from <em>J</em>-difference-edited MRS experiments, which are commonly used to detect signals from low-concentration metabolites. Due to the inherently low signal-to-noise ratio and considerable spectral overlap, these signals are difficult to resolve with conventional localized MRS at field strengths of common clinical MRI scanners 3T.</p>
 <p>Essentially, MEGA-PRESS acquires two spectra which differ in how the target signal evolves, so that the GABA signal is revealed upon subtraction of the two. This subtraction is both the strength of the experiment, in that it allows a weak GABA signal to be separated from the strong overlying creatine (Cr) signal, and its weakness, in that accurate subtraction of the Cr signals is required for accurate GABA quantification. The key pre-processing step of Gannet (frequency and phase correction) is designed to overcome some experimental instability and still achieve accurate subtraction of the Cr signal. MEGA-PRESS harnesses the fact that coupled signals like GABA evolve during the echo time, changing the appearance of GABA spectrum at different TEs, whereas uncoupled signals like Cr do not. Furthermore, this evolution can be undone, or refocused, by applying frequency-selective inversion pulses to the GABA spins. The MEGA-PRESS experiment acquires one experiment in which editing pulses are applied to the GABA signal at 1.9 ppm (often referred to as the ON experiment) and one in which they are not (the OFF experiment). In each of these experiments, the GABA signal at 3 ppm has a different shape, and so therefore subtracting the spectra from the two experiments leaves a measureable GABA signal.</p>
-<p>More details on the MEGA-PRESS experiment for editing of GABA can be found in the original seminal publications (<span class="citation"><a href="#ref-Mescher1998">1</a></span>), or popular review papers (<span class="citation"><a href="#ref-Mullins2014">2</a></span>,<span class="citation"><a href="#ref-Harris2017">3</a></span>).</p>
-<p><br></p>
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<p>More details on the MEGA-PRESS experiment for editing of GABA can be found in the original seminal publications (<span class="citation"><a href="#ref-Mescher1998" role="doc-biblioref">1</a></span>), or popular review papers (<span class="citation"><a href="#ref-Mullins2014" role="doc-biblioref">2</a></span>,<span class="citation"><a href="#ref-Harris2017" role="doc-biblioref">3</a></span>).</p>
+<div id="references" class="section level3 unnumbered">
+<h3 class="unnumbered">References</h3>
 <div id="refs" class="references">
 <div id="ref-Mescher1998">
-<p>1. Mescher M, Merkle H, Kirsch J, Garwood M, Gruetter R. Simultaneous in vivo spectral editing and water suppression. <em>NMR in Biomedicine</em>. 1998;11(6):266-272. doi:<a href="https://doi.org/10.1002/(SICI)1099-1492(199810)11:6&lt;266::AID-NBM530&gt;3.0.CO;2-J">10.1002/(SICI)1099-1492(199810)11:6&lt;266::AID-NBM530&gt;3.0.CO;2-J</a></p>
+<p>1. Mescher M, Merkle H, Kirsch J, Garwood M, Gruetter R. Simultaneous in vivo spectral editing and water suppression. <em>NMR in Biomedicine</em>. 1998;11(6):266-272. doi:<a href="https://doi.org/10.1002/(SICI)1099-1492(199810)11:6%3C266::AID-NBM530%3E3.0.CO;2-J">10.1002/(SICI)1099-1492(199810)11:6&lt;266::AID-NBM530&gt;3.0.CO;2-J</a></p>
 </div>
 <div id="ref-Mullins2014">
 <p>2. Mullins PG, McGonigle DJ, O’Gorman RL, et al. Current practice in the use of MEGA-PRESS spectroscopy for the detection of GABA. <em>NeuroImage</em>. 2014;86:43-52. doi:<a href="https://doi.org/10.1016/j.neuroimage.2012.12.004">10.1016/j.neuroimage.2012.12.004</a></p>
 </div>
 <div id="ref-Harris2017">
-<p>3. Harris AD, Saleh MG, Edden RA. Edited 1H magnetic resonance spectroscopy in vivo: Methods and metabolites. <em>Magnetic Resonance in Medicine</em>. 2017;77(4):1377-1389. doi:<a href="https://doi.org/10.1002/mrm.26619">10.1002/mrm.26619</a></p>
+<p>3. Harris AD, Saleh MG, Edden RAE. Edited 1H magnetic resonance spectroscopy in vivo: Methods and metabolites. <em>Magnetic Resonance in Medicine</em>. 2017;77(4):1377-1389. doi:<a href="https://doi.org/10.1002/mrm.26619">10.1002/mrm.26619</a></p>
 </div>
 </div>
 </div>
 
 <br>
 <hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/">R Markdown</a> and <a href="https://rstudio.com/">RStudio.</a>
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio.</a>
 <br><br></p>
 <p style="text-align: right;">Copyright &copy; 2020 Mark Mikkelsen. All rights reserved.</p>
 

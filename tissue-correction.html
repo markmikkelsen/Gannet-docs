@@ -13,6 +13,7 @@
 
 <title>Tissue correction</title>
 
+<script src="site_libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -22,6 +23,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
 
 
 
@@ -272,7 +274,7 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="quick-start-guide.html">Quick start guide</a>
+      <a href="getting-started.html">Getting started</a>
     </li>
     <li>
       <a href="reference.html">Reference</a>
@@ -280,7 +282,25 @@ $(document).ready(function () {
     <li>
       <a href="tissue-correction.html">Tissue correction</a>
     </li>
+    <li>
+      <a href="additional-tools.html">Additional tools</a>
+    </li>
   </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="batch-script.html">Batch processing script</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="faq.html">FAQ</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -296,9 +316,6 @@ $(document).ready(function () {
       <a href="gaba-phantom-recipe.html">GABA phantom recipe</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="faq.html">FAQ</a>
 </li>
 <li>
   <a href="release-notes.html">Release notes</a>
@@ -318,7 +335,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
-  <a href="http://www.gabamrs.com/contact">
+  <a href="mailto:gabamrs@gmail.com">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -333,6 +350,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Tissue correction</h1>
+<h4 class="date">Last updated: 02-May-20</h4>
 
 </div>
 
@@ -343,11 +361,9 @@ max-width: 1000px;
 }
 </style>
 <p><br></p>
-<div id="what-do-the-different-quantification-values-output-by-gannetfit-gannetsegment-and-gannetquantify-represent" class="section level4">
-<h4><strong>What do the different quantification values output by GannetFit, GannetSegment, and GannetQuantify represent?</strong></h4>
-<p>Gannet will quantify metabolite signals in a number of different ways depending on what reference signals are present and if structural image data are available. It is important to understand what the calculations are for interpretation and reporting.</p>
-<p><br></p>
-<p><strong>GannetFit</strong></p>
+<p>Gannet will quantify metabolite signals in a number of different ways at various points in the pipeline depending on what reference signals are present and if structural image data are available. It is important to understand what the calculations are for interpretation and reporting.</p>
+<div id="gannetfit" class="section level2">
+<h2>GannetFit</h2>
 <p><code>MRS_struct.out.vox1.metab.ConcCr</code> is a simple integral ratio of the metabolite and Cr signals:</p>
 <p><span class="math display">\[C = \frac{I_{M}}{I_{Cr}}\]</span></p>
 <p>If a water reference is included, <code>MRS_struct.out.vox1.metab.ConcIU</code> is also calculated. It is integral ratio of the metabolite and water signals scaled a number of global signal scaling factors:</p>
@@ -360,9 +376,10 @@ W_{vis}\cdot
 \left\{\frac{\exp\left(-\frac{TE_{W}}{T_{2W}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W}}\right)\right]}
 {\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}
 \]</span></p>
-<p>where <span class="math inline">\(C_{corr}\)</span> is the metabolite concentration in institutional units (i.u.) and <span class="math inline">\(C_{W}\)</span> is the assumed molal concentration of MR-visible pure water (55.51 mol/kg); <span class="math inline">\(I_{M}\)</span> and <span class="math inline">\(I_{W}\)</span> are the metabolite and water signal integrals, respectively; <span class="math inline">\(W_{W}\)</span> and <span class="math inline">\(H_{M}\)</span> are the number of <sup>1</sup>H protons that give rise to the water and metabolite signals, respectively; <span class="math inline">\(MM\)</span> is a correction factor for the contribution of the co-edited macromolecule signal in the metabolite signal, assumed to be 0.45 for GABA+ acquisitions and 1 for all other acquisitions; and <span class="math inline">\(\kappa\)</span> is the editing efficiency (which will vary depending on the edited metabolited). TEG, TEW, TRG and TRW are the echo and repetition times of the metabolite-edited and water acquisitions, respectively. T1W,i is the longitu- dinal relaxation time of water in.</p>
-<p><br></p>
-<p><strong>GannetSegment</strong></p>
+<p>where <span class="math inline">\(C_{corr}\)</span> is the metabolite concentration in institutional units (i.u.) and <span class="math inline">\(C_{W}\)</span> is the assumed molal concentration of MR-visible pure water (55.51 mol/kg); <span class="math inline">\(I_{M}\)</span> and <span class="math inline">\(I_{W}\)</span> are the metabolite and water signal integrals, respectively; <span class="math inline">\(W_{W}\)</span> and <span class="math inline">\(H_{M}\)</span> are the number of <sup>1</sup>H protons that give rise to the water and metabolite signals, respectively; <span class="math inline">\(MM\)</span> is a correction factor for the contribution of the co-edited macromolecule signal in the metabolite signal, assumed to be 0.45 for GABA+ acquisitions and 1 for all other acquisitions; and <span class="math inline">\(\kappa\)</span> is the editing efficiency (which will vary depending on the edited metabolite). <span class="math inline">\(TE_{M}\)</span>, <span class="math inline">\(TE_{W}\)</span>, <span class="math inline">\(TR_{M}\)</span>, and <span class="math inline">\(TR_{W}\)</span> are the echo and repetition times of the metabolite-edited and water acquisitions, respectively. <span class="math inline">\(T_{1W,i}\)</span> is the longitudinal relaxation time of water in GM (assumed to be 1331 ms), WM (assumed to be 832 ms) (Wansapura et al., 1999) or CSF (assumed to be 3817 ms) (Lu et al., 2005); <span class="math inline">\(T_{2W,i}\)</span> is the transverse relaxation time of water in GM (assumed to be 110 ms), WM (assumed to be 79.2 ms) (Wansapura et al., 1999) or CSF (assumed to be 503 ms) (Piechnik et al., 2009). T1G and T2G are the longitudinal and transverse relaxation times of GABA, assumed to be 1310 and 88 ms, respectively (Edden et al., 2012a; Puts et al., 2013). The tissue-dependent water contents βi (as defined in Ernst et al., 1993) are assumed to be 0.78, 0.65 and 0.97 for GM, WM and CSF, respectively. fi,vol is the volume fraction of GM, WM or CSF in the MRS voxel. Note that this equation equates to the molality equation in Gas- parovic et al. (2006), with additional terms to account for MM fraction and editing efficiency that are particular to edited MRS of GABA.</p>
+</div>
+<div id="gannetsegment" class="section level2">
+<h2>GannetSegment</h2>
 <p><code>MRS_struct.out.vox1.metab.ConcIU_CSFcorr</code>:</p>
 <p><span class="math display">\[C_{CSFcorr} =
 \frac{I_{M}}{I_{W}}\cdot
@@ -374,8 +391,9 @@ W_{vis}\cdot
 {\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}\cdot
 \frac{1}{1-f_{CSF}}
 \]</span></p>
-<p><br></p>
-<p><strong>GannetQuantify</strong></p>
+</div>
+<div id="gannetquantify" class="section level2">
+<h2>GannetQuantify</h2>
 <p><code>MRS_struct.out.vox1.metab.ConcIU_AlphaTissCorr</code>:</p>
 <p><span class="math display">\[C_{corr} =
 \frac{I_{M}}{I_{W}}\cdot
@@ -392,11 +410,14 @@ W_{vis}\cdot
 \left\{\frac{\sum_{i}^{GM,WM,CSF}f_{i}C_{W,i}\exp\left(-\frac{TE_{W}}{T_{2W}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W}}\right)\right]}
 {\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}\cdot
 \frac{\mu_{GM}+\alpha{\mu_{WM}}}{(f_{GM}+\alpha{f_{WM}})(\mu_{GM}+{\mu_{WM}})}\]</span></p>
+<div id="references" class="section level3">
+<h3>References</h3>
+</div>
 </div>
 
 <br>
 <hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/">R Markdown</a> and <a href="https://rstudio.com/">RStudio.</a>
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio.</a>
 <br><br></p>
 <p style="text-align: right;">Copyright &copy; 2020 Mark Mikkelsen. All rights reserved.</p>
 

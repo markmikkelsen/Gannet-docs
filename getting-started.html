@@ -11,7 +11,7 @@
 
 
 
-<title>Gannet</title>
+<title>Getting started</title>
 
 <script src="site_libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -20,6 +20,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
@@ -327,6 +330,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -334,6 +406,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -440,7 +522,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Gannet</h1>
+<h1 class="title toc-ignore">Getting started</h1>
 <h4 class="date">Last updated: 02-May-20</h4>
 
 </div>
@@ -448,114 +530,76 @@ $(document).ready(function () {
 
 <style>
 body .main-container {
-max-width: 1000px;
+max-width: 1200px;
 }
-div.release {
-margin-bottom: 25px; margin-top: 25px;
+div.warning {
+background-color:#E99F3C; color:#FFFFFF; border-radius: 5px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; margin-bottom: 10px; margin-top: 10px;
 }
 </style>
 <p><br></p>
-<p><img src="images/logo.png" width="50%" style="display: block; margin: auto auto auto 0;" /></p>
-<div class="release">
-<h4>
-Current stable release:  <span class="badge badge-secondary">3.1.6</span>
-</h4>
+<p>Gannet simplifies the preprocessing and quantification pipeline of edited MRS data. All you need to get started is a basic understanding of the MATLAB environment and programming language and the five Gannet modules (listed below).</p>
+<p>If this is your first time using Gannet, you will likely want to read through the <a href="https://markmikkelsen.github.io/Gannet-docs/reference.html">Reference</a> as well. If you have previously worked with Gannet and only need a quick refresher about the command syntax, this page will probably be all you need to get started again.</p>
+<div id="gannetpreinitialise" class="section level2">
+<h2>GannetPreInitialise</h2>
+<p>Gannet has many built-in routines for automatically recognizing data formats and sequences, and can load and process data appropriately with minimal user input. However, some settings may need to be set by the user before running Gannet. All modifiable options and flags are collected in the file <code>GannetPreInitialise.m</code>.</p>
+<div class="warning">
+<p>Any time you run Gannet, make sure to check to see that the settings in <code>GannetPreInitialise.m</code> are correct. Many errors can be avoided by following this simple step.</p>
 </div>
-<div id="overview" class="section level2">
-<h2>Overview</h2>
-<p>Gannet is an open-source MATLAB-based toolkit for analyzing edited <sup>1</sup>H magnetic resonance spectroscopy (MRS) data. It has purposely been designed to be easy-to-use . Its largely automated functions include the critical steps of loading raw data, substantial preprocessing, signal modeling, voxel co-registration with anatomical images, and concentration estimation based on tissue composition.</p>
-<p>Many existing software packages for MRS data analysis require substantial user input or offer a wide selection of processing parameters. In contrast, the purpose of Gannet is to provide users with an automated pipeline with the lowest possible degree of operator input, while presenting enough useful information to judge whether the MRS experiment has been performed successfully.</p>
-<p>Visit our <a href="http://www.gabamrs.com/" target="_blank">blog</a> for the latest news on Gannet and our developments in edited MRS methodology.</p>
+<p>The default settings pre-initialize a standard analysis for in vivo GABA-edited MEGA-PRESS data. If you want to analyze data acquired with a different method, data from a phantom, or target a different metabolite, you will need to make changes to this file. Please read the <a href="https://markmikkelsen.github.io/Gannet-docs/reference.html">Reference</a> for detailed explanations of the options and flags in <code>GannetPreInitialise.m</code>.</p>
 </div>
-<div id="installation" class="section level2">
-<h2>Installation</h2>
-<div id="prerequisites" class="section level3">
-<h3>Prerequisites</h3>
-<p>Gannet runs in <a href="https://www.mathworks.com/products/matlab.html" target="_blank">MATLAB</a>. For best performance, we recommend using the latest release if possible. Additionally, Gannet requires that the following MATLAB toolboxes are installed:</p>
-<ul>
-<li>Image Processing</li>
-<li>Optimization</li>
-<li>Signal Processing</li>
-<li>Statistics and Machine Learning</li>
-</ul>
-<p>To run the voxel co-registration and structural image segmentation modules, <a href="https://www.fil.ion.ucl.ac.uk/spm/software/spm12/" target="_blank">SPM12</a> must be installed.</p>
+<div id="modules" class="section level2">
+<h2>Modules</h2>
+<p>The linear workflow of Gannet includes five modules. They necessarily need to be completed in the following order:</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Module</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>GannetLoad</strong></td>
+<td>Loads raw data exported from the scanner; preprocesses them; plots the edited spectra; and gives information about the timecourse of the experiment.</td>
+</tr>
+<tr class="even">
+<td><strong>GannetFit</strong></td>
+<td>Models the metabolite signals of interest in the difference spectra and the reference compounds; plots the data and the model fits; and gives basic quantification results and information about spectral quality.</td>
+</tr>
+<tr class="odd">
+<td><strong>GannetCoRegister</strong></td>
+<td>Loads the provided structural image data files; co-registers the loaded MRS voxel to them; and produces a figure showing the localization of the voxel on the structural image in three orthogonal slices.</td>
+</tr>
+<tr class="even">
+<td><strong>GannetSegment</strong></td>
+<td>Calls SPM12 to segment the structural images; determines the fractional tissue composition (gray matter, white matter, and CSF) within the voxel; produces a figure showing the tissue fractions as overlays and displays CSF-corrected metabolite estimates.</td>
+</tr>
+<tr class="odd">
+<td><strong>GannetQuantify</strong></td>
+<td>Uses the segmentation information to perform partial volume tissue correction and produces a figure displaying several quantitative metabolite measures.</td>
+</tr>
+</tbody>
+</table>
+<p>Familiarize yourself with the five basic Gannet commands, as described below. The number of commands is deliberately kept to a minimum, as is the number of possible input arguments to these commands. Incorrect syntax is a common source of error, so make sure that you understand the argument structure of each function you intend to use.</p>
 </div>
-<div id="installing" class="section level3">
-<h3>Installing</h3>
-<p>The simplest way to install Gannet 3.1 is to download the zipped <a href="https://github.com/richardedden/Gannet3.1/archive/master.zip">master folder</a> from GitHub, unzip it, and then move the Gannet3.1-master folder into your MATLAB directory.</p>
-<p>Git-savvy users can simply clone the Gannet repository into a folder of their choice:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">git</span> clone https://github.com/richardedden/Gannet3.1.git</span></code></pre></div>
-<p>To add the folder to your search path, run the following line of code in the command window:</p>
-<p><strong>macOS</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1"></a><span class="va">addpath</span>(<span class="va">genpath</span>(<span class="ss">&#39;~/Documents/MATLAB/Gannet3.1-master&#39;</span>))<span class="op">;</span></span></code></pre></div>
-<p><strong>Windows</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1"></a><span class="va">addpath</span>(<span class="va">genpath</span>(<span class="ss">&#39;C:\Users\username\Documents\MATLAB\Gannet3.1-master&#39;</span>))<span class="op">;</span></span></code></pre></div>
-<p>Running <code>savepath</code> will permanently save all the paths currently in your search path in MATLAB’s default search path.</p>
-<p>Alternatively, open the Set Path dialog box from the MATLAB menu, click ‘Add with Subfolders’, find the Gannet3.1-master folder and then select it. When done, press ‘Save’ to permanently save the Gannet folder in MATLAB’s default search path.</p>
+<div id="usage" class="section level2">
+<h2>Usage</h2>
+<p>[TEXT]</p>
 </div>
+<div id="batch-processing" class="section level2">
+<h2>Batch processing</h2>
+<p>One of the major strengths of Gannet is its ability to process datasets in batches using the same pipeline. In order to load a set of data, simply add more filenames to the respective cell arrays that are passed to <code>GannetLoad.m</code>, as exemplarily shown below for Siemens TWIX data:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;gaba1.dat&#39;</span><span class="op">,</span> <span class="ss">&#39;gaba2.dat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;water1.dat&#39;</span><span class="op">,</span> <span class="ss">&#39;water2.dat&#39;</span>})<span class="op">;</span></span></code></pre></div>
+<p>Note that the respective water-unsuppressed data files <code>water1.dat</code>, <code>water2.dat</code>, etc. need to be listed in the same order as the water-suppressed files <code>gaba1.dat</code>, <code>gaba2.dat</code>, etc. If you intend to process a large number of datasets, we recommend writing a separate script as a clear way of defining the input cell arrays. We have provided an example that you may adapt to your own data.</p>
 </div>
-<div id="compatibility" class="section level2">
-<h2>Compatibility</h2>
-<p>Gannet is currently developed in MATLAB R2019b in macOS 10.15 Catalina. While reasonable effort is made to ensure version-backward and cross-OS compatibility, an error-free user experience is not guaranteed.</p>
-</div>
-<div id="supported-file-formats" class="section level2">
-<h2>Supported file formats</h2>
-<p>At present, the following MRS data file formats are supported:</p>
-<ul>
-<li>DICOM (.dcm)</li>
-<li>GE P-file (.7)</li>
-<li>Philips .data/.list</li>
-<li>Philips .raw</li>
-<li>Philips .sdat/.spar</li>
-<li>Siemens DICOM (.ima)</li>
-<li>Siemens .rda</li>
-<li>Siemens TWIX (.dat)</li>
-</ul>
-<p>For creating and co-registering voxel masks, structural images need to be NIfTI (Philips and Siemens) or DICOM (GE) format. (NB: Do not export structural images using the ‘fsl-nifti’ option in the Philips platform as this creates problems with co-registration in Gannet)</p>
-</div>
-<div id="getting-help" class="section level2">
-<h2>Getting help</h2>
-<p>If you encounter any problems, it is likely that you will find the solution in either the Documentation or the FAQ.</p>
-<p>For bug reporting, contribution requests, and other queries, please contact us at: <a href="mailto:gabamrs@gmail.com" target="_blank">gabamrs@gmail.com</a></p>
-</div>
-<div id="versioning" class="section level2">
-<h2>Versioning</h2>
-<p><a href="https://semver.org/" target="_blank">Semantic versioning</a> is used when updates are made to Gannet using the style 3.x.x. Versioning is also conducted on a module-specific basis using the style YYMMDD. That is, each Gannet module has its own release version.</p>
-</div>
-<div id="developers" class="section level2">
-<h2>Developers</h2>
-<ul>
-<li>Richard Edden (The Johns Hopkins University)</li>
-<li>Mark Mikkelsen (The Johns Hopkins University)</li>
-<li>Georg Oeltzschner (The Johns Hopkins University)</li>
-<li>Muhammad Saleh (The Johns Hopkins University)</li>
-<li>C. John Evans (Cardiff University)</li>
-<li>Ashley Harris (University of Calgary)</li>
-<li>Nicolaas Puts (King’s College London)</li>
-</ul>
-</div>
-<div id="license" class="section level2">
-<h2>License</h2>
-<p>This software is open-source and does not have a specific license, but should you publish material that made use of Gannet please cite the following publications (as appropriate):</p>
-<ul>
-<li>Edden RAE, Puts NAJ, Harris AD, Barker PB, Evans CJ. <a href="https://doi.org/10.1002/jmri.24478" target="_blank">Gannet: A batch-processing tool for the quantitative analysis of gamma-aminobutyric acid-edited MR spectroscopy spectra.</a> J. Magn. Reson. Imaging 2014;40:1445–1452</li>
-<li>Ashburner J, Friston KJ. <a href="https://doi.org/10.1016/j.neuroimage.2005.02.018" target="_blank">Unified segmentation.</a> NeuroImage 2005;26:839–851 (if you perform tissue segmentation)</li>
-<li>Harris AD, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/jmri.24903" target="_blank">Tissue correction for GABA-edited MRS: Considerations of voxel composition, tissue segmentation, and tissue relaxations.</a> J. Magn. Reson. Imaging 2015;42:1431–1440 (if you report tissue-corrected, water-referenced measurements based on the Harris et al. method)</li>
-<li>Gasparovic C, Song T, Devier D, et al. <a href="https://doi.org/10.1002/mrm.20901" target="_blank">Use of tissue water as a concentration reference for proton spectroscopic imaging.</a> Magn. Reson. Med. 2006;55:1219–1226 (if you report tissue-corrected, water-referenced measurements based on the Gasparovic et al. method)</li>
-</ul>
-</div>
-<div id="acknowledgments" class="section level2">
-<h2>Acknowledgments</h2>
-<p>The development and dissemination of Gannet has been supported by NIH grants R01 EB016089, R01 EB023963, P41 EB015909, R01 MH106564, R21 NS077300, R21 MH098228, and R01 MH096263.</p>
-<p>We wish to thank the following individuals for their contributions:</p>
-<ul>
-<li>Peter Barker (The Johns Hopkins University)</li>
-<li>Philipp Ehses (Max Planck Institute for Biological Cybernetics, Tübingen)</li>
-<li>Robin de Graaf (Yale School of Medicine)</li>
-<li>Ralph Noeske (GE Berlin)</li>
-<li>Jamie Near (McGill University)</li>
-<li>Wouter Potters (UMC Amsterdam)</li>
-</ul>
+<div id="output-structure" class="section level2">
+<h2>Output structure</h2>
+<p>As shown in the syntax above, Gannet uses the structure <code>MRS_struct</code> to save all relevant data and results in during all steps of the analysis pipeline. After creating the initial output from <code>GannetLoad.m</code>, <code>MRS_struct</code> is used as both the output and input arguments for the other Gannet modules. (You need not use <code>MRS_struct</code>; you can something more descriptive and relevant to your purposes.)</p>
+<p>The output structure contains several fields and subfields, which grow in number as your proceed through the entire Gannet workflow. See the <a href="https://markmikkelsen.github.io/Gannet-docs/reference.html">Reference</a> for a complete list and description of attributes.</p>
 </div>
 
 <br>
@@ -565,6 +609,8 @@ Current stable release:  <span class="badge badge-secondary">3.1.6</span>
 <p style="text-align: right;">Copyright &copy; 2020 Mark Mikkelsen. All rights reserved.</p>
 
 
+</div>
+</div>
 
 </div>
 
@@ -597,6 +643,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
