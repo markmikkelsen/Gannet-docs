@@ -523,16 +523,44 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Reference</h1>
-<h4 class="date">Last updated: 02-May-20</h4>
+<h4 class="date">Last updated: May 13, 2020</h4>
 
 </div>
 
 
 <style>
 body .main-container {
-max-width: 1200px;
+  max-width: 1200px;
 }
 </style>
+<button onclick="topFunction()" id="myBtn" title="Go to top">
+Back to top
+</button>
+<script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+<p><br></p>
+<p style="font-size:34px">
+<em>WEBSITE UNDER DEVELOPMENT – CONTENT INCOMPLETE</em>
+</p>
 <p><br></p>
 <div id="pre-initialize-gannet" class="section level2">
 <h2>Pre-initialize Gannet</h2>
@@ -660,7 +688,7 @@ max-width: 1200px;
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span><span class="op">,</span> <span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img src="images/reference/GannetLoad-example.png" width="100%" style="background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
+<p><img src="images/reference/GannetLoad-example.png" width="100%" style = "background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
 <p><br></p>
 </div>
 <div id="signal-fitting" class="section level2">
@@ -674,7 +702,7 @@ max-width: 1200px;
 <span id="cb2-2"><a href="#cb2-2"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img src="images/reference/GannetFit-example.png" width="100%" style="background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
+<p><img src="images/reference/GannetFit-example.png" width="100%" style = "background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
 <p><br></p>
 </div>
 <div id="voxel-co-registration" class="section level2">
@@ -689,7 +717,7 @@ max-width: 1200px;
 <span id="cb3-3"><a href="#cb3-3"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img src="images/reference/GannetCoRegister-example.png" width="100%" style="background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
+<p><img src="images/reference/GannetCoRegister-example.png" width="100%" style = "background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
 <p><br></p>
 </div>
 <div id="tissue-segmentation" class="section level2">
@@ -705,7 +733,7 @@ max-width: 1200px;
 <span id="cb4-4"><a href="#cb4-4"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetSegment</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img src="images/reference/GannetSegment-example.png" width="100%" style="background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
+<p><img src="images/reference/GannetSegment-example.png" width="100%" style = "background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
 <p><br></p>
 </div>
 <div id="quantification" class="section level2">
@@ -722,7 +750,7 @@ max-width: 1200px;
 <span id="cb5-5"><a href="#cb5-5"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetQuantify</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img src="images/reference/GannetQuantify-example.png" width="100%" style="background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
+<p><img src="images/reference/GannetQuantify-example.png" width="100%" style = "background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
 <p><br></p>
 </div>
 <div id="output-structure-attributes" class="section level2">

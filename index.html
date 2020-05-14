@@ -441,31 +441,59 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Gannet</h1>
-<h4 class="date">Last updated: 02-May-20</h4>
+<h4 class="date">Last updated: May 13, 2020</h4>
 
 </div>
 
 
-<style>
-body .main-container {
-max-width: 1000px;
+<button onclick="topFunction()" id="myBtn" title="Go to top">
+Back to top
+</button>
+<script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
 }
-div.release {
-margin-bottom: 25px; margin-top: 25px;
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 }
-</style>
+</script>
+<p><br></p>
+<p style="font-size:34px">
+<em>WEBSITE UNDER DEVELOPMENT – CONTENT INCOMPLETE</em>
+</p>
 <p><br></p>
 <p><img src="images/logo.png" width="50%" style="display: block; margin: auto auto auto 0;" /></p>
 <div class="release">
-<h4>
-Current stable release:  <span class="badge badge-secondary">3.1.6</span>
-</h4>
+<h3>
+Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" target="_blank" class="badge badge-secondary">3.1.5</a>
+</h3>
 </div>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>Gannet is an open-source MATLAB-based toolkit for analyzing edited <sup>1</sup>H magnetic resonance spectroscopy (MRS) data. It has purposely been designed to be easy-to-use . Its largely automated functions include the critical steps of loading raw data, substantial preprocessing, signal modeling, voxel co-registration with anatomical images, and concentration estimation based on tissue composition.</p>
-<p>Many existing software packages for MRS data analysis require substantial user input or offer a wide selection of processing parameters. In contrast, the purpose of Gannet is to provide users with an automated pipeline with the lowest possible degree of operator input, while presenting enough useful information to judge whether the MRS experiment has been performed successfully.</p>
-<p>Visit our <a href="http://www.gabamrs.com/" target="_blank">blog</a> for the latest news on Gannet and our developments in edited MRS methodology.</p>
+<p>Gannet is a free, open-source MATLAB-based software toolkit for analyzing edited <sup>1</sup>H magnetic resonance spectroscopy (MRS) data. Its largely automated functions cover all the essential steps of modern MRS analysis:</p>
+<ul>
+<li>Loading raw data</li>
+<li>Substantial preprocessing</li>
+<li>Signal modeling</li>
+<li>Voxel co-registration with structural MR images</li>
+<li>Concentration estimation based on tissue composition</li>
+</ul>
+<p>Several existing software packages for MRS data analysis require substantial user input or offer a wide selection of processing options. In contrast, the philosophy behind Gannet is to provide users with a complete automated pipeline without the need for significant user input.</p>
+<p>Additionally, as open-source software, advanced users have the ability to modify the underlying routines for ad hoc purposes.</p>
+<p>Gannet is continually being updated and has an active support base. Visit our <a href="http://www.gabamrs.com/" target="_blank">blog</a> for the latest news on Gannet and our developments in edited MRS methodology.</p>
 </div>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
@@ -478,20 +506,28 @@ Current stable release:  <span class="badge badge-secondary">3.1.6</span>
 <li>Signal Processing</li>
 <li>Statistics and Machine Learning</li>
 </ul>
+<p>You can check which toolboxes you have installed by typing <code>ver</code> in the MATLAB command window. To install any missing toolboxes, please follow these <a href="https://www.mathworks.com/matlabcentral/answers/101885-how-do-i-install-additional-toolboxes-into-an-existing-installation-of-matlab" target="_blank">instructions</a>.</p>
 <p>To run the voxel co-registration and structural image segmentation modules, <a href="https://www.fil.ion.ucl.ac.uk/spm/software/spm12/" target="_blank">SPM12</a> must be installed.</p>
 </div>
-<div id="installing" class="section level3">
-<h3>Installing</h3>
-<p>The simplest way to install Gannet 3.1 is to download the zipped <a href="https://github.com/richardedden/Gannet3.1/archive/master.zip">master folder</a> from GitHub, unzip it, and then move the Gannet3.1-master folder into your MATLAB directory.</p>
-<p>Git-savvy users can simply clone the Gannet repository into a folder of their choice:</p>
+<div id="download" class="section level3">
+<h3>Download</h3>
+<p>The simplest way to install Gannet is to download the zipped <a href="https://github.com/richardedden/Gannet3.1/archive/master.zip">master folder</a> from the <a href="https://github.com/richardedden/Gannet3.1" target="_blank">repository</a> on GitHub, unzip it, and then move the <em>Gannet3.1-master</em> folder into your MATLAB folder.</p>
+<p>Alternatively, git-savvy users can clone the Gannet repository into a folder of their choice:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">git</span> clone https://github.com/richardedden/Gannet3.1.git</span></code></pre></div>
-<p>To add the folder to your search path, run the following line of code in the command window:</p>
+</div>
+<div id="setup" class="section level3">
+<h3>Setup</h3>
+<p>To add Gannet to your search path, run the following line of code in the command window:</p>
 <p><strong>macOS</strong></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1"></a><span class="va">addpath</span>(<span class="va">genpath</span>(<span class="ss">&#39;~/Documents/MATLAB/Gannet3.1-master&#39;</span>))<span class="op">;</span></span></code></pre></div>
 <p><strong>Windows</strong></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1"></a><span class="va">addpath</span>(<span class="va">genpath</span>(<span class="ss">&#39;C:\Users\username\Documents\MATLAB\Gannet3.1-master&#39;</span>))<span class="op">;</span></span></code></pre></div>
 <p>Running <code>savepath</code> will permanently save all the paths currently in your search path in MATLAB’s default search path.</p>
-<p>Alternatively, open the Set Path dialog box from the MATLAB menu, click ‘Add with Subfolders’, find the Gannet3.1-master folder and then select it. When done, press ‘Save’ to permanently save the Gannet folder in MATLAB’s default search path.</p>
+<p>Alternatively, open the <em>Set Path</em> dialog box from the MATLAB menu, click <em>Add with Subfolders</em>, find the <em>Gannet3.1-master</em> folder and then select it. When done, press <em>Save</em> to permanently save the Gannet folder in MATLAB’s default search path.</p>
+<p>Make sure to add the SPM12 folder to your path as well.</p>
+<div class="info">
+<p><i class="fa fa-info-circle" style="color: white"></i>  <strong>Info</strong></p>
+<p>It is highly recommended that you only add the main folder (<em>spm12</em>) to your search path rather than including all the subfolders. This prevents potential function conflicts. </i></p>
 </div>
 </div>
 <div id="compatibility" class="section level2">
@@ -511,12 +547,15 @@ Current stable release:  <span class="badge badge-secondary">3.1.6</span>
 <li>Siemens .rda</li>
 <li>Siemens TWIX (.dat)</li>
 </ul>
-<p>For creating and co-registering voxel masks, structural images need to be NIfTI (Philips and Siemens) or DICOM (GE) format. (NB: Do not export structural images using the ‘fsl-nifti’ option in the Philips platform as this creates problems with co-registration in Gannet)</p>
+<p>For creating and co-registering voxel masks, structural images need to be in NIfTI (Philips and Siemens) or DICOM (GE) format.</p>
+<div class="info">
+<p><i class="fa fa-info-circle" style="color: white"></i>  <strong>Info</strong></p>
+<p>Do not use structural images exported using the <em>fsl-nifti</em> option on the Philips platform as this creates problems with co-registration in Gannet. </i></p>
 </div>
 <div id="getting-help" class="section level2">
 <h2>Getting help</h2>
-<p>If you encounter any problems, it is likely that you will find the solution in either the Documentation or the FAQ.</p>
-<p>For bug reporting, contribution requests, and other queries, please contact us at: <a href="mailto:gabamrs@gmail.com" target="_blank">gabamrs@gmail.com</a></p>
+<p>If you encounter any problems, it is likely that you will find the solution in either the Documentation or the <a href="https://markmikkelsen.github.io/Gannet-docs/faq.html" target="_blank">FAQ</a>.</p>
+<p>For other queries, please contact us at: <a href="mailto:gabamrs@gmail.com" target="_blank">gabamrs@gmail.com</a>.</p>
 </div>
 <div id="versioning" class="section level2">
 <h2>Versioning</h2>
@@ -525,34 +564,54 @@ Current stable release:  <span class="badge badge-secondary">3.1.6</span>
 <div id="developers" class="section level2">
 <h2>Developers</h2>
 <ul>
-<li>Richard Edden (The Johns Hopkins University)</li>
-<li>Mark Mikkelsen (The Johns Hopkins University)</li>
-<li>Georg Oeltzschner (The Johns Hopkins University)</li>
-<li>Muhammad Saleh (The Johns Hopkins University)</li>
+<li>Richard Edden (Johns Hopkins University)</li>
+<li>Mark Mikkelsen (Johns Hopkins University)</li>
+<li>Georg Oeltzschner (Johns Hopkins University)</li>
+<li>Muhammad Saleh (Johns Hopkins University)</li>
 <li>C. John Evans (Cardiff University)</li>
 <li>Ashley Harris (University of Calgary)</li>
 <li>Nicolaas Puts (King’s College London)</li>
 </ul>
 </div>
-<div id="license" class="section level2">
-<h2>License</h2>
-<p>This software is open-source and does not have a specific license, but should you publish material that made use of Gannet please cite the following publications (as appropriate):</p>
+<div id="license-and-citing-gannet" class="section level2">
+<h2>License and citing Gannet</h2>
+<p>This software is open-source and does not have a specific license; but should you disseminate material that made use of Gannet, please cite the following publications (as appropriate):</p>
+<p><strong>For all work using Gannet:</strong></p>
 <ul>
-<li>Edden RAE, Puts NAJ, Harris AD, Barker PB, Evans CJ. <a href="https://doi.org/10.1002/jmri.24478" target="_blank">Gannet: A batch-processing tool for the quantitative analysis of gamma-aminobutyric acid-edited MR spectroscopy spectra.</a> J. Magn. Reson. Imaging 2014;40:1445–1452</li>
-<li>Ashburner J, Friston KJ. <a href="https://doi.org/10.1016/j.neuroimage.2005.02.018" target="_blank">Unified segmentation.</a> NeuroImage 2005;26:839–851 (if you perform tissue segmentation)</li>
-<li>Harris AD, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/jmri.24903" target="_blank">Tissue correction for GABA-edited MRS: Considerations of voxel composition, tissue segmentation, and tissue relaxations.</a> J. Magn. Reson. Imaging 2015;42:1431–1440 (if you report tissue-corrected, water-referenced measurements based on the Harris et al. method)</li>
-<li>Gasparovic C, Song T, Devier D, et al. <a href="https://doi.org/10.1002/mrm.20901" target="_blank">Use of tissue water as a concentration reference for proton spectroscopic imaging.</a> Magn. Reson. Med. 2006;55:1219–1226 (if you report tissue-corrected, water-referenced measurements based on the Gasparovic et al. method)</li>
+<li>Edden RAE, Puts NAJ, Harris AD, Barker PB, Evans CJ. <a href="https://doi.org/10.1002/jmri.24478" target="_blank">Gannet: A batch-processing tool for the quantitative analysis of gamma-aminobutyric acid-edited MR spectroscopy spectra.</a> <em>J. Magn. Reson. Imaging.</em> 2014;40(6):1445–1452</li>
+</ul>
+<p><strong>If you perform tissue segmentation:</strong></p>
+<ul>
+<li>Ashburner J, Friston KJ. <a href="https://doi.org/10.1016/j.neuroimage.2005.02.018" target="_blank">Unified segmentation.</a> <em>NeuroImage.</em> 2005;26(3):839–851</li>
+</ul>
+<p><strong>If you report water-referenced measurements corrected using the Harris et al. method:</strong></p>
+<ul>
+<li>Harris AD, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/jmri.24903" target="_blank">Tissue correction for GABA-edited MRS: Considerations of voxel composition, tissue segmentation, and tissue relaxations.</a> <em>J. Magn. Reson. Imaging.</em> 2015;42(5):1431–1440</li>
+</ul>
+<p><strong>If you report water-referenced measurements corrected using the Gasparovic et al. method:</strong></p>
+<ul>
+<li>Gasparovic C, Song T, Devier D, et al. <a href="https://doi.org/10.1002/mrm.20901" target="_blank">Use of tissue water as a concentration reference for proton spectroscopic imaging.</a> <em>Magn. Reson. Med.</em> 2006;55(6):1219–1226</li>
 </ul>
 </div>
 <div id="acknowledgments" class="section level2">
 <h2>Acknowledgments</h2>
-<p>The development and dissemination of Gannet has been supported by NIH grants R01 EB016089, R01 EB023963, P41 EB015909, R01 MH106564, R21 NS077300, R21 MH098228, and R01 MH096263.</p>
+<p>The development and dissemination of Gannet has been supported by NIH grants:</p>
+<ul>
+<li>R01 EB016089</li>
+<li>R01 EB023963</li>
+<li>P41 EB015909</li>
+<li>R01 MH106564</li>
+<li>R21 NS077300</li>
+<li>R21 MH098228</li>
+<li>R01 MH096263</li>
+</ul>
 <p>We wish to thank the following individuals for their contributions:</p>
 <ul>
-<li>Peter Barker (The Johns Hopkins University)</li>
-<li>Philipp Ehses (Max Planck Institute for Biological Cybernetics, Tübingen)</li>
+<li>Peter Barker (Johns Hopkins University)</li>
+<li>Alex Craven (University of Bergen)</li>
+<li>Philipp Ehses (Max Planck Institute for Biological Cybernetics)</li>
 <li>Robin de Graaf (Yale School of Medicine)</li>
-<li>Ralph Noeske (GE Berlin)</li>
+<li>Ralph Noeske (GE Healthcare)</li>
 <li>Jamie Near (McGill University)</li>
 <li>Wouter Potters (UMC Amsterdam)</li>
 </ul>

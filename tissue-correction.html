@@ -350,7 +350,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Tissue correction</h1>
-<h4 class="date">Last updated: 02-May-20</h4>
+<h4 class="date">Last updated: May 13, 2020</h4>
 
 </div>
 
@@ -360,6 +360,34 @@ body .main-container {
 max-width: 1000px;
 }
 </style>
+<button onclick="topFunction()" id="myBtn" title="Go to top">
+Back to top
+</button>
+<script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+<p><br></p>
+<p style="font-size:34px">
+<em>WEBSITE UNDER DEVELOPMENT – CONTENT INCOMPLETE</em>
+</p>
 <p><br></p>
 <p>Gannet will quantify metabolite signals in a number of different ways at various points in the pipeline depending on what reference signals are present and if structural image data are available. It is important to understand what the calculations are for interpretation and reporting.</p>
 <div id="gannetfit" class="section level2">

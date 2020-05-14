@@ -350,19 +350,39 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">FAQ</h1>
-<h4 class="date">Last updated: 02-May-20</h4>
+<h4 class="date">Last updated: May 13, 2020</h4>
 
 </div>
 
 
-<style>
-body .main-container {
-max-width: 1000px;
+<button onclick="topFunction()" id="myBtn" title="Go to top">
+Back to top
+</button>
+<script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
 }
-div.red {
-color:#FF0000;
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 }
-</style>
+</script>
+<p><br></p>
+<p style="font-size:34px">
+<em>WEBSITE UNDER DEVELOPMENT – CONTENT INCOMPLETE</em>
+</p>
 <p><br></p>
 <div id="why-is-my-spectrum-upside-down-after-i-run-gannetload" class="section level4">
 <h4><strong>Why is my spectrum upside down after I run GannetLoad?</strong></h4>
@@ -378,7 +398,7 @@ color:#FF0000;
 </div>
 <div id="why-am-i-getting-this-error-unable-to-perform-assignment-because-the-size-of-the-left-side-is-1-by--and-the-size-of-the-right-side-is-1-by-" class="section level4">
 <h4><strong>Why am I getting this error:</strong> <span style="color: red;"><code>Unable to perform assignment because the size of the left side is 1-by-#### and the size of the right side is 1-by-###</code></span><strong>?</strong></h4>
-<p>You are batch processing multiple datasets that contain different number of averaages. Divide the files into separate batches.</p>
+<p>You are batch processing multiple datasets that contain different number of averages. Divide the files into separate batches so that each batch contains only files of the same number of averages.</p>
 <p><br></p>
 </div>
 <div id="can-gannet-process-gsh-edited-data" class="section level4">

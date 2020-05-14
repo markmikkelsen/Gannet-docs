@@ -350,7 +350,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">An introduction to spectral editing</h1>
-<h4 class="date">Last updated: 02-May-20</h4>
+<h4 class="date">Last updated: May 13, 2020</h4>
 
 </div>
 
@@ -360,6 +360,34 @@ body .main-container {
 max-width: 1000px;
 }
 </style>
+<button onclick="topFunction()" id="myBtn" title="Go to top">
+Back to top
+</button>
+<script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+<p><br></p>
+<p style="font-size:34px">
+<em>WEBSITE UNDER DEVELOPMENT – CONTENT INCOMPLETE</em>
+</p>
 <p><br></p>
 <p>Gannet was developed to handle data from <em>J</em>-difference-edited MRS experiments, which are commonly used to detect signals from low-concentration metabolites. Due to the inherently low signal-to-noise ratio and considerable spectral overlap, these signals are difficult to resolve with conventional localized MRS at field strengths of common clinical MRI scanners 3T.</p>
 <p>Essentially, MEGA-PRESS acquires two spectra which differ in how the target signal evolves, so that the GABA signal is revealed upon subtraction of the two. This subtraction is both the strength of the experiment, in that it allows a weak GABA signal to be separated from the strong overlying creatine (Cr) signal, and its weakness, in that accurate subtraction of the Cr signals is required for accurate GABA quantification. The key pre-processing step of Gannet (frequency and phase correction) is designed to overcome some experimental instability and still achieve accurate subtraction of the Cr signal. MEGA-PRESS harnesses the fact that coupled signals like GABA evolve during the echo time, changing the appearance of GABA spectrum at different TEs, whereas uncoupled signals like Cr do not. Furthermore, this evolution can be undone, or refocused, by applying frequency-selective inversion pulses to the GABA spins. The MEGA-PRESS experiment acquires one experiment in which editing pulses are applied to the GABA signal at 1.9 ppm (often referred to as the ON experiment) and one in which they are not (the OFF experiment). In each of these experiments, the GABA signal at 3 ppm has a different shape, and so therefore subtracting the spectra from the two experiments leaves a measureable GABA signal.</p>

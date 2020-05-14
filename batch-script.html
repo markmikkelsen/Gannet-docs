@@ -441,7 +441,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Batch processing script</h1>
-<h4 class="date">Last updated: 02-May-20</h4>
+<h4 class="date">Last updated: May 13, 2020</h4>
 
 </div>
 
@@ -451,30 +451,58 @@ body .main-container {
 max-width: 1000px;
 }
 </style>
+<button onclick="topFunction()" id="myBtn" title="Go to top">
+Back to top
+</button>
+<script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+<p><br></p>
+<p style="font-size:34px">
+<em>WEBSITE UNDER DEVELOPMENT – CONTENT INCOMPLETE</em>
+</p>
 <p><br></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">% Example batch script for Philips MEGA-PRESS data with accompanying water references and structural images</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="co">% Remember to check GannetPreInitialise.m has the appropriate settings for your data</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="va">data_dir</span> <span class="op">=</span> <span class="ss">&#39;/Users/username/Documents/my_project/data&#39;</span><span class="op">;</span></span>
 <span id="cb1-5"><a href="#cb1-5"></a></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="va">metab</span> <span class="op">=</span> {<span class="ss">&#39;S01/S01_GABA_68_act.sdat&#39;</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>         <span class="ss">&#39;S02/S02_GABA_68_act.sdat&#39;</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>         <span class="ss">&#39;S03/S03_GABA_68_act.sdat&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="va">metab</span> <span class="op">=</span> {<span class="ss">&#39;S01_GABA_68_act.sdat&#39;</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>         <span class="ss">&#39;S02_GABA_68_act.sdat&#39;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>         <span class="ss">&#39;S03_GABA_68_act.sdat&#39;</span>}<span class="op">;</span></span>
 <span id="cb1-9"><a href="#cb1-9"></a><span class="va">metab</span> <span class="op">=</span> <span class="va">fullfile</span>(<span class="va">data_dir</span><span class="op">,</span> <span class="va">metab</span>)<span class="op">;</span> <span class="co">% It is good practice to include the full path of files</span></span>
 <span id="cb1-10"><a href="#cb1-10"></a>         </span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="va">water</span> <span class="op">=</span> {<span class="ss">&#39;S01/S01_GABA_68_ref.sdat&#39;</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a>         <span class="ss">&#39;S02/S02_GABA_68_ref.sdat&#39;</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>         <span class="ss">&#39;S03/S03_GABA_68_ref.sdat&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="va">water</span> <span class="op">=</span> {<span class="ss">&#39;S01_GABA_68_ref.sdat&#39;</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>         <span class="ss">&#39;S02_GABA_68_ref.sdat&#39;</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>         <span class="ss">&#39;S03_GABA_68_ref.sdat&#39;</span>}<span class="op">;</span></span>
 <span id="cb1-14"><a href="#cb1-14"></a><span class="va">water</span> <span class="op">=</span> <span class="va">fullfile</span>(<span class="va">data_dir</span><span class="op">,</span> <span class="va">water</span>)<span class="op">;</span></span>
 <span id="cb1-15"><a href="#cb1-15"></a></span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="va">struc</span> <span class="op">=</span> {<span class="ss">&#39;S01/S01_struc.nii&#39;</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>         <span class="ss">&#39;S02/S02_struc.nii&#39;</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a>         <span class="ss">&#39;S03/S03_struc.nii&#39;</span>}<span class="op">;</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="va">struc</span> <span class="op">=</span> <span class="va">fullfile</span>(<span class="va">data_dir</span><span class="op">,</span> <span class="va">struc</span>)<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="va">anat</span> <span class="op">=</span> {<span class="ss">&#39;S01_T1_anat.nii&#39;</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>        <span class="ss">&#39;S02_T1_anat.nii&#39;</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>        <span class="ss">&#39;S03_T1_anat.nii&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="va">anat</span> <span class="op">=</span> <span class="va">fullfile</span>(<span class="va">data_dir</span><span class="op">,</span> <span class="va">anat</span>)<span class="op">;</span></span>
 <span id="cb1-20"><a href="#cb1-20"></a></span>
 <span id="cb1-21"><a href="#cb1-21"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetLoad</span>(<span class="va">metab</span><span class="op">,</span> <span class="va">water</span>)<span class="op">;</span></span>
 <span id="cb1-22"><a href="#cb1-22"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS</span>)<span class="op">;</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS</span><span class="op">,</span> <span class="va">struc</span>)<span class="op">;</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS</span><span class="op">,</span> <span class="va">anat</span>)<span class="op">;</span></span>
 <span id="cb1-24"><a href="#cb1-24"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetSegment</span>(<span class="va">MRS</span>)<span class="op">;</span></span>
 <span id="cb1-25"><a href="#cb1-25"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetQuantify</span>(<span class="va">MRS</span>)<span class="op">;</span></span></code></pre></div>
 
