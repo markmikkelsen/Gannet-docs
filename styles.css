@@ -1,6 +1,22 @@
 
 body .main-container {
-  max-width: 1000px;
+  max-width: 850px;
+}
+
+body {
+  font-size: 16.5px;
+}
+
+.level2 {
+  padding-top:18px;
+}
+
+.level3 {
+  padding-top:12px;
+}
+
+.level4 {
+  padding-top:10px;
 }
 
 .release {
@@ -33,22 +49,6 @@ body .main-container {
   padding: 5px 10px 5px 10px;
   margin-bottom: 10px;
   margin-top: 10px;
-}
-
-body {
-  font-size: 16.5px;
-}
-
-.level2 {
-  padding-top:18px;
-}
-
-.level3 {
-  padding-top:12px;
-}
-
-.level4 {
-  padding-top:10px;
 }
 
 #myBtn {

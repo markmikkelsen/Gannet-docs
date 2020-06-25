@@ -13,17 +13,20 @@
 
 <title>FAQ</title>
 
-<script src="site_libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
-
 
 
 
@@ -236,6 +239,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -243,6 +315,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -350,11 +432,16 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">FAQ</h1>
-<h4 class="date">Last updated: May 13, 2020</h4>
+<h4 class="date">Last updated: June 25, 2020</h4>
 
 </div>
 
 
+<style>
+body .main-container {
+  max-width: 1200px;
+}
+</style>
 <button onclick="topFunction()" id="myBtn" title="Go to top">
 Back to top
 </button>
@@ -384,40 +471,51 @@ function topFunction() {
 <em>WEBSITE UNDER DEVELOPMENT – CONTENT INCOMPLETE</em>
 </p>
 <p><br></p>
-<div id="why-is-my-spectrum-upside-down-after-i-run-gannetload" class="section level4">
-<h4><strong>Why is my spectrum upside down after I run GannetLoad?</strong></h4>
-<p><strong>Example:</strong></p>
-<p><img src="images/faq/upside-down-spectrum.png" width="35%" style="display: block; margin: auto auto auto 0;" /></p>
-<p>The <code>ONOFForder</code> parameter set in <code>GannetPreInitialise.m</code> is incorrect for your data. Change the setting to either <code>'onfirst'</code> or <code>'offfirst'</code>, depending on what it is currently set as.</p>
-<p><br></p>
-</div>
-<div id="why-am-i-getting-this-error-subscripted-assignment-dimension-mismatch" class="section level4">
-<h4><strong>Why am I getting this error:</strong> <span style="color: red;"><code>Subscripted assignment dimension mismatch</code></span><strong>?</strong></h4>
-<p>This is one of the errors that may appear during batch processing if acquisition parameters are not consistent across datasets.</p>
-<p><br></p>
-</div>
-<div id="why-am-i-getting-this-error-unable-to-perform-assignment-because-the-size-of-the-left-side-is-1-by--and-the-size-of-the-right-side-is-1-by-" class="section level4">
-<h4><strong>Why am I getting this error:</strong> <span style="color: red;"><code>Unable to perform assignment because the size of the left side is 1-by-#### and the size of the right side is 1-by-###</code></span><strong>?</strong></h4>
-<p>You are batch processing multiple datasets that contain different number of averages. Divide the files into separate batches so that each batch contains only files of the same number of averages.</p>
-<p><br></p>
-</div>
+<div id="general" class="section level3">
+<h3>General</h3>
 <div id="can-gannet-process-gsh-edited-data" class="section level4">
 <h4><strong>Can Gannet process GSH-edited data?</strong></h4>
 <p>Yes, Gannet can process GABA-, GSH-, and Lac-edited MEGA-PRESS data as well as HERMES data. Simply set the appropriate <code>target</code> option(s) in GannetPreInitialise.m.</p>
-<p><br></p>
 </div>
 <div id="can-gannet-process-phantom-data" class="section level4">
 <h4><strong>Can Gannet process phantom data?</strong></h4>
 <p>Yes, Gannet can process phantom data. Make sure to set <code>phantom</code> to <code>1</code> under ‘Flags’ in <code>GannetPreInitialise.m</code>. If you want to fit your data, then run <code>GannetFitPhantom(MRS_struct);</code> instead of <code>GannetFit(MRS_struct);</code>.</p>
 </div>
+</div>
+<div id="output" class="section level3">
+<h3>Output</h3>
+<div id="why-is-my-spectrum-upside-down-after-i-run-gannetload" class="section level4">
+<h4><strong>Why is my spectrum upside down after I run GannetLoad?</strong></h4>
+<p><strong>Example:</strong></p>
+<p><img src="images/faq/upside-down-spectrum.png" width="35%" style = "background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
+<p>The <code>ONOFForder</code> parameter set in <code>GannetPreInitialise.m</code> is incorrect for your data. Change the setting to either <code>'onfirst'</code> or <code>'offfirst'</code>, depending on what it is currently set as.</p>
+</div>
+</div>
+<div id="errors" class="section level3">
+<h3>Errors</h3>
+<div id="why-am-i-getting-this-error-subscripted-assignment-dimension-mismatch" class="section level4">
+<h4><strong>Why am I getting this error:</strong> <span style="color: red;"><code>Subscripted assignment dimension mismatch</code></span><strong>?</strong></h4>
+<p>This is one of the errors that may appear during batch processing if acquisition parameters are not consistent across datasets.</p>
+</div>
+<div id="why-am-i-getting-this-error-unable-to-perform-assignment-because-the-size-of-the-left-side-is-1-by--and-the-size-of-the-right-side-is-1-by-" class="section level4">
+<h4><strong>Why am I getting this error:</strong> <span style="color: red;"><code>Unable to perform assignment because the size of the left side is 1-by-#### and the size of the right side is 1-by-###</code></span><strong>?</strong></h4>
+<p>You are batch processing multiple datasets that contain different number of averages. Divide the files into separate batches so that each batch contains only files of the same number of averages.</p>
+</div>
+</div>
 
+<!DOCTYPE html>
 <br>
 <hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio.</a>
-<br><br></p>
-<p style="text-align: right;">Copyright &copy; 2020 Mark Mikkelsen. All rights reserved.</p>
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
+  <br><br>
+</p>
+
+<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY-NC 4.0 <a href="https://creativecommons.org/licenses/by-nc/4.0" target="_blank"><img style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc.xlarge.png" /><img  style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by.xlarge.png" /><img  style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/nc.xlarge.png" /></a>
+</p>
 
 
+</div>
+</div>
 
 </div>
 
@@ -450,6 +548,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -13,7 +13,7 @@
 
 <title>Getting started</title>
 
-<script src="site_libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -24,9 +24,9 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
-
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -523,7 +523,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Getting started</h1>
-<h4 class="date">Last updated: May 13, 2020</h4>
+<h4 class="date">Last updated: June 25, 2020</h4>
 
 </div>
 
@@ -569,7 +569,7 @@ function topFunction() {
 <p>Gannet has many built-in routines for automatically recognizing data formats, sequences, and acquisition parameters from the file headers, and can load and process data appropriately with almost no user input. However, some settings may need to be set by the user before running Gannet. All modifiable options and flags are collected in the file <code>GannetPreInitialise.m</code>.</p>
 <div class="warning">
 <p><i class="fa fa-exclamation-circle" style="color: white"></i>  <strong>Attention</strong></p>
-<p>Any time you run Gannet, make sure to check to see that the settings in <code>GannetPreInitialise.m</code> are correct. Many errors can be avoided by following this simple step.</p>
+<p>Any time you run Gannet, make sure to check that the settings in <code>GannetPreInitialise.m</code> are correct. Many errors can be avoided by following this simple step.</p>
 </div>
 <p>The default settings pre-initialize a standard analysis for in vivo GABA-edited MEGA-PRESS data. If you want to analyze data acquired with a different method or from a phantom, or target a different metabolite, you will need to make changes to this file. Please read the <a href="https://markmikkelsen.github.io/Gannet-docs/reference.html">Reference</a> for detailed explanations of the options and flags in <code>GannetPreInitialise.m</code>.</p>
 </div>
@@ -633,11 +633,15 @@ function topFunction() {
 </div>
 </div>
 
+<!DOCTYPE html>
 <br>
 <hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio.</a>
-<br><br></p>
-<p style="text-align: right;">Copyright &copy; 2020 Mark Mikkelsen. All rights reserved.</p>
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
+  <br><br>
+</p>
+
+<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY-NC 4.0 <a href="https://creativecommons.org/licenses/by-nc/4.0" target="_blank"><img style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc.xlarge.png" /><img  style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by.xlarge.png" /><img  style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/nc.xlarge.png" /></a>
+</p>
 
 
 </div>
@@ -688,7 +692,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
