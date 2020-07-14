@@ -16,7 +16,7 @@
 <script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -184,33 +184,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 60px;
+  padding-top: 54px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .dropdown-submenu {
   position: relative;
@@ -453,6 +453,9 @@ div.tocify {
       <a href="reference.html">Reference</a>
     </li>
     <li>
+      <a href="output-struc-attrib.html">Output structure attributes</a>
+    </li>
+    <li>
       <a href="tissue-correction.html">Tissue correction</a>
     </li>
     <li>
@@ -469,6 +472,9 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="batch-script.html">Batch processing script</a>
+    </li>
+    <li>
+      <a href="gannetpreinitialise-settings.html">GannetPreInitialise settings</a>
     </li>
   </ul>
 </li>
@@ -508,7 +514,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="mailto:gabamrs@gmail.com">
+  <a href="http://www.gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -523,16 +529,11 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Getting started</h1>
-<h4 class="date">Last updated: June 25, 2020</h4>
+<h4 class="date">Last updated: July 14, 2020</h4>
 
 </div>
 
 
-<style>
-body .main-container {
-  max-width: 1200px;
-}
-</style>
 <button onclick="topFunction()" id="myBtn" title="Go to top">
 Back to top
 </button>
@@ -557,56 +558,65 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
-<p><br></p>
-<p style="font-size:34px">
-<em>WEBSITE UNDER DEVELOPMENT – CONTENT INCOMPLETE</em>
-</p>
+<style>
+body .main-container {
+  max-width: 1200px;
+}
+</style>
 <p><br></p>
 <p>Gannet simplifies the preprocessing and quantification pipeline of edited MRS data. All you need to get started is a basic understanding of the MATLAB environment and programming language and the five Gannet modules (listed below).</p>
 <p>If this is your first time using Gannet, you will likely want to read through the <a href="https://markmikkelsen.github.io/Gannet-docs/reference.html">Reference</a> as well. If you have previously worked with Gannet and only need a quick refresher about the command syntax, this page will probably be all you need to get started again.</p>
 <div id="gannetpreinitialise" class="section level2">
 <h2>GannetPreInitialise</h2>
 <p>Gannet has many built-in routines for automatically recognizing data formats, sequences, and acquisition parameters from the file headers, and can load and process data appropriately with almost no user input. However, some settings may need to be set by the user before running Gannet. All modifiable options and flags are collected in the file <code>GannetPreInitialise.m</code>.</p>
-<div class="warning">
-<p><i class="fa fa-exclamation-circle" style="color: white"></i>  <strong>Attention</strong></p>
-<p>Any time you run Gannet, make sure to check that the settings in <code>GannetPreInitialise.m</code> are correct. Many errors can be avoided by following this simple step.</p>
+<div class="info">
+<p><i class="fa fa-exclamation-circle" style="color: white"></i>   Any time you run Gannet, make sure to check that the settings in <code>GannetPreInitialise.m</code> are correct. Many errors can be avoided by following this simple step.</p>
 </div>
 <p>The default settings pre-initialize a standard analysis for in vivo GABA-edited MEGA-PRESS data. If you want to analyze data acquired with a different method or from a phantom, or target a different metabolite, you will need to make changes to this file. Please read the <a href="https://markmikkelsen.github.io/Gannet-docs/reference.html">Reference</a> for detailed explanations of the options and flags in <code>GannetPreInitialise.m</code>.</p>
+<p><br></p>
+<p><img id="myImg" src="images/screenshots/GannetPreInitialise.png" alt="GannetPreInitialise.m"></p>
+<!-- <div id="myModal" class="modal"> -->
+<!--   <span class="close">&times;</span> -->
+<!--   <img class="modal-content" id="img01"> -->
+<!--   <div id="caption"></div> -->
+<!-- </div> -->
+<!-- <script src="js/img-modal.js"></script> -->
+<p><br></p>
 </div>
 <div id="modules" class="section level2">
 <h2>Modules</h2>
 <p>The linear workflow of Gannet is made up of five modules. For proper functionality, they need to be executed in the following order:</p>
 <table>
 <colgroup>
-<col width="25%" />
-<col width="75%" />
+<col width="16%" />
+<col width="83%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Module</strong></th>
-<th><strong>Description</strong></th>
+<th align="left"><u>Module</u></th>
+<th align="left"><u>Description</u></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>GannetLoad</strong></td>
-<td>Loads raw data exported from the scanner; preprocesses them; plots the edited spectra; and gives information about the timecourse of the experiment.</td>
+<td align="left"><strong>GannetLoad</strong></td>
+<td align="left">Loads raw data exported from the scanner; preprocesses them; plots the edited spectra; and gives information about the timecourse of the experiment.</td>
 </tr>
 <tr class="even">
-<td><strong>GannetFit</strong></td>
-<td>Models the metabolite signals of interest in the difference spectra and the reference compounds; plots the data and the model fits; and gives basic quantification results and information about spectral quality.</td>
+<td align="left"><strong>GannetFit</strong></td>
+<td align="left">Models the metabolite signals of interest in the difference spectra and the reference compounds; plots the data and the model fits; and gives basic quantification results and information about spectral quality.</td>
 </tr>
 <tr class="odd">
-<td><strong>GannetCoRegister</strong></td>
-<td>Loads the provided structural image data files; co-registers the loaded MRS voxel to them; and produces a figure showing the localization of the voxel on the structural image in three orthogonal slices.</td>
+<td align="left"><strong>GannetCoRegister</strong></td>
+<td align="left">Loads the provided structural image data files; co-registers the loaded MRS voxel to them; and produces a figure showing the localization of the voxel on the structural image in three orthogonal slices.</td>
 </tr>
 <tr class="even">
-<td><strong>GannetSegment</strong></td>
-<td>Calls SPM12 to segment the structural images; determines the fractional tissue composition (gray matter, white matter, and CSF) within the voxel; produces a figure showing the tissue fractions as overlays and displays CSF-corrected metabolite estimates.</td>
+<td align="left"><strong>GannetSegment</strong></td>
+<td align="left">Calls SPM12 to segment the structural images; determines the fractional tissue composition (gray matter, white matter, and CSF) within the voxel; produces a figure showing the tissue fractions as overlays and displays CSF-corrected metabolite estimates.</td>
 </tr>
 <tr class="odd">
-<td><strong>GannetQuantify</strong></td>
-<td>Uses the segmentation information to perform partial volume tissue correction and produces a figure displaying several quantitative metabolite measures.</td>
+<td align="left"><strong>GannetQuantify</strong></td>
+<td align="left">Uses the segmentation information to perform partial volume tissue correction and produces a figure displaying several quantitative metabolite measures.</td>
 </tr>
 </tbody>
 </table>
@@ -619,18 +629,19 @@ function topFunction() {
 <div id="batch-processing" class="section level2">
 <h2>Batch processing</h2>
 <p>One of the major strengths of Gannet is its ability to process datasets in batches using the same pipeline. In order to load a set of data, simply add more filenames to the respective cell arrays that are passed to <code>GannetLoad.m</code>, as exemplarily shown below for Siemens TWIX data:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_68_act.sdat&#39;</span><span class="op">,</span> <span class="ss">&#39;S02_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_68_ref.sdat&#39;</span><span class="op">,</span> <span class="ss">&#39;S02_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;S02_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> <span class="op">...</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>                        {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;S02_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p>Note that the respective water-unsuppressed data files <code>S01_GABA_68_ref.sdat</code>, <code>S02_GABA_68_ref.sdat</code>, etc. need to be listed in the same order as the water-suppressed files <code>S01_GABA_68_act.sdat</code>, <code>S02_GABA_68_act.sdat</code>, etc. If you intend to process a large number of datasets, we recommend writing a separate script as a clear way of defining the input cell arrays. We have provided an <a href="https://markmikkelsen.github.io/Gannet-docs/batch-script.html">example script</a> that you may modify for your own analyses.</p>
 </div>
 <div id="output" class="section level2">
 <h2>Output</h2>
 <p>As shown in the syntax above, Gannet saves all relevant data and results in the structure <code>MRS_struct</code> at all steps in the analysis pipeline. After creating the initial output from <code>GannetLoad.m</code>, <code>MRS_struct</code> is used as both the output and input arguments for the other Gannet modules. (You need not use <code>MRS_struct</code>; you can use something more descriptive and relevant to your purposes if you wish.)</p>
-<p>The output structure contains several fields and subfields, which grow in number as your proceed through the entire Gannet workflow. See the <a href="https://markmikkelsen.github.io/Gannet-docs/reference.html">Reference</a> for a complete list and description of attributes.</p>
+<p>The output structure contains several fields and subfields, which grow in number as your proceed through the Gannet analysis pipeline See the list of <a href="https://markmikkelsen.github.io/Gannet-docs/output-struc-attrib.html">output structure attributes</a> for a complete description.</p>
 <p>You can also output a CSV file containing useful values from the output structure for further analysis. This functionality is set in <code>GannetPreInitialise.m</code>.</p>
 <p><br></p>
-<div style="text-align: right">
-<p><a class="fa fa-arrow-circle-right fa-2x" style="color: #2F3E4F" href="https://markmikkelsen.github.io/Gannet-docs/reference.html"></a></p>
-</div>
+<!-- <div style="text-align: right"> -->
+<!--   <a class="fa fa-arrow-circle-right fa-2x" style="color: #2F3E4F" href="https://markmikkelsen.github.io/Gannet-docs/reference.html"></a> -->
+<!-- </div> -->
 </div>
 
 <!DOCTYPE html>
@@ -639,8 +650,7 @@ function topFunction() {
 <p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY-NC 4.0 <a href="https://creativecommons.org/licenses/by-nc/4.0" target="_blank"><img style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc.xlarge.png" /><img  style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by.xlarge.png" /><img  style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/nc.xlarge.png" /></a>
+<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY-NC 4.0 <a href="https://creativecommons.org/licenses/by-nc/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/nc-xlarge.png"></a>
 </p>
 
 

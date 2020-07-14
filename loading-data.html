@@ -11,7 +11,7 @@
 
 
 
-<title>Release notes</title>
+<title>Loading data</title>
 
 <script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -437,12 +437,17 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Release notes</h1>
+<h1 class="title toc-ignore">Loading data</h1>
 <h4 class="date">Last updated: July 14, 2020</h4>
 
 </div>
 
 
+<style>
+body .main-container {
+  max-width: 1200px;
+}
+</style>
 <button onclick="topFunction()" id="myBtn" title="Go to top">
 Back to top
 </button>
@@ -468,70 +473,6 @@ function topFunction() {
 }
 </script>
 <p><br></p>
-<p>This page logs the stable releases of Gannet. However, minor edits and bug fixes are also made in between releases. For a more comprehensive list of changes, see the commits logged on the <a href="https://github.com/richardedden/Gannet3.1/commits/master" target="_blank">repository</a> on GitHub.</p>
-<div id="section" class="section level2">
-<h2><strong>3.1.5</strong></h2>
-<p><span style="color: grey;">2020-03-02</span></p>
-<div id="new-features" class="section level3">
-<h3>New features</h3>
-<ul>
-<li>Smarter checking of incorrect settings in <code>GannetPreInitialise.m</code> by <code>CheckTargets.m</code></li>
-<li>Major changes to <code>GannetFitPhantom.m</code> to bring it more in line with <code>GannetFit.m</code></li>
-<li>Added support for CMRR MEGA-sLASER sequence in <code>SiemensTwixRead.m</code></li>
-<li>In <code>SubSpectralAlign.m</code>, if very strong water suppression was used, use Cho instead of residual water to align subspectra of GABA-, Lac-, and EtOH-edited datasets</li>
-</ul>
-</div>
-<div id="minor-changes" class="section level3">
-<h3>Minor changes</h3>
-<ul>
-<li>Noise estimation in <code>CalcNoise.m</code>, <code>Robust_Spectral_Registration.m</code>, and <code>SignalFilter.m</code> is now performed between 8 and 10 ppm to account for datasets that have shorter spectral widths</li>
-<li>Cleaned up code in <code>GannetFit.m</code></li>
-<li>Quantification of Lac now explicitly defined as Lac+MM</li>
-<li>Improved functionality of <code>PaperPlot.m</code></li>
-<li>In <code>SiemensTwixRead.m</code>, when a water reference is present, coil sensitivity and phase is based on the point index that is at the top of the echo, rather than simply fixing it to the first point</li>
-</ul>
-</div>
-<div id="bug-fixes" class="section level3">
-<h3>Bug fixes</h3>
-<ul>
-<li>Minor bug fixes in CoRegStandAlone functions</li>
-<li>Corrected use of random number generation in <code>SignalFilter.m</code> when performing noise replacement to ensure the same results are reproduced each time it is run on a dataset</li>
-</ul>
-<p><br></p>
-</div>
-</div>
-<div id="section-1" class="section level2">
-<h2><strong>3.1.4</strong></h2>
-<p><span style="color: grey;">2019-10-03</span></p>
-<div id="bug-fix" class="section level3">
-<h3>Bug fix</h3>
-<ul>
-<li>Fixed error in the calculation of <code>AvgDeltaF0</code> for MEGA-PRESS data</li>
-</ul>
-<p><br></p>
-</div>
-</div>
-<div id="section-2" class="section level2">
-<h2><strong>3.1.3</strong></h2>
-<p><span style="color: grey;">2019-08-06</span></p>
-<div id="new-features-1" class="section level3">
-<h3>New features</h3>
-<ul>
-<li>Major improvements to <code>Robust_Spectral_Registration.m</code></li>
-<li>Wavelet toolbox no longer required</li>
-<li>Raw data is now phase-corrected prior to alignment</li>
-<li><code>GannetLoad.m</code> and <code>GannetFit.m</code> no longer crash if an error occurs during a batch analysis</li>
-<li>An error report is printed after the final dataset is loaded/fitted so users can check which datasets failed</li>
-<li>Added support for GE revision header 20.007</li>
-</ul>
-</div>
-<div id="minor-change" class="section level3">
-<h3>Minor change</h3>
-<ul>
-<li><code>Water_Positive</code> flag in <code>GannetPreInitialise.m</code> removed</li>
-</ul>
-</div>
-</div>
 
 <!DOCTYPE html>
 <br>

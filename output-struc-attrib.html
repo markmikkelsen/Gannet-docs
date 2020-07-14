@@ -11,7 +11,7 @@
 
 
 
-<title>Release notes</title>
+<title>Output structure attributes</title>
 
 <script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -437,7 +437,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Release notes</h1>
+<h1 class="title toc-ignore">Output structure attributes</h1>
 <h4 class="date">Last updated: July 14, 2020</h4>
 
 </div>
@@ -467,70 +467,253 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
+<style>
+body .main-container {
+  max-width: 1200px;
+}
+</style>
 <p><br></p>
-<p>This page logs the stable releases of Gannet. However, minor edits and bug fixes are also made in between releases. For a more comprehensive list of changes, see the commits logged on the <a href="https://github.com/richardedden/Gannet3.1/commits/master" target="_blank">repository</a> on GitHub.</p>
-<div id="section" class="section level2">
-<h2><strong>3.1.5</strong></h2>
-<p><span style="color: grey;">2020-03-02</span></p>
-<div id="new-features" class="section level3">
-<h3>New features</h3>
-<ul>
-<li>Smarter checking of incorrect settings in <code>GannetPreInitialise.m</code> by <code>CheckTargets.m</code></li>
-<li>Major changes to <code>GannetFitPhantom.m</code> to bring it more in line with <code>GannetFit.m</code></li>
-<li>Added support for CMRR MEGA-sLASER sequence in <code>SiemensTwixRead.m</code></li>
-<li>In <code>SubSpectralAlign.m</code>, if very strong water suppression was used, use Cho instead of residual water to align subspectra of GABA-, Lac-, and EtOH-edited datasets</li>
-</ul>
+<div class="info">
+<p><i class="fa fa-info-circle" style="color: white"></i>   The variables listed on this page are applicable to release 3.1.5 and are not necessarily correct for earlier versions of Gannet.</p>
 </div>
-<div id="minor-changes" class="section level3">
-<h3>Minor changes</h3>
-<ul>
-<li>Noise estimation in <code>CalcNoise.m</code>, <code>Robust_Spectral_Registration.m</code>, and <code>SignalFilter.m</code> is now performed between 8 and 10 ppm to account for datasets that have shorter spectral widths</li>
-<li>Cleaned up code in <code>GannetFit.m</code></li>
-<li>Quantification of Lac now explicitly defined as Lac+MM</li>
-<li>Improved functionality of <code>PaperPlot.m</code></li>
-<li>In <code>SiemensTwixRead.m</code>, when a water reference is present, coil sensitivity and phase is based on the point index that is at the top of the echo, rather than simply fixing it to the first point</li>
-</ul>
+<div id="mrs_struct" class="section level2">
+<h2><code>MRS_struct</code></h2>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><u>Field</u></th>
+<th align="left"><u>Description</u></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>version</code></td>
+<td align="left">Release numbers of Gannet and the Gannet modules</td>
+</tr>
+<tr class="even">
+<td align="left"><code>ii</code></td>
+<td align="left">During analysis, the current file being loaded; after analysis, the number of files that were loaded</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>metabfile</code></td>
+<td align="left">String array containing the inputted metabolite data filenames</td>
+</tr>
+<tr class="even">
+<td align="left"><code>waterfile</code></td>
+<td align="left">String array containing the inputted water reference data filenames</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="bug-fixes" class="section level3">
-<h3>Bug fixes</h3>
-<ul>
-<li>Minor bug fixes in CoRegStandAlone functions</li>
-<li>Corrected use of random number generation in <code>SignalFilter.m</code> when performing noise replacement to ensure the same results are reproduced each time it is run on a dataset</li>
-</ul>
-<p><br></p>
+<div id="mrs_struct.p" class="section level2">
+<h2><code>MRS_struct.p</code></h2>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><u>Field</u></th>
+<th align="left"><u>Description</u></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>Reference_compound</code></td>
+<td align="left">Concentrations will be calculated relative to this; if a water reference is provided, concentrations will be calculated relative to both water and Cr, otherwise they will be calculated relative to Cr</td>
+</tr>
+<tr class="even">
+<td align="left"><code>target</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ONOFForder</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>seqorig</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>LB</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>water_phase_correction</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>data_phase_correction</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>water_removal</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>AlignTo</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>Vox</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>FitResidWater</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>HERMES</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>HERCULES</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>PRIAM</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>phantom</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>mat</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>sdat</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>csv</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>vendor</code></td>
+<td align="left">Scanner vendor</td>
+</tr>
+<tr class="even">
+<td align="left"><code>spar_string</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>numscans</code></td>
+<td align="left">Total number of scans in the batch</td>
+</tr>
+<tr class="even">
+<td align="left"><code>npoints</code></td>
+<td align="left">Number of data points</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>nrows</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>Navg</code></td>
+<td align="left">Total number of averages</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>TR</code></td>
+<td align="left">Repetition time (ms)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>TE</code></td>
+<td align="left">Echo time (m)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>LarmorFreq</code></td>
+<td align="left">Larmor frequency (kHz)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>sw</code></td>
+<td align="left">Spectral width (Hz)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>voxdim</code></td>
+<td align="left">Voxel dimensions (mm)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>voxoff</code></td>
+<td align="left">Voxel position offset (mm)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>voxang</code></td>
+<td align="left">Voxel angulation (deg)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Nwateravg</code></td>
+<td align="left">Total number of water averages</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ZeroFillTo</code></td>
+<td align="left">Processed spectra are zero-filled to this many data points</td>
+</tr>
+<tr class="even">
+<td align="left"><code>zf</code></td>
+<td align="left">Zero-filling factor</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>df</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>SpecRes</code></td>
+<td align="left">Spectral resolution of the raw data</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>SpecResNominal</code></td>
+<td align="left">Nominal spectral resolution of the processed data</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Tacq</code></td>
+<td align="left">Acquisition time</td>
+</tr>
+</tbody>
+</table>
 </div>
-</div>
-<div id="section-1" class="section level2">
-<h2><strong>3.1.4</strong></h2>
-<p><span style="color: grey;">2019-10-03</span></p>
-<div id="bug-fix" class="section level3">
-<h3>Bug fix</h3>
-<ul>
-<li>Fixed error in the calculation of <code>AvgDeltaF0</code> for MEGA-PRESS data</li>
-</ul>
-<p><br></p>
-</div>
-</div>
-<div id="section-2" class="section level2">
-<h2><strong>3.1.3</strong></h2>
-<p><span style="color: grey;">2019-08-06</span></p>
-<div id="new-features-1" class="section level3">
-<h3>New features</h3>
-<ul>
-<li>Major improvements to <code>Robust_Spectral_Registration.m</code></li>
-<li>Wavelet toolbox no longer required</li>
-<li>Raw data is now phase-corrected prior to alignment</li>
-<li><code>GannetLoad.m</code> and <code>GannetFit.m</code> no longer crash if an error occurs during a batch analysis</li>
-<li>An error report is printed after the final dataset is loaded/fitted so users can check which datasets failed</li>
-<li>Added support for GE revision header 20.007</li>
-</ul>
-</div>
-<div id="minor-change" class="section level3">
-<h3>Minor change</h3>
-<ul>
-<li><code>Water_Positive</code> flag in <code>GannetPreInitialise.m</code> removed</li>
-</ul>
-</div>
+<div id="mrs_struct.fids" class="section level2">
+<h2><code>MRS_struct.fids</code></h2>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><u>Field</u></th>
+<th align="left"><u>Description</u></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>data</code></td>
+<td align="left">Raw time-domain metabolite data (dimensions: <code>npoints</code> <span class="math inline">\(\times\)</span> <code>nrows</code>) of the last loaded dataset</td>
+</tr>
+<tr class="even">
+<td align="left"><code>data_water</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ON_OFF</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>data_align</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>vox1</code></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
 </div>
 
 <!DOCTYPE html>

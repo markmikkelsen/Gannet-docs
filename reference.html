@@ -16,7 +16,7 @@
 <script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -184,33 +184,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 60px;
+  padding-top: 54px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .dropdown-submenu {
   position: relative;
@@ -453,6 +453,9 @@ div.tocify {
       <a href="reference.html">Reference</a>
     </li>
     <li>
+      <a href="output-struc-attrib.html">Output structure attributes</a>
+    </li>
+    <li>
       <a href="tissue-correction.html">Tissue correction</a>
     </li>
     <li>
@@ -469,6 +472,9 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="batch-script.html">Batch processing script</a>
+    </li>
+    <li>
+      <a href="gannetpreinitialise-settings.html">GannetPreInitialise settings</a>
     </li>
   </ul>
 </li>
@@ -508,7 +514,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="mailto:gabamrs@gmail.com">
+  <a href="http://www.gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -523,7 +529,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Reference</h1>
-<h4 class="date">Last updated: June 25, 2020</h4>
+<h4 class="date">Last updated: July 14, 2020</h4>
 
 </div>
 
@@ -558,12 +564,11 @@ function topFunction() {
 }
 </script>
 <p><br></p>
-<p style="font-size:34px">
-<em>WEBSITE UNDER DEVELOPMENT – CONTENT INCOMPLETE</em>
-</p>
-<p><br></p>
-<div id="pre-initialize-gannet" class="section level2">
-<h2>Pre-initialize Gannet</h2>
+<div class="info">
+<p><i class="fa fa-info-circle" style="color: white"></i>   The variables listed on this page are applicable to release 3.1.5 and are not necessarily correct for earlier versions of Gannet.</p>
+</div>
+<div id="pre-initialise-gannet" class="section level2">
+<h2>Pre-initialise Gannet</h2>
 <hr />
 <p><code>GannetPreInitialise.m</code></p>
 <p><br></p>
@@ -574,106 +579,106 @@ function topFunction() {
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Acquisiton parameters</strong></th>
-<th><strong>Description</strong></th>
+<th align="left"><u>Acquisition parameters</u></th>
+<th align="left"><u>Description</u></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>target</code></td>
-<td>This sets the metabolite of interest that was edited in the MRS experiment. If HERMES was used, multiple metabolites should be selected.</td>
+<td align="left"><code>target</code></td>
+<td align="left">Sets the metabolite of interest that was edited in the MRS experiment; if HERMES was used, multiple metabolites should be selected</td>
 </tr>
 <tr class="even">
-<td><code>ONOFForder</code></td>
-<td>The order of the ON/OFF editing scans in the MEGA-PRESS acquisitions determines (amongst other things in Gannet) how the subspectra are subtracted to derive the difference spectrum. Typically, Philips acquisitions are <code>'offfirst'</code> and GE and Siemens acquisitions are <code>'onfirst'</code> (but this is not always true so you should always check your acquisition parameters).</td>
+<td align="left"><code>ONOFForder</code></td>
+<td align="left">Order of the ON/OFF editing scans in the MEGA-PRESS acquisitions determines (amongst other things in Gannet) how the subspectra are subtracted to derive the difference spectra; typically, Philips acquisitions are <code>'offfirst'</code> and GE and Siemens acquisitions are <code>'onfirst'</code> (but this is not always true so you should always check your acquisition parameters)</td>
 </tr>
 <tr class="odd">
-<td><code>seqorig</code></td>
-<td>This parameter is specific to Philips data. It specifies whether the data were acquired using the patch developed at Johns Hopkins University or the Philips product sequence.</td>
+<td align="left"><code>seqorig</code></td>
+<td align="left">Specific to Philips data; specifies whether the data were acquired using the patch developed at Johns Hopkins University or the Philips product sequence</td>
 </tr>
 </tbody>
 </table>
 <table>
 <colgroup>
-<col width="25%" />
-<col width="75%" />
+<col width="16%" />
+<col width="83%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Analysis parameters</strong></th>
-<th><strong>Description</strong></th>
+<th align="left"><u>Analysis parameters</u></th>
+<th align="left"><u>Description</u></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>LB</code></td>
-<td>This sets the amount of exponential line-broadening to apply to the data (in Hz).</td>
+<td align="left"><code>LB</code></td>
+<td align="left">Sets the amount of exponential line-broadening to apply to the data (in Hz)</td>
 </tr>
 <tr class="even">
-<td><code>water_phase_correction</code></td>
-<td>Whether to perform an eddy-current correction (<span class="citation"><a href="#ref-Klose1990" role="doc-biblioref">1</a></span>) on the water data.</td>
+<td align="left"><code>water_phase_correction</code></td>
+<td align="left">Whether to perform an eddy-current correction (<span class="citation"><a href="#ref-Klose1990" role="doc-biblioref">1</a></span>) on the water data</td>
 </tr>
 <tr class="odd">
-<td><code>data_phase_correction</code></td>
-<td>Whether to perform an eddy-current correction on the metabolite data.</td>
+<td align="left"><code>data_phase_correction</code></td>
+<td align="left">Whether to perform an eddy-current correction on the metabolite data</td>
 </tr>
 <tr class="even">
-<td><code>water_removal</code></td>
-<td>Whether to remove the residual water signal from the difference spectra using an HSVD filter (<span class="citation"><a href="#ref-Barkhuijsen1987" role="doc-biblioref">2</a></span>).</td>
+<td align="left"><code>water_removal</code></td>
+<td align="left">Whether to remove the residual water signal from the difference spectra using an HSVD filter (<span class="citation"><a href="#ref-Barkhuijsen1987" role="doc-biblioref">2</a></span>)</td>
 </tr>
 <tr class="odd">
-<td><code>AlignTo</code></td>
-<td>Which method to use for shot-to-shot frequency-and-phase correction.</td>
+<td align="left"><code>AlignTo</code></td>
+<td align="left">Which method to use for shot-to-shot frequency-and-phase correction</td>
 </tr>
 <tr class="even">
-<td><code>Vox</code></td>
-<td>This parameter only applies to PRIAM data. The desired naming of the output structure fields.</td>
+<td align="left"><code>Vox</code></td>
+<td align="left">Only applies to PRIAM data; the desired naming of the output structure fields</td>
 </tr>
 <tr class="odd">
-<td><code>FitResidWater</code></td>
-<td>Whether to model the residual water signal in the difference spectrum. This is used to calculate the water suppression factor.</td>
+<td align="left"><code>FitResidWater</code></td>
+<td align="left">Whether to model the residual water signal in the difference spectrum; used to calculate the water suppression factor</td>
 </tr>
 </tbody>
 </table>
 <table>
 <colgroup>
-<col width="25%" />
-<col width="75%" />
+<col width="16%" />
+<col width="83%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Flags</strong></th>
-<th><strong>Description</strong></th>
+<th align="left"><strong>Flags</strong></th>
+<th align="left"><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>HERMES</code></td>
-<td>Set to <code>1</code> if the data were acquired using HERMES.</td>
+<td align="left"><code>HERMES</code></td>
+<td align="left">Set to <code>1</code> if the data were acquired using HERMES</td>
 </tr>
 <tr class="even">
-<td><code>HERCULES</code></td>
-<td>Set to <code>1</code> if the data were acquired using HERCULES (<code>HERMES</code> must also be set to <code>1</code>).</td>
+<td align="left"><code>HERCULES</code></td>
+<td align="left">Set to <code>1</code> if the data were acquired using HERCULES (<code>HERMES</code> must also be set to <code>1</code>)</td>
 </tr>
 <tr class="odd">
-<td><code>PRIAM</code></td>
-<td>Set to <code>1</code> if the data were acquired using PRIAM.</td>
+<td align="left"><code>PRIAM</code></td>
+<td align="left">Set to <code>1</code> if the data were acquired using PRIAM</td>
 </tr>
 <tr class="even">
-<td><code>phantom</code></td>
-<td>Set to <code>1</code> if the data were acquired in a phantom.</td>
+<td align="left"><code>phantom</code></td>
+<td align="left">Set to <code>1</code> if the data were acquired in a phantom</td>
 </tr>
 <tr class="odd">
-<td><code>mat</code></td>
-<td>Set to <code>1</code> to save the output structure as a MAT-file.</td>
+<td align="left"><code>mat</code></td>
+<td align="left">Set to <code>1</code> to save the output structure as a MAT-file</td>
 </tr>
 <tr class="even">
-<td><code>sdat</code></td>
-<td>Set to <code>1</code> to export the difference spectra as a .sdat file (only for Philips .sdat MEGA-PRESS datasets).</td>
+<td align="left"><code>sdat</code></td>
+<td align="left">Set to <code>1</code> to export the difference spectra as a .sdat file (only for Philips .sdat MEGA-PRESS datasets)</td>
 </tr>
 <tr class="odd">
-<td><code>csv</code></td>
-<td>Set to <code>1</code> to export a .csv file containing useful data for analysis (applies to <code>GannetFit.m</code>, <code>GannetSegment.m</code> and <code>GannetQuantify.m</code>).</td>
+<td align="left"><code>csv</code></td>
+<td align="left">Set to <code>1</code> to export a .csv file containing useful data for analysis (applies to <code>GannetFit.m</code>, <code>GannetSegment.m</code> and <code>GannetQuantify.m</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -685,10 +690,10 @@ function topFunction() {
 <p><code>GannetLoad.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span><span class="op">,</span> <span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img src="images/reference/GannetLoad-example.png" width="100%" style = "background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
+<p><img id="myImg" src="images/reference/GannetLoad-example.png" alt="GannetLoad output"></p>
 <p><br></p>
 </div>
 <div id="signal-fitting" class="section level2">
@@ -698,11 +703,11 @@ function topFunction() {
 <p><code>GannetFit.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_68_act.sdat&#39;</span><span class="op">,</span> <span class="ss">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb2-1"><a href="#cb2-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img src="images/reference/GannetFit-example.png" width="100%" style = "background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
+<p><img id="myImg" src="images/reference/GannetFit-example.png" alt="GannetFit output"></p>
 <p><br></p>
 </div>
 <div id="voxel-co-registration" class="section level2">
@@ -712,12 +717,12 @@ function topFunction() {
 <p><code>GannetCoRegister.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_68_act.sdat&#39;</span><span class="op">,</span> <span class="ss">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb3-1"><a href="#cb3-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img src="images/reference/GannetCoRegister-example.png" width="100%" style = "background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
+<p><img id="myImg" src="images/reference/GannetCoRegister-example.png" alt="GannetCoRegister output"></p>
 <p><br></p>
 </div>
 <div id="tissue-segmentation" class="section level2">
@@ -727,13 +732,13 @@ function topFunction() {
 <p><code>GannetSegment.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_68_act.sdat&#39;</span><span class="op">,</span> <span class="ss">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetSegment</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb4-1"><a href="#cb4-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>MRS_struct <span class="op">=</span> GannetSegment(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img src="images/reference/GannetSegment-example.png" width="100%" style = "background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
+<p><img id="myImg" src="images/reference/GannetSegment-example.png" alt="GannetSegment output"></p>
 <p><br></p>
 </div>
 <div id="quantification" class="section level2">
@@ -743,252 +748,21 @@ function topFunction() {
 <p><code>GannetQuantify.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_68_act.sdat&#39;</span><span class="op">,</span> <span class="ss">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetSegment</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetQuantify</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb5-1"><a href="#cb5-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>MRS_struct <span class="op">=</span> GannetSegment(MRS_struct)<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>MRS_struct <span class="op">=</span> GannetQuantify(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img src="images/reference/GannetQuantify-example.png" width="100%" style = "background-color: #CCCCCC; padding: 2px; display: inline-block;" style="display: block; margin: auto auto auto 0;" /></p>
-<p><br></p>
-</div>
-<div id="output-structure-attributes" class="section level2">
-<h2>Output structure attributes</h2>
-<hr />
-<p><strong><code>MRS_struct</code></strong></p>
-<table>
-<colgroup>
-<col width="25%" />
-<col width="75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Field</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>version</code></td>
-<td>Release numbers of Gannet and the Gannet modules</td>
-</tr>
-<tr class="even">
-<td><code>ii</code></td>
-<td>During analysis, the current file being loaded. After analysis, the number of files loaded</td>
-</tr>
-<tr class="odd">
-<td><code>metabfile</code></td>
-<td>String array containing the inputted metabolite data filenames</td>
-</tr>
-<tr class="even">
-<td><code>waterfile</code></td>
-<td>String array containing the inputted water reference data filenames</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>MRS_struct.p</code></strong></p>
-<table>
-<colgroup>
-<col width="25%" />
-<col width="75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Field</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Reference_compound</code></td>
-<td>Concentrations will be calculated relative to this. If a water reference is provided, concentrations will be calculated relative to both water and Cr, otherwise they will be calculated relative to Cr.</td>
-</tr>
-<tr class="even">
-<td><code>target</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>ONOFForder</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>seqorig</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>LB</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>water_phase_correction</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>data_phase_correction</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>water_removal</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>AlignTo</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>Vox</code></td>
-<td><a href="#pre-initialize-gannet">See above</a></td>
-</tr>
-<tr class="odd">
-<td><code>FitResidWater</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>HERMES</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>HERCULES</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>PRIAM</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>phantom</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>mat</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>sdat</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>csv</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>vendor</code></td>
-<td>Scanner vendor</td>
-</tr>
-<tr class="even">
-<td><code>spar_string</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>numscans</code></td>
-<td>Total number of scans in the batch</td>
-</tr>
-<tr class="even">
-<td><code>npoints</code></td>
-<td>Number of data points</td>
-</tr>
-<tr class="odd">
-<td><code>nrows</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>Navg</code></td>
-<td>Total number of averages</td>
-</tr>
-<tr class="odd">
-<td><code>TR</code></td>
-<td>Repetition time (ms)</td>
-</tr>
-<tr class="even">
-<td><code>TE</code></td>
-<td>Echo time (m)</td>
-</tr>
-<tr class="odd">
-<td><code>LarmorFreq</code></td>
-<td>Larmor frequency (kHz)</td>
-</tr>
-<tr class="even">
-<td><code>sw</code></td>
-<td>Spectral width (Hz)</td>
-</tr>
-<tr class="odd">
-<td><code>voxdim</code></td>
-<td>Voxel dimensions (mm)</td>
-</tr>
-<tr class="even">
-<td><code>voxoff</code></td>
-<td>Voxel position offset (mm)</td>
-</tr>
-<tr class="odd">
-<td><code>voxang</code></td>
-<td>Voxel angulation (deg)</td>
-</tr>
-<tr class="even">
-<td><code>Nwateravg</code></td>
-<td>Total number of water averages</td>
-</tr>
-<tr class="odd">
-<td><code>ZeroFillTo</code></td>
-<td>Processed spectra are zero-filled to this many data points</td>
-</tr>
-<tr class="even">
-<td><code>zf</code></td>
-<td>Zero-filling factor</td>
-</tr>
-<tr class="odd">
-<td><code>df</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>SpecRes</code></td>
-<td>Spectral resolution of the raw data</td>
-</tr>
-<tr class="odd">
-<td><code>SpecResNominal</code></td>
-<td>Nominal spectral resolution of the processed data</td>
-</tr>
-<tr class="even">
-<td><code>Tacq</code></td>
-<td>Acquisition time</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>MRS_struct.fids</code></strong></p>
-<table>
-<colgroup>
-<col width="25%" />
-<col width="75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Field</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>data</code></td>
-<td>Raw time-domain metabolite data (dimensions: <code>npoints</code> <span class="math inline">\(\times\)</span> <code>nrows</code>) of the last loaded dataset</td>
-</tr>
-<tr class="even">
-<td><code>data_water</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>ON_OFF</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>data_align</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>vox1</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p><img id="myImg" src="images/reference/GannetQuantify-example.png" alt="GannetQuantify output"></p>
+<!-- Code for the modals -->
+<!-- <div id="myModal" class="modal"> -->
+<!--   <span class="close">&times;</span> -->
+<!--   <img class="modal-content" id="img01"> -->
+<!--   <div id="caption"></div> -->
+<!-- </div> -->
+<!-- <script src="js/img-modal.js"></script> -->
 <div id="references" class="section level3 unnumbered">
 <h3 class="unnumbered">References</h3>
 <div id="refs" class="references">
@@ -1008,8 +782,7 @@ function topFunction() {
 <p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY-NC 4.0 <a href="https://creativecommons.org/licenses/by-nc/4.0" target="_blank"><img style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc.xlarge.png" /><img  style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by.xlarge.png" /><img  style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/nc.xlarge.png" /></a>
+<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY-NC 4.0 <a href="https://creativecommons.org/licenses/by-nc/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/nc-xlarge.png"></a>
 </p>
 
 

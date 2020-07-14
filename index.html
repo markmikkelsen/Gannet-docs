@@ -16,7 +16,7 @@
 <script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -181,33 +181,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 60px;
+  padding-top: 54px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .dropdown-submenu {
   position: relative;
@@ -371,6 +371,9 @@ $(document).ready(function () {
       <a href="reference.html">Reference</a>
     </li>
     <li>
+      <a href="output-struc-attrib.html">Output structure attributes</a>
+    </li>
+    <li>
       <a href="tissue-correction.html">Tissue correction</a>
     </li>
     <li>
@@ -387,6 +390,9 @@ $(document).ready(function () {
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="batch-script.html">Batch processing script</a>
+    </li>
+    <li>
+      <a href="gannetpreinitialise-settings.html">GannetPreInitialise settings</a>
     </li>
   </ul>
 </li>
@@ -426,7 +432,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
-  <a href="mailto:gabamrs@gmail.com">
+  <a href="http://www.gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -441,7 +447,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Gannet</h1>
-<h4 class="date">Last updated: June 25, 2020</h4>
+<h4 class="date">Last updated: July 14, 2020</h4>
 
 </div>
 
@@ -470,12 +476,13 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
+<!-- <style> -->
+<!-- body .main-container { -->
+<!--   max-width: 1200px; -->
+<!-- } -->
+<!-- </style> -->
 <p><br></p>
-<p style="font-size:34px">
-<em>WEBSITE UNDER DEVELOPMENT – CONTENT INCOMPLETE</em>
-</p>
-<p><br></p>
-<p><img src="images/logo.png" width="50%" style="display: block; margin: auto auto auto 0;" /></p>
+<p><img id="myImg2" src="images/logo.png" alt="Gannet logo"></p>
 <div class="release">
 <h3>
 Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" target="_blank" class="badge badge-secondary">3.1.5</a>
@@ -511,7 +518,7 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 </div>
 <div id="download" class="section level3">
 <h3>Download</h3>
-<p>The simplest way to install Gannet is to download the zipped <a href="https://github.com/richardedden/Gannet3.1/archive/master.zip">master folder</a> from the <a href="https://github.com/richardedden/Gannet3.1" target="_blank">repository</a> on GitHub, unzip it, and then move the <em>Gannet3.1-master</em> folder into your MATLAB folder.</p>
+<p>The simplest way to install Gannet is to download the zipped <a href="https://github.com/richardedden/Gannet3.1/archive/master.zip">master folder</a> from the <a href="https://github.com/richardedden/Gannet3.1" target="_blank">repository</a> on GitHub, unzip it, and move the <em>Gannet3.1-master</em> folder into your MATLAB directory.</p>
 <p>Alternatively, git-savvy users can clone the Gannet repository into a folder of their choice:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">git</span> clone https://github.com/richardedden/Gannet3.1.git</span></code></pre></div>
 </div>
@@ -519,20 +526,20 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 <h3>Setup</h3>
 <p>To add Gannet to your search path, run the following line of code in the command window:</p>
 <p><strong>macOS</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1"></a><span class="va">addpath</span>(<span class="va">genpath</span>(<span class="ss">&#39;~/Documents/MATLAB/Gannet3.1-master&#39;</span>))<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">addpath</span>(<span class="fu">genpath</span>(<span class="st">&#39;~/Documents/MATLAB/Gannet3.1-master&#39;</span>))<span class="op">;</span></span></code></pre></div>
 <p><strong>Windows</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1"></a><span class="va">addpath</span>(<span class="va">genpath</span>(<span class="ss">&#39;C:\Users\username\Documents\MATLAB\Gannet3.1-master&#39;</span>))<span class="op">;</span></span></code></pre></div>
-<p>Running <code>savepath</code> will permanently save all the paths currently in your search path in MATLAB’s default search path.</p>
-<p>Alternatively, open the <em>Set Path</em> dialog box from the MATLAB menu, click <em>Add with Subfolders</em>, find the <em>Gannet3.1-master</em> folder and then select it. When done, press <em>Save</em> to permanently save the Gannet folder in MATLAB’s default search path.</p>
-<p>Make sure to add the SPM12 folder to your path as well.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">addpath</span>(<span class="fu">genpath</span>(<span class="st">&#39;C:\Users\username\Documents\MATLAB\Gannet3.1-master&#39;</span>))<span class="op">;</span></span></code></pre></div>
+<p>Running <code>savepath</code> will permanently save all the paths currently in your search path to MATLAB’s default search path.</p>
+<p>Alternatively, open the <em>Set Path</em> dialog box from the MATLAB menu, click <em>Add with Subfolders</em>, find the <em>Gannet3.1-master</em> folder and then select it. When done, press <em>Save</em> to permanently save the Gannet folder to MATLAB’s default search path.</p>
+<p>Make sure to add the SPM12 folder to the search path as well.</p>
 <div class="info">
-<p><i class="fa fa-info-circle" style="color: white"></i>  <strong>Info</strong></p>
-<p>It is highly recommended that you only add the main folder (<em>spm12</em>) to your search path rather than including all the subfolders. This prevents potential function conflicts. </i></p>
+<p><i class="fa fa-info-circle" style="color: white"></i>   It is highly recommended that you only add the main SPM12 folder (<em>spm12</em>) to your search path rather than including all the subfolders. This prevents potential function conflicts.</p>
+</div>
 </div>
 </div>
 <div id="compatibility" class="section level2">
 <h2>Compatibility</h2>
-<p>Gannet is currently developed in MATLAB R2019b in macOS 10.15 Catalina. While reasonable effort is made to ensure version-backward and cross-OS compatibility, an error-free user experience is not guaranteed.</p>
+<p>Gannet is currently being developed in MATLAB R2019b in macOS 10.15 Catalina. While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.</p>
 </div>
 <div id="supported-file-formats" class="section level2">
 <h2>Supported file formats</h2>
@@ -548,18 +555,19 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 <li>Siemens TWIX (.dat)</li>
 </ul>
 <p>For creating and co-registering voxel masks, structural images need to be in NIfTI (Philips and Siemens) or DICOM (GE) format.</p>
-<div class="info">
-<p><i class="fa fa-info-circle" style="color: white"></i>  <strong>Info</strong></p>
-<p>Do not use structural images exported using the <em>fsl-nifti</em> option on the Philips platform as this creates problems with co-registration in Gannet. </i></p>
+<div class="warning">
+<p><i class="fa fa-exclamation-circle" style="color: white"></i>   Do not use structural images exported using the <em>fsl-nifti</em> option on the Philips platform as this creates problems with co-registration in Gannet.</p>
+</div>
 </div>
 <div id="getting-help" class="section level2">
 <h2>Getting help</h2>
-<p>If you encounter any problems, please first check the Documentation or the <a href="https://markmikkelsen.github.io/Gannet-docs/faq.html">FAQ</a>.</p>
-<p>Otherwise, you may contact the support team at: <a href="mailto:gabamrs@gmail.com" target="_blank">gabamrs@gmail.com</a>.</p>
+<p>If you encounter any problems, please first check the Documentation or <a href="https://markmikkelsen.github.io/Gannet-docs/faq.html">FAQ</a> for a solution.</p>
+<p>Otherwise, you can post your query on the <a href="https://forum.mrshub.org/c/mrs-software/gannet/9" target="_blank">Gannet forum</a> on the <a href="https://mrshub.org/" target="_blank">MRSHub</a>.</p>
+<p>The support team can also be directly reached using our blog’s <a href="http://www.gabamrs.com/contact" target="_blank">contact form</a>. We will do our best to work with you to solve your issue.</p>
 </div>
 <div id="versioning" class="section level2">
 <h2>Versioning</h2>
-<p><a href="https://semver.org/" target="_blank">Semantic versioning</a> is used when updates are made to Gannet using the style 3.x.x. Versioning is also conducted on a module-specific basis using the style YYMMDD. That is, each Gannet module has its own release version.</p>
+<p><a href="https://semver.org/" target="_blank">Semantic versioning</a> is used when updates are made to Gannet using the style ‘x.x.x’. Versioning is also conducted on a module-specific basis using the style YYMMDD. That is, each Gannet module has its own release version.</p>
 </div>
 <div id="developers" class="section level2">
 <h2>Developers</h2>
@@ -575,22 +583,32 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 </div>
 <div id="license-and-citing-gannet" class="section level2">
 <h2>License and citing Gannet</h2>
-<p>This software is licensed under the open-source <a href="https://markmikkelsen.github.io/Gannet-docs/license.html">BSD-3-Clause License</a>. Should you disseminate material that made use of Gannet, please cite the following publications, as appropriate:</p>
+<p>This software is licensed under the open-source <a href="https://markmikkelsen.github.io/Gannet-docs/Gannet-license.html">BSD-3-Clause License</a>. Should you disseminate material that made use of Gannet, please cite the following publications, as appropriate:</p>
 <p><strong>For all work using Gannet:</strong></p>
 <ul>
-<li>Edden RAE, Puts NAJ, Harris AD, Barker PB, Evans CJ. <a href="https://doi.org/10.1002/jmri.24478" target="_blank">Gannet: A batch-processing tool for the quantitative analysis of gamma-aminobutyric acid-edited MR spectroscopy spectra.</a> <em>J. Magn. Reson. Imaging.</em> 2014;40(6):1445–1452</li>
+<li>Edden RAE, Puts NAJ, Harris AD, Barker PB, Evans CJ. <a href="https://doi.org/10.1002/jmri.24478" target="_blank">Gannet: A batch-processing tool for the quantitative analysis of gamma-aminobutyric acid-edited MR spectroscopy spectra.</a> <em>Journal of Magnetic Resonance Imaging</em>. 2014;40(6):1445–1452</li>
+</ul>
+<p><strong>If you perform frequency-and-phase correction (FPC) using:</strong></p>
+<p>Robust spectral registration (<code>RobustSpecReg</code>):</p>
+<ul>
+<li>Mikkelsen M, Tapper S, Near J, et al. <a href="https://doi.org/10.1002/nbm.4368" target="_blank">Correcting frequency and phase offsets in MRS data using robust spectral registration.</a> <em>NMR in Biomedicine</em>. 2020 [in press]</li>
+</ul>
+<p>or multi-step FPC (<code>SpecRegHERMES</code>):</p>
+<ul>
+<li>Mikkelsen M, Saleh MG, Near J, et al. <a href="https://doi.org/10.1002/mrm.27027" target="_blank">Frequency and phase correction for multiplexed edited MRS of GABA and glutathione.</a> <em>Magnetic Resonance in Medicine</em>. 2018;80(1):21-28</li>
 </ul>
 <p><strong>If you perform tissue segmentation:</strong></p>
 <ul>
-<li>Ashburner J, Friston KJ. <a href="https://doi.org/10.1016/j.neuroimage.2005.02.018" target="_blank">Unified segmentation.</a> <em>NeuroImage.</em> 2005;26(3):839–851</li>
+<li>Ashburner J, Friston KJ. <a href="https://doi.org/10.1016/j.neuroimage.2005.02.018" target="_blank">Unified segmentation.</a> <em>NeuroImage</em>. 2005;26(3):839–851</li>
 </ul>
-<p><strong>If you report water-referenced measurements corrected using the Harris et al. method:</strong></p>
+<p><strong>If you report water-referenced measurements corrected using:</strong></p>
+<p>The Harris et al. method:</p>
 <ul>
-<li>Harris AD, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/jmri.24903" target="_blank">Tissue correction for GABA-edited MRS: Considerations of voxel composition, tissue segmentation, and tissue relaxations.</a> <em>J. Magn. Reson. Imaging.</em> 2015;42(5):1431–1440</li>
+<li>Harris AD, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/jmri.24903" target="_blank">Tissue correction for GABA-edited MRS: Considerations of voxel composition, tissue segmentation, and tissue relaxations.</a> <em>Journal of Magnetic Resonance Imaging</em>. 2015;42(5):1431–1440</li>
 </ul>
-<p><strong>If you report water-referenced measurements corrected using the Gasparovic et al. method:</strong></p>
+<p>or the Gasparovic et al. method:</p>
 <ul>
-<li>Gasparovic C, Song T, Devier D, et al. <a href="https://doi.org/10.1002/mrm.20901" target="_blank">Use of tissue water as a concentration reference for proton spectroscopic imaging.</a> <em>Magn. Reson. Med.</em> 2006;55(6):1219–1226</li>
+<li>Gasparovic C, Song T, Devier D, et al. <a href="https://doi.org/10.1002/mrm.20901" target="_blank">Use of tissue water as a concentration reference for proton spectroscopic imaging.</a> <em>Magnetic Resonance in Medicine</em>. 2006;55(6):1219–1226</li>
 </ul>
 </div>
 <div id="acknowledgments" class="section level2">
@@ -605,8 +623,9 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 <li>R21 MH098228</li>
 <li>R01 MH096263</li>
 </ul>
-<p>We wish to thank the following individuals for their contributions:</p>
+<p>We wish to thank the following individuals for their direct or indirect contributions:</p>
 <ul>
+<li>Yair Altman (Undocumented Matlab)</li>
 <li>Peter Barker (Johns Hopkins University)</li>
 <li>Alex Craven (University of Bergen)</li>
 <li>Philipp Ehses (Max Planck Institute for Biological Cybernetics)</li>
@@ -623,8 +642,7 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 <p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY-NC 4.0 <a href="https://creativecommons.org/licenses/by-nc/4.0" target="_blank"><img style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc.xlarge.png" /><img  style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by.xlarge.png" /><img  style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/nc.xlarge.png" /></a>
+<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY-NC 4.0 <a href="https://creativecommons.org/licenses/by-nc/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/nc-xlarge.png"></a>
 </p>
 
 
