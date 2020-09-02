@@ -399,21 +399,6 @@ $(document).ready(function () {
 <li>
   <a href="faq.html">FAQ</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="intro-to-editing.html">An introduction to spectral editing</a>
-    </li>
-    <li>
-      <a href="gaba-phantom-recipe.html">GABA phantom recipe</a>
-    </li>
-  </ul>
-</li>
 <li>
   <a href="release-notes.html">Release notes</a>
 </li>
@@ -447,7 +432,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Gannet</h1>
-<h4 class="date">Last updated: July 14, 2020</h4>
+<h4 class="date">Last updated: September 01, 2020</h4>
 
 </div>
 
@@ -556,7 +541,7 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 </ul>
 <p>For creating and co-registering voxel masks, structural images need to be in NIfTI (Philips and Siemens) or DICOM (GE) format.</p>
 <div class="warning">
-<p><i class="fa fa-exclamation-circle" style="color: white"></i>   Do not use structural images exported using the <em>fsl-nifti</em> option on the Philips platform as this creates problems with co-registration in Gannet.</p>
+<p><i class="fa fa-exclamation-circle" style="color: white"></i>   Philips users: Do not use structural images exported using the <em>fsl-nifti</em> option as this creates problems with co-registration in Gannet.</p>
 </div>
 </div>
 <div id="getting-help" class="section level2">
@@ -567,7 +552,7 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 </div>
 <div id="versioning" class="section level2">
 <h2>Versioning</h2>
-<p><a href="https://semver.org/" target="_blank">Semantic versioning</a> is used when updates are made to Gannet using the style ‘x.x.x’. Versioning is also conducted on a module-specific basis using the style YYMMDD. That is, each Gannet module has its own release version.</p>
+<p><a href="https://semver.org/" target="_blank">Semantic versioning</a> is used when updates are made to Gannet using the style ‘x.x.x’. Versioning is also conducted on a module-specific basis using the style ‘YYMMDD’. That is, each Gannet module has its own release version.</p>
 </div>
 <div id="developers" class="section level2">
 <h2>Developers</h2>
@@ -583,7 +568,7 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 </div>
 <div id="license-and-citing-gannet" class="section level2">
 <h2>License and citing Gannet</h2>
-<p>This software is licensed under the open-source <a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html">BSD-3-Clause License</a>. Should you disseminate material that made use of Gannet, please cite the following publications, as appropriate:</p>
+<p>This software is licensed under the open-source <a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html">BSD 3-Clause License</a>. Should you disseminate material that made use of Gannet, please cite the following publications, as appropriate:</p>
 <p><strong>For all work using Gannet:</strong></p>
 <ul>
 <li>Edden RAE, Puts NAJ, Harris AD, Barker PB, Evans CJ. <a href="https://doi.org/10.1002/jmri.24478" target="_blank">Gannet: A batch-processing tool for the quantitative analysis of gamma-aminobutyric acid-edited MR spectroscopy spectra.</a> <em>Journal of Magnetic Resonance Imaging</em>. 2014;40(6):1445–1452</li>
