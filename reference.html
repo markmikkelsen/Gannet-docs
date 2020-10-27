@@ -13,7 +13,7 @@
 
 <title>Reference</title>
 
-<script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -25,8 +25,19 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -514,7 +525,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Reference</h1>
-<h4 class="date">Last updated: September 01, 2020</h4>
+<h4 class="date">Last updated: October 27, 2020</h4>
 
 </div>
 
@@ -675,10 +686,10 @@ function topFunction() {
 <p><code>GannetLoad.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img id="myImg" src="images/reference/GannetLoad-example.png" alt="GannetLoad output"></p>
+<p><img src="images/reference/GannetLoad-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
 <p><br></p>
 </div>
 <div id="signal-fitting" class="section level2">
@@ -688,11 +699,11 @@ function topFunction() {
 <p><code>GannetFit.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb2-1"><a href="#cb2-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb2-1"><a href="#cb2-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img id="myImg" src="images/reference/GannetFit-example.png" alt="GannetFit output"></p>
+<p><img src="images/reference/GannetFit-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
 <p><br></p>
 </div>
 <div id="voxel-co-registration" class="section level2">
@@ -702,12 +713,12 @@ function topFunction() {
 <p><code>GannetCoRegister.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb3-1"><a href="#cb3-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb3-1"><a href="#cb3-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img id="myImg" src="images/reference/GannetCoRegister-example.png" alt="GannetCoRegister output"></p>
+<p><img src="images/reference/GannetCoRegister-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
 <p><br></p>
 </div>
 <div id="tissue-segmentation" class="section level2">
@@ -717,13 +728,13 @@ function topFunction() {
 <p><code>GannetSegment.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb4-1"><a href="#cb4-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb4-1"><a href="#cb4-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a>MRS_struct <span class="op">=</span> GannetSegment(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img id="myImg" src="images/reference/GannetSegment-example.png" alt="GannetSegment output"></p>
+<p><img src="images/reference/GannetSegment-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
 <p><br></p>
 </div>
 <div id="quantification" class="section level2">
@@ -733,14 +744,14 @@ function topFunction() {
 <p><code>GannetQuantify.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb5-1"><a href="#cb5-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb5-1"><a href="#cb5-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
 <span id="cb5-4"><a href="#cb5-4"></a>MRS_struct <span class="op">=</span> GannetSegment(MRS_struct)<span class="op">;</span></span>
 <span id="cb5-5"><a href="#cb5-5"></a>MRS_struct <span class="op">=</span> GannetQuantify(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
-<p><img id="myImg" src="images/reference/GannetQuantify-example.png" alt="GannetQuantify output"></p>
+<p><img src="images/reference/GannetQuantify-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
 <!-- Code for the modals -->
 <!-- <div id="myModal" class="modal"> -->
 <!--   <span class="close">&times;</span> -->
@@ -780,7 +791,7 @@ function topFunction() {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
