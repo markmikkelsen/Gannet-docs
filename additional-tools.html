@@ -13,20 +13,28 @@
 
 <title>Additional tools</title>
 
-<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -40,11 +48,19 @@
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -126,39 +142,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
@@ -169,10 +155,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -189,40 +171,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 54px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h2 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h3 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h4 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h5 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h6 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -250,7 +205,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -262,7 +217,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -273,10 +228,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -288,7 +256,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -420,7 +387,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -496,21 +463,21 @@ div.tocify {
   <a href="release-notes.html">Release notes</a>
 </li>
 <li>
-  <a href="http://www.gabamrs.com/">Blog</a>
+  <a href="https://www.gabamrs.com/">Blog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/richardedden/Gannet3.1/issues">Report an issue</a>
+  <a href="https://github.com/markmikkelsen/Gannet/issues">Report an issue</a>
 </li>
 <li>
-  <a href="https://github.com/richardedden/Gannet3.1">
+  <a href="https://github.com/markmikkelsen/Gannet">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="http://www.gabamrs.com/contact">
+  <a href="https://www.gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -520,12 +487,12 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Additional tools</h1>
-<h4 class="date">Last updated: October 27, 2020</h4>
+<h4 class="date">Last updated: January 18, 2022</h4>
 
 </div>
 
@@ -560,7 +527,7 @@ function topFunction() {
 }
 </script>
 <p><br></p>
-<p>In addition to the five core commands, Gannet comes with a few additional tools that you may find useful.</p>
+<p>In addition to the five core modules, Gannet comes with a few additional tools that you may find useful.</p>
 <div id="paperplot" class="section level2">
 <h2>PaperPlot</h2>
 <p><code>PaperPlot.m</code> will plot the difference spectra saved in the Gannet output structure. The corresponding model fits optionally can also be plotted. Users can choose to plot a single spectrum, a select number of spectra, or all spectra. Multiple spectra will be overlaid in the same figure. If data were acquired with HERMES, then each Hadamard-combined difference spectrum will be plotted in a separate subplot.</p>
@@ -568,22 +535,22 @@ function topFunction() {
 <p>To export plots at publication quality, consider using <code>PaperPlot.m</code> with Yair Altman’s excellent <a href="https://github.com/altmany/export_fig/" target="_blank">export_fig</a> MATLAB toolbox.</p>
 <div id="example-usage" class="section level3">
 <h3>Example usage</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1"></a>metab <span class="op">=</span> {<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>         <span class="st">&#39;S02_GABA_68_act.sdat&#39;</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>         <span class="st">&#39;S03_GABA_68_act.sdat&#39;</span>}<span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>water <span class="op">=</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>         <span class="st">&#39;S02_GABA_68_ref.sdat&#39;</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>         <span class="st">&#39;S03_GABA_68_ref.sdat&#39;</span>}<span class="op">;</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a>MRS <span class="op">=</span> GannetLoad(metab<span class="op">,</span> water)<span class="op">;</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>MRS <span class="op">=</span> GannetFit(MRS)<span class="op">;</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a>PaperPlot(MRS)<span class="op">;</span> <span class="co">% Use default settings</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">metab</span> <span class="op">=</span> {<span class="ss">&#39;S01_GABA_68_act.sdat&#39;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>         <span class="ss">&#39;S02_GABA_68_act.sdat&#39;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>         <span class="ss">&#39;S03_GABA_68_act.sdat&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">water</span> <span class="op">=</span> {<span class="ss">&#39;S01_GABA_68_ref.sdat&#39;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>         <span class="ss">&#39;S02_GABA_68_ref.sdat&#39;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>         <span class="ss">&#39;S03_GABA_68_ref.sdat&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetLoad</span>(<span class="va">metab</span><span class="op">,</span> <span class="va">water</span>)<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS</span>)<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="va">PaperPlot</span>(<span class="va">MRS</span>)<span class="op">;</span> <span class="co">% Use default settings</span></span></code></pre></div>
 <p><img src="images/additional-tools/paperplot-1.png" width="75%" style="display: block; margin: auto auto auto 0;" /></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb2-1"><a href="#cb2-1"></a>PaperPlot(MRS<span class="op">,</span> <span class="st">&#39;plotModel&#39;</span><span class="op">,</span> <span class="fu">true</span>)<span class="op">;</span> <span class="co">% Overlay fit models</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">PaperPlot</span>(<span class="va">MRS</span><span class="op">,</span> <span class="ss">&#39;plotModel&#39;</span><span class="op">,</span> <span class="va">true</span>)<span class="op">;</span> <span class="co">% Overlay fit models</span></span></code></pre></div>
 <p><img src="images/additional-tools/paperplot-2.png" width="75%" style="display: block; margin: auto auto auto 0;" /></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb3-1"><a href="#cb3-1"></a>PaperPlot(MRS<span class="op">,</span> <span class="st">&#39;plotModel&#39;</span><span class="op">,</span> <span class="fu">true</span><span class="op">,</span> <span class="st">&#39;freqLim&#39;</span><span class="op">,</span> [<span class="fl">2</span> <span class="fl">4.25</span>])<span class="op">;</span> <span class="co">% Overlay fit models and</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>                                                        <span class="co">% set ppm limits to 2-4.25</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">PaperPlot</span>(<span class="va">MRS</span><span class="op">,</span> <span class="ss">&#39;plotModel&#39;</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="ss">&#39;freqLim&#39;</span><span class="op">,</span> [<span class="fl">2</span> <span class="fl">4.25</span>])<span class="op">;</span> <span class="co">% Overlay fit models and</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                                                        <span class="co">% set ppm limits to 2-4.25</span></span></code></pre></div>
 <p><img src="images/additional-tools/paperplot-3.png" width="75%" style="display: block; margin: auto auto auto 0;" /></p>
 </div>
 </div>
@@ -629,10 +596,10 @@ function topFunction() {
 </div>
 <div id="coregstandalone" class="section level2">
 <h2>CoRegStandAlone</h2>
-<p>By popular demand, we have programmed a standalone version of the voxel co-registration and segmentation pipeline for use with any (non-edited) MRS data. <code>CoRegStandAlone.m</code> contains stripped-to-the-bone modifications of GannetLoad, GannetCoRegister, and GannetSegment. It doesn’t bother loading any data at all, besides the geometrical information about voxel dimensions, positions, and rotations, and the structural NIfTI file.</p>
-<p><code>CoRegStandAlone.m</code> supports the same input formats as the main Gannet functions. Upon being called, it produces CoRegister and Segment outputs for each provided dataset. However, the Segment output does not contain any quantitative information except for the tissue composition (voxel tissue fractions of GM, WM, and CSF).</p>
+<p>By popular demand, we have programmed a standalone version of the voxel co-registration and segmentation routines for use with any single-voxel MRS dataset, including non-edited data <code>CoRegStandAlone.m</code> contains stripped-to-the-bone modifications of <code>GannetLoad.m</code>, <code>GannetCoRegister.m</code>, and <code>GannetSegment.m</code>. It doesn’t bother loading the MRS data at all, aside from extracting the geometrical information about voxel dimensions, positions, and rotations.</p>
+<p><code>CoRegStandAlone.m</code> supports the same input formats as the main Gannet modules Upon being called, it produces CoRegister and Segment outputs for each provided dataset. However, the Segment output does not contain any quantitative information except for the tissue composition (voxel tissue fractions of GM, WM, and CSF).</p>
 <p>The syntax is similar to the <code>GannetLoad.m</code> syntax, where the first cell array contains the MRS filenames and the second cell array contains the respective NIfTI filenames:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb4-1"><a href="#cb4-1"></a>MRS_struct <span class="op">=</span> CoRegStandAlone({<span class="st">&#39;data1.dat&#39;</span><span class="op">,</span> <span class="st">&#39;data2.dat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;structural1.nii&#39;</span><span class="op">,</span> <span class="st">&#39;structural2.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">CoRegStandAlone</span>({<span class="ss">&#39;data1.dat&#39;</span><span class="op">,</span> <span class="ss">&#39;data2.dat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;structural1.nii&#39;</span><span class="op">,</span> <span class="ss">&#39;structural2.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p>Please note that the number of NIfTI files needs to match the number of MRS data files, i.e., if you want to register <em>n</em> voxels to the same structural image, you’ll need to repeat the name of the NIfTI file <em>n</em> times.</p>
 </div>
 
@@ -642,7 +609,7 @@ function topFunction() {
 <p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY-NC 4.0 <a href="https://creativecommons.org/licenses/by-nc/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/nc-xlarge.png"></a>
+<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY 4.0 <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
 </p>
 
 
@@ -673,7 +640,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -682,6 +649,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

@@ -13,17 +13,25 @@
 
 <title>Tissue correction</title>
 
-<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -39,30 +47,27 @@
 
 
 
+
 <style type="text/css">
-h1 {
-  font-size: 34px;
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
 }
-h1.title {
-  font-size: 38px;
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-h2 {
-  font-size: 30px;
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-h3 {
-  font-size: 24px;
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
 }
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
+div.csl-indent {
+  margin-left: 2em;
 }
 </style>
 
@@ -75,10 +80,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -95,40 +96,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 54px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h2 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h3 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h4 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h5 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h6 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -156,7 +130,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -168,7 +142,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -179,10 +153,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -194,7 +181,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -323,21 +309,21 @@ $(document).ready(function () {
   <a href="release-notes.html">Release notes</a>
 </li>
 <li>
-  <a href="http://www.gabamrs.com/">Blog</a>
+  <a href="https://www.gabamrs.com/">Blog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/richardedden/Gannet3.1/issues">Report an issue</a>
+  <a href="https://github.com/markmikkelsen/Gannet/issues">Report an issue</a>
 </li>
 <li>
-  <a href="https://github.com/richardedden/Gannet3.1">
+  <a href="https://github.com/markmikkelsen/Gannet">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="http://www.gabamrs.com/contact">
+  <a href="https://www.gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -347,12 +333,12 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Tissue correction</h1>
-<h4 class="date">Last updated: October 27, 2020</h4>
+<h4 class="date">Last updated: January 18, 2022</h4>
 
 </div>
 
@@ -382,12 +368,12 @@ function topFunction() {
 }
 </script>
 <p><br></p>
-<p>Gannet will quantify metabolite signals in a number of different ways at various points in the pipeline depending on what reference signals are present and if structural image data are available. It is important to understand what the calculations are for interpretation and reporting.</p>
+<p>Gannet quantifies metabolite levels in a number of different ways at various points in the pipeline depending on what reference signals are present and if structural image data are available. It is important to understand what the underlying formulas are for interpretation and reporting.</p>
 <div id="gannetfit" class="section level2">
 <h2>GannetFit</h2>
-<p><code>MRS_struct.out.vox1.metab.ConcCr</code> is a simple integral ratio of the metabolite and Cr signals:</p>
-<p><span class="math display">\[C = \frac{I_{M}}{I_{Cr}}\]</span></p>
-<p>If a water reference is provided, <code>MRS_struct.out.vox1.metab.ConcIU</code> is also calculated. It is defined as the integral ratio of the metabolite and water signals scaled by a number of global signal scaling factors:</p>
+<p><code>MRS_struct.out.vox1.(metab).ConcCr</code>, <code>MRS_struct.out.vox1.(metab).ConcCho</code>, and <code>MRS_struct.out.vox1.(metab).ConcNAA</code> are simple signal integral ratios of the metabolite of interest and the metabolite reference signals Cr, Cho, and NAA, respectively:</p>
+<p><span class="math display">\[C = \frac{I_{M}}{I_{ref}}\]</span></p>
+<p>If a water reference is provided, <code>MRS_struct.out.vox1.(metab).ConcIU</code> is also calculated. It is defined as the signal integral ratio of the metabolite of interest and water reference scaled by a number of global signal scaling factors:</p>
 <p><span class="math display">\[C_{corr} =
 \frac{I_{M}}{I_{W}}\cdot
 \frac{H_{W}}{H_{M}}\cdot
@@ -414,7 +400,7 @@ W_{vis}\cdot
 <tbody>
 <tr class="odd">
 <td align="left"><span class="math inline">\(C_{corr}\)</span></td>
-<td align="left">Metabolite concentration in institutional units</td>
+<td align="left">Estimated metabolite concentration in institutional units</td>
 <td align="left">-</td>
 </tr>
 <tr class="even">
@@ -455,7 +441,7 @@ W_{vis}\cdot
 <tr class="odd">
 <td align="left"><span class="math inline">\(W_{vis}\)</span></td>
 <td align="left">Average relative visibility (density) of water in GM and WM</td>
-<td align="left">0.65 (<span class="citation"><a href="#ref-Ernst1993" role="doc-biblioref">1</a></span>)</td>
+<td align="left">0.65<span class="citation"><sup><a href="#ref-Ernst1993" role="doc-biblioref">1</a></sup></span></td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(TE_{W}\)</span></td>
@@ -480,12 +466,12 @@ W_{vis}\cdot
 <tr class="even">
 <td align="left"><span class="math inline">\(T_{2W}\)</span></td>
 <td align="left">Average transverse relaxation time of water in GM and WM</td>
-<td align="left">1.100 s (<span class="citation"><a href="#ref-Wansapura1999" role="doc-biblioref">2</a></span>)</td>
+<td align="left">1.100 s<span class="citation"><sup><a href="#ref-Wansapura1999" role="doc-biblioref">2</a></sup></span></td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(T_{2W}\)</span></td>
 <td align="left">Average longitudinal relaxation time of water in GM and WM</td>
-<td align="left">0.095 s (<span class="citation"><a href="#ref-Wansapura1999" role="doc-biblioref">2</a></span>)</td>
+<td align="left">0.095 s<span class="citation"><sup><a href="#ref-Wansapura1999" role="doc-biblioref">2</a></sup></span></td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(T_{2M}\)</span></td>
@@ -502,7 +488,7 @@ W_{vis}\cdot
 </div>
 <div id="gannetsegment" class="section level2">
 <h2>GannetSegment</h2>
-<p><code>MRS_struct.out.vox1.metab.ConcIU_CSFcorr</code>:</p>
+<p><code>MRS_struct.out.vox1.(metab).ConcIU_CSFcorr</code>:</p>
 <p><span class="math display">\[C_{CSFcorr} =
 \frac{I_{M}}{I_{W}}\cdot
 \frac{H_{W}}{H_{M}}\cdot
@@ -517,7 +503,7 @@ W_{vis}\cdot
 </div>
 <div id="gannetquantify" class="section level2">
 <h2>GannetQuantify</h2>
-<p><code>MRS_struct.out.vox1.metab.ConcIU_TissCorr</code>:</p>
+<p><code>MRS_struct.out.vox1.(metab).ConcIU_TissCorr</code>:</p>
 <p><span class="math display">\[C_{TissCorr} =
 \frac{I_{M}}{I_{W}}\cdot
 \frac{H_{W}}{H_{M}}\cdot
@@ -548,21 +534,21 @@ C_{W}\cdot
 <tr class="even">
 <td align="left"><span class="math inline">\(\beta_i\)</span></td>
 <td align="left">Relative visibility (density) of water in GM, WM and CSF</td>
-<td align="left">0.78, 0.65 and 0.97 (<span class="citation"><a href="#ref-Ernst1993" role="doc-biblioref">1</a></span>)</td>
+<td align="left">0.78, 0.65 and 0.97<span class="citation"><sup><a href="#ref-Ernst1993" role="doc-biblioref">1</a></sup></span></td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(T_{2W,i}\)</span></td>
 <td align="left">Transverse relaxation time of water in GM, WM and CSF</td>
-<td align="left">0.110, 0.0792 and 0.503 s (<span class="citation"><a href="#ref-Wansapura1999" role="doc-biblioref">2</a></span>,<span class="citation"><a href="#ref-Piechnik2009" role="doc-biblioref">3</a></span>)</td>
+<td align="left">0.110, 0.0792 and 0.503 s<span class="citation"><sup><a href="#ref-Wansapura1999" role="doc-biblioref">2</a>,<a href="#ref-Piechnik2009" role="doc-biblioref">3</a></sup></span></td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(T_{1W,i}\)</span></td>
 <td align="left">Longitudinal relaxation time of water in GM, WM and CSF</td>
-<td align="left">1.331, 0.832 and 3.817 s (<span class="citation"><a href="#ref-Wansapura1999" role="doc-biblioref">2</a></span>,<span class="citation"><a href="#ref-Lu2005" role="doc-biblioref">4</a></span>)</td>
+<td align="left">1.331, 0.832 and 3.817 s<span class="citation"><sup><a href="#ref-Wansapura1999" role="doc-biblioref">2</a>,<a href="#ref-Lu2005" role="doc-biblioref">4</a></sup></span></td>
 </tr>
 </tbody>
 </table>
-<p><code>MRS_struct.out.vox1.metab.ConcIU_AlphaTissCorr</code>:</p>
+<p><code>MRS_struct.out.vox1.(metab).ConcIU_AlphaTissCorr</code>:</p>
 <p><span class="math display">\[C_{corr} =
 \frac{I_{M}}{I_{W}}\cdot
 \frac{H_{W}}{H_{M}}\cdot
@@ -570,7 +556,7 @@ C_{W}\cdot
 \left\{\frac{\sum_{i}^{GM,WM,CSF}f_{i}C_{W,i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
 {\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}\cdot
 \frac{1}{f_{GM}+\alpha{f_{WM}}}\]</span></p>
-<p><code>MRS_struct.out.vox1.metab.ConcIU_AlphaTissCorr_GrpNorm</code>:</p>
+<p><code>MRS_struct.out.vox1.(metab).ConcIU_AlphaTissCorr_GrpNorm</code>:</p>
 <p><span class="math display">\[C_{corr} =
 \frac{I_{M}}{I_{W}}\cdot
 \frac{H_{W}}{H_{M}}\cdot
@@ -581,18 +567,18 @@ C_{W}\cdot
 <p>where:</p>
 <div id="references" class="section level3 unnumbered">
 <h3 class="unnumbered">References</h3>
-<div id="refs" class="references">
-<div id="ref-Ernst1993">
-<p>1. Ernst T, Kreis R, Ross BD. Absolute quantitation of water and metabolites in the human brain. I. Compartments and water. <em>Journal of Magnetic Resonance, Series B</em>. 1993;102(1):1-8. doi:<a href="https://doi.org/10.1006/jmrb.1993.1055">10.1006/jmrb.1993.1055</a></p>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-Ernst1993" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Ernst T, Kreis R, Ross BD. <span class="nocase">Absolute quantitation of water and metabolites in the human brain. I. Compartments and water</span>. <em>Journal of Magnetic Resonance, Series B</em>. 1993;102(1):1-8. doi:<a href="https://doi.org/10.1006/jmrb.1993.1055">10.1006/jmrb.1993.1055</a></div>
 </div>
-<div id="ref-Wansapura1999">
-<p>2. Wansapura JP, Holland SK, Dunn RS, Ball WS. NMR relaxation times in the human brain at 3.0 Tesla. <em>Journal of Magnetic Resonance Imaging</em>. 1999;9(4):531-538. doi:<a href="https://doi.org/10.1002/(SICI)1522-2586(199904)9:4%3C531::AID-JMRI4%3E3.0.CO;2-L">10.1002/(SICI)1522-2586(199904)9:4&lt;531::AID-JMRI4&gt;3.0.CO;2-L</a></p>
+<div id="ref-Wansapura1999" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Wansapura JP, Holland SK, Dunn RS, Ball WS. <span class="nocase">NMR relaxation times in the human brain at 3.0 Tesla</span>. <em>Journal of Magnetic Resonance Imaging</em>. 1999;9(4):531-538. doi:<a href="https://doi.org/10.1002/(SICI)1522-2586(199904)9:4&lt;531::AID-JMRI4&gt;3.0.CO;2-L">10.1002/(SICI)1522-2586(199904)9:4&lt;531::AID-JMRI4&gt;3.0.CO;2-L</a></div>
 </div>
-<div id="ref-Piechnik2009">
-<p>3. Piechnik SK, Evans J, Bary LH, Wise RG, Jezzard P. Functional changes in CSF volume estimated using measurement of water T2 relaxation. <em>Magnetic Resonance in Medicine</em>. 2009;61(3):579-586. doi:<a href="https://doi.org/10.1002/mrm.21897">10.1002/mrm.21897</a></p>
+<div id="ref-Piechnik2009" class="csl-entry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Piechnik SK, Evans J, Bary LH, Wise RG, Jezzard P. <span class="nocase">Functional changes in CSF volume estimated using measurement of water T2 relaxation</span>. <em>Magnetic Resonance in Medicine</em>. 2009;61(3):579-586. doi:<a href="https://doi.org/10.1002/mrm.21897">10.1002/mrm.21897</a></div>
 </div>
-<div id="ref-Lu2005">
-<p>4. Lu H, Nagae-Poetscher LM, Golay X, Lin D, Pomper M, Zijl PCM van. Routine clinical brain MRI sequences for use at 3.0 Tesla. <em>Journal of Magnetic Resonance Imaging</em>. 2005;22(1):13-22. doi:<a href="https://doi.org/10.1002/jmri.20356">10.1002/jmri.20356</a></p>
+<div id="ref-Lu2005" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Lu H, Nagae-Poetscher LM, Golay X, Lin D, Pomper M, Zijl PCM van. <span class="nocase">Routine clinical brain MRI sequences for use at 3.0 Tesla</span>. <em>Journal of Magnetic Resonance Imaging</em>. 2005;22(1):13-22. doi:<a href="https://doi.org/10.1002/jmri.20356">10.1002/jmri.20356</a></div>
 </div>
 </div>
 </div>
@@ -604,7 +590,7 @@ C_{W}\cdot
 <p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY-NC 4.0 <a href="https://creativecommons.org/licenses/by-nc/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/nc-xlarge.png"></a>
+<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY 4.0 <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
 </p>
 
 
@@ -633,7 +619,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

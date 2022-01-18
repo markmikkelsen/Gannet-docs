@@ -13,20 +13,28 @@
 
 <title>Reference</title>
 
-<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -40,11 +48,19 @@
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -126,37 +142,29 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+
 
 
 <style type="text/css">
-h1 {
-  font-size: 34px;
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
 }
-h1.title {
-  font-size: 38px;
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-h2 {
-  font-size: 30px;
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-h3 {
-  font-size: 24px;
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
 }
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
+div.csl-indent {
+  margin-left: 2em;
 }
 </style>
 
@@ -169,10 +177,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -189,40 +193,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 54px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h2 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h3 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h4 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h5 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h6 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -250,7 +227,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -262,7 +239,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -273,10 +250,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -288,7 +278,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -420,7 +409,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -496,21 +485,21 @@ div.tocify {
   <a href="release-notes.html">Release notes</a>
 </li>
 <li>
-  <a href="http://www.gabamrs.com/">Blog</a>
+  <a href="https://www.gabamrs.com/">Blog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/richardedden/Gannet3.1/issues">Report an issue</a>
+  <a href="https://github.com/markmikkelsen/Gannet/issues">Report an issue</a>
 </li>
 <li>
-  <a href="https://github.com/richardedden/Gannet3.1">
+  <a href="https://github.com/markmikkelsen/Gannet">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="http://www.gabamrs.com/contact">
+  <a href="https://www.gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -520,12 +509,12 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Reference</h1>
-<h4 class="date">Last updated: October 27, 2020</h4>
+<h4 class="date">Last updated: January 18, 2022</h4>
 
 </div>
 
@@ -566,6 +555,7 @@ function topFunction() {
 <div id="pre-initialise-gannet" class="section level2">
 <h2>Pre-initialise Gannet</h2>
 <hr />
+<p><strong>Parent function</strong></p>
 <p><code>GannetPreInitialise.m</code></p>
 <p><br></p>
 <table>
@@ -612,7 +602,7 @@ function topFunction() {
 </tr>
 <tr class="even">
 <td align="left"><code>water_phase_correction</code></td>
-<td align="left">Whether to perform an eddy-current correction (<span class="citation"><a href="#ref-Klose1990" role="doc-biblioref">1</a></span>) on the water data</td>
+<td align="left">Whether to perform an eddy-current correction<span class="citation"><sup><a href="#ref-Klose1990" role="doc-biblioref">1</a></sup></span> on the water data</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>data_phase_correction</code></td>
@@ -620,7 +610,7 @@ function topFunction() {
 </tr>
 <tr class="even">
 <td align="left"><code>water_removal</code></td>
-<td align="left">Whether to remove the residual water signal from the difference spectra using an HSVD filter (<span class="citation"><a href="#ref-Barkhuijsen1987" role="doc-biblioref">2</a></span>)</td>
+<td align="left">Whether to remove the residual water signal from the difference spectra using an HSVD filter<span class="citation"><sup><a href="#ref-Barkhuijsen1987" role="doc-biblioref">2</a></sup></span></td>
 </tr>
 <tr class="odd">
 <td align="left"><code>AlignTo</code></td>
@@ -686,7 +676,7 @@ function topFunction() {
 <p><code>GannetLoad.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
 <p><img src="images/reference/GannetLoad-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
@@ -699,8 +689,8 @@ function topFunction() {
 <p><code>GannetFit.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb2-1"><a href="#cb2-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
 <p><img src="images/reference/GannetFit-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
@@ -713,9 +703,9 @@ function topFunction() {
 <p><code>GannetCoRegister.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb3-1"><a href="#cb3-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
 <p><img src="images/reference/GannetCoRegister-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
@@ -728,10 +718,10 @@ function topFunction() {
 <p><code>GannetSegment.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb4-1"><a href="#cb4-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>MRS_struct <span class="op">=</span> GannetSegment(MRS_struct)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetSegment</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
 <p><img src="images/reference/GannetSegment-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
@@ -744,11 +734,11 @@ function topFunction() {
 <p><code>GannetQuantify.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb5-1"><a href="#cb5-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>MRS_struct <span class="op">=</span> GannetSegment(MRS_struct)<span class="op">;</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>MRS_struct <span class="op">=</span> GannetQuantify(MRS_struct)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetSegment</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetQuantify</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
 <p><img src="images/reference/GannetQuantify-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
@@ -761,12 +751,12 @@ function topFunction() {
 <!-- <script src="js/img-modal.js"></script> -->
 <div id="references" class="section level3 unnumbered">
 <h3 class="unnumbered">References</h3>
-<div id="refs" class="references">
-<div id="ref-Klose1990">
-<p>1. Klose U. In vivo proton spectroscopy in presence of eddy currents. <em>Magnetic Resonance in Medicine</em>. 1990;14(1):26-30. doi:<a href="https://doi.org/10.1002/mrm.1910140104">10.1002/mrm.1910140104</a></p>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-Klose1990" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Klose U. <span class="nocase">In vivo proton spectroscopy in presence of eddy currents</span>. <em>Magnetic Resonance in Medicine</em>. 1990;14(1):26-30. doi:<a href="https://doi.org/10.1002/mrm.1910140104">10.1002/mrm.1910140104</a></div>
 </div>
-<div id="ref-Barkhuijsen1987">
-<p>2. Barkhuijsen H, Beer R de, Ormondt D van. Improved algorithm for noniterative time-domain model fitting to exponentially damped magnetic resonance signals. <em>Journal of Magnetic Resonance</em>. 1987;73(3):553-557. doi:<a href="https://doi.org/10.1016/0022-2364(87)90023-0">10.1016/0022-2364(87)90023-0</a></p>
+<div id="ref-Barkhuijsen1987" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Barkhuijsen H, Beer R de, Ormondt D van. <span class="nocase">Improved algorithm for noniterative time-domain model fitting to exponentially damped magnetic resonance signals</span>. <em>Journal of Magnetic Resonance</em>. 1987;73(3):553-557. doi:<a href="https://doi.org/10.1016/0022-2364(87)90023-0">10.1016/0022-2364(87)90023-0</a></div>
 </div>
 </div>
 </div>
@@ -778,7 +768,7 @@ function topFunction() {
 <p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY-NC 4.0 <a href="https://creativecommons.org/licenses/by-nc/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/nc-xlarge.png"></a>
+<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY 4.0 <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
 </p>
 
 
@@ -809,7 +799,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -818,6 +808,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

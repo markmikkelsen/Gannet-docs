@@ -13,17 +13,25 @@
 
 <title>Gannet</title>
 
-<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -37,11 +45,19 @@
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -123,39 +139,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
@@ -166,10 +152,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -186,40 +168,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 54px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h2 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h3 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h4 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h5 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
-.section h6 {
-  padding-top: 59px;
-  margin-top: -59px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -247,7 +202,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -259,7 +214,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -270,10 +225,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -285,7 +253,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -414,21 +381,21 @@ $(document).ready(function () {
   <a href="release-notes.html">Release notes</a>
 </li>
 <li>
-  <a href="http://www.gabamrs.com/">Blog</a>
+  <a href="https://www.gabamrs.com/">Blog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/richardedden/Gannet3.1/issues">Report an issue</a>
+  <a href="https://github.com/markmikkelsen/Gannet/issues">Report an issue</a>
 </li>
 <li>
-  <a href="https://github.com/richardedden/Gannet3.1">
+  <a href="https://github.com/markmikkelsen/Gannet">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="http://www.gabamrs.com/contact">
+  <a href="https://www.gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -438,12 +405,12 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Gannet</h1>
-<h4 class="date">Last updated: October 27, 2020</h4>
+<h4 class="date">Last updated: January 18, 2022</h4>
 
 </div>
 
@@ -473,10 +440,10 @@ function topFunction() {
 }
 </script>
 <p><br></p>
-<p><img id="myImg2" src="images/logo.png" alt="Gannet logo"></p>
+<p><img src="images/logo.png" alt="Gannet logo" id="myImg2"/></p>
 <div class="release">
 <h3>
-Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" target="_blank" class="badge badge-secondary">3.1.5</a>
+<p>Current stable release:  <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.2.0</a></p>
 </h3>
 </div>
 <div id="overview" class="section level2">
@@ -509,28 +476,22 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 </div>
 <div id="download" class="section level3">
 <h3>Download</h3>
-<p>The simplest way to install Gannet is to download the zipped <a href="https://github.com/richardedden/Gannet3.1/archive/master.zip">master folder</a> from the <a href="https://github.com/richardedden/Gannet3.1" target="_blank">repository</a> on GitHub, unzip it, and move the <em>Gannet3.1-master</em> folder into your MATLAB directory.</p>
-<p>Alternatively, git-savvy users can clone the Gannet repository into a folder of their choice:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">git</span> clone https://github.com/richardedden/Gannet3.1.git</span></code></pre></div>
+<p>The simplest way to install Gannet is to download the zipped <a href="https://github.com/markmikkelsen/Gannet/archive/refs/heads/main.zip">main folder</a> from the <a href="https://github.com/markmikkelsen/Gannet" target="_blank">repository</a> on GitHub, unzip it, and move the <em>Gannet-main</em> folder into your MATLAB directory.</p>
+<p>Alternatively, git-savvy users can clone the Gannet repository into a directory of their choice:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/markmikkelsen/Gannet.git</span></code></pre></div>
 </div>
 <div id="setup" class="section level3">
 <h3>Setup</h3>
-<p>To add Gannet to your search path, run the following line of code in the command window:</p>
-<p><strong>macOS</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">addpath</span>(<span class="fu">genpath</span>(<span class="st">&#39;~/Documents/MATLAB/Gannet3.1-master&#39;</span>))<span class="op">;</span></span></code></pre></div>
-<p><strong>Windows</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">addpath</span>(<span class="fu">genpath</span>(<span class="st">&#39;C:\Users\username\Documents\MATLAB\Gannet3.1-master&#39;</span>))<span class="op">;</span></span></code></pre></div>
-<p>Running <code>savepath</code> will permanently save all the paths currently in your search path to MATLAB’s default search path.</p>
-<p>Alternatively, open the <em>Set Path</em> dialog box from the MATLAB menu, click <em>Add with Subfolders</em>, find the <em>Gannet3.1-master</em> folder and then select it. When done, press <em>Save</em> to permanently save the Gannet folder to MATLAB’s default search path.</p>
-<p>Make sure to add the SPM12 folder to the search path as well.</p>
+<p>Open the <em>Set Path</em> dialog box from the MATLAB menu (or run the command <code>pathtool</code> in the Command Window), click <em>Add with Subfolders</em>, find the <em>Gannet-main</em> folder and then select it. When done, press <em>Save</em> to permanently save the Gannet folder to MATLAB’s default search path.</p>
+<p>SPM12 can be installed in the same manner after it has been downloaded from the SPM website.</p>
 <div class="info">
-<p><i class="fa fa-info-circle" style="color: white"></i>   It is highly recommended that you only add the main SPM12 folder (<em>spm12</em>) to your search path rather than including all the subfolders. This prevents potential function conflicts.</p>
+<p><i class="fa fa-info-circle" style="color: white"></i>   It is highly recommended that you only add the main SPM12 folder (<em>spm12</em>) to your search path instead of including all the subfolders. This prevents potential function conflicts.</p>
 </div>
 </div>
 </div>
 <div id="compatibility" class="section level2">
 <h2>Compatibility</h2>
-<p>Gannet is currently being developed in MATLAB R2019b in macOS 10.15 Catalina. While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.</p>
+<p>Gannet is currently being developed in MATLAB R2021b in macOS 11.6 Big Sur. While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.</p>
 </div>
 <div id="supported-file-formats" class="section level2">
 <h2>Supported file formats</h2>
@@ -545,7 +506,7 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 <li>Siemens .rda</li>
 <li>Siemens TWIX (.dat)</li>
 </ul>
-<p>For creating and co-registering voxel masks, structural images need to be in NIfTI (Philips and Siemens) or DICOM (GE) format.</p>
+<p>For creating and co-registering voxel masks, structural images need to be in NIfTI format (DICOM files can also be used if processing GE P-files).</p>
 <div class="warning">
 <p><i class="fa fa-exclamation-circle" style="color: white"></i>   Philips users: Do not use structural images exported using the <em>fsl-nifti</em> option as this creates problems with co-registration in Gannet.</p>
 </div>
@@ -564,9 +525,9 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 <h2>Developers</h2>
 <ul>
 <li>Richard Edden (Johns Hopkins University)</li>
-<li>Mark Mikkelsen (Johns Hopkins University)</li>
+<li>Mark Mikkelsen (Weill Cornell Medicine)</li>
 <li>Georg Oeltzschner (Johns Hopkins University)</li>
-<li>Muhammad Saleh (Johns Hopkins University)</li>
+<li>Muhammad Saleh (University of Maryland)</li>
 <li>C. John Evans (Cardiff University)</li>
 <li>Ashley Harris (University of Calgary)</li>
 <li>Nicolaas Puts (King’s College London)</li>
@@ -582,7 +543,7 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 <p><strong>If you perform frequency-and-phase correction (FPC) using:</strong></p>
 <p>Robust spectral registration (<code>RobustSpecReg</code>):</p>
 <ul>
-<li>Mikkelsen M, Tapper S, Near J, Mostofsky SH, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/nbm.4368" target="_blank">Correcting frequency and phase offsets in MRS data using robust spectral registration.</a> <em>NMR in Biomedicine</em>. 2020:e4368</li>
+<li>Mikkelsen M, Tapper S, Near J, Mostofsky SH, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/nbm.4368" target="_blank">Correcting frequency and phase offsets in MRS data using robust spectral registration.</a> <em>NMR in Biomedicine</em>. 2020;33(10):e4368</li>
 </ul>
 <p>multi-step FPC (<code>SpecRegHERMES</code>):</p>
 <ul>
@@ -617,6 +578,7 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 <li>R21 NS077300</li>
 <li>R21 MH098228</li>
 <li>R01 MH096263</li>
+<li>K99 EB028828</li>
 </ul>
 <p>We wish to thank the following individuals for their direct or indirect contributions:</p>
 <ul>
@@ -637,7 +599,7 @@ Current stable release:  <a href="https://github.com/richardedden/Gannet3.1" t
 <p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY-NC 4.0 <a href="https://creativecommons.org/licenses/by-nc/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/nc-xlarge.png"></a>
+<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY 4.0 <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
 </p>
 
 
@@ -666,7 +628,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
