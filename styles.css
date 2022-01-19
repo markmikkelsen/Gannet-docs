@@ -60,7 +60,7 @@ img {
 #myImg2 {
   width: 50%;
   box-shadow: 0 0 0 0, 0 0 0 0;
-}
+} 
 
 #cc {
   box-shadow: 0 0 0 0, 0 0 0 0;
@@ -132,10 +132,10 @@ img {
 
 
 /* ----- Modal for images ----- */
-#myImg {
+/* #myImg {
   cursor: pointer;
-  /* transition: 0.3s; */
-}
+  transition: 0.3s;
+} */
 
 /* #myImg:hover {
   opacity: 0.6;

@@ -492,7 +492,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Getting started</h1>
-<h4 class="date">Last updated: January 18, 2022</h4>
+<h4 class="date">Last updated: January 19, 2022</h4>
 
 </div>
 
@@ -529,23 +529,6 @@ body .main-container {
 <p><br></p>
 <p>Gannet simplifies the preprocessing and quantification pipeline of edited MRS data. All you need to get started is a basic understanding of the MATLAB environment and programming language and the five Gannet modules (listed below).</p>
 <p>If this is your first time using Gannet, you will likely want to read through the <a href="https://markmikkelsen.github.io/Gannet-docs/reference.html">Reference</a> as well. If you have previously worked with Gannet and only need a quick refresher about the command syntax, this page will probably be all you need to get started again.</p>
-<div id="gannetpreinitialise" class="section level2">
-<h2>GannetPreInitialise</h2>
-<p>Gannet has many built-in routines for automatically recognizing data formats, sequences, and acquisition parameters from the file headers, and can load and process data appropriately with almost no user input. However, some settings may need to be set by the user before running Gannet. All modifiable options and flags are collected in the file <code>GannetPreInitialise.m</code>.</p>
-<div class="info">
-<p><i class="fa fa-exclamation-circle" style="color: white"></i>   Any time you run Gannet, make sure to check that the settings in <code>GannetPreInitialise.m</code> are correct. Many errors can be avoided by following this simple step.</p>
-</div>
-<p>The default settings pre-initialize a standard analysis for in vivo GABA-edited MEGA-PRESS data. If you want to analyze data acquired with a different method or from a phantom, or target a different metabolite, you will need to make changes to this file. Please read the <a href="https://markmikkelsen.github.io/Gannet-docs/reference.html">Reference</a> for detailed explanations of the options and flags in <code>GannetPreInitialise.m</code>.</p>
-<p><br></p>
-<p><img id="myImg" src="images/screenshots/GannetPreInitialise.png" alt="GannetPreInitialise.m"></p>
-<!-- <div id="myModal" class="modal"> -->
-<!--   <span class="close">&times;</span> -->
-<!--   <img class="modal-content" id="img01"> -->
-<!--   <div id="caption"></div> -->
-<!-- </div> -->
-<!-- <script src="js/img-modal.js"></script> -->
-<p><br></p>
-</div>
 <div id="modules" class="section level2">
 <h2>Modules</h2>
 <p>The linear workflow of Gannet is made up of five modules. For proper functionality, they need to be executed in the following order:</p>
@@ -587,7 +570,23 @@ body .main-container {
 </div>
 <div id="usage" class="section level2">
 <h2>Usage</h2>
-<p>[TEXT]</p>
+<div id="gannetpreinitialise" class="section level3">
+<h3>GannetPreInitialise</h3>
+<p>The first step in using Gannet is to set up the <code>GannetPreInitialise.m</code> function. While the toolkit has many built-in routines for automatically recognizing data formats, sequences, and acquisition parameters from data file headers; some settings may need to be set by the user before to run Gannet properly. All modifiable options and flags are collected in the file <code>GannetPreInitialise.m</code>.</p>
+<div class="info">
+<p><i class="fa fa-exclamation-circle" style="color: white"></i>   Any time you run Gannet, make sure to check that the settings in <code>GannetPreInitialise.m</code> are correct. Many errors can be avoided by following this simple step.</p>
+</div>
+<p>The default settings pre-initialize a standard analysis for in vivo GABA-edited MEGA-PRESS data. If you want to analyze data acquired with a different method or from a phantom, or target a different metabolite, you will need to make changes to this file. Please read the <a href="https://markmikkelsen.github.io/Gannet-docs/reference.html">Reference</a> for detailed explanations of the options and flags in <code>GannetPreInitialise.m</code>.</p>
+<p><br></p>
+<p><img id="myImg" src="images/screenshots/GannetPreInitialise.png" alt="GannetPreInitialise.m"></p>
+<!-- <div id="myModal" class="modal"> -->
+<!--   <span class="close">&times;</span> -->
+<!--   <img class="modal-content" id="img01"> -->
+<!--   <div id="caption"></div> -->
+<!-- </div> -->
+<!-- <script src="js/img-modal.js"></script> -->
+<p><br></p>
+</div>
 </div>
 <div id="batch-processing" class="section level2">
 <h2>Batch processing</h2>
