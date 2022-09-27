@@ -13,7 +13,7 @@
 
 <title>GannetPreInitialise settings</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -30,8 +30,9 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -43,6 +44,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -125,13 +127,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -167,6 +176,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -224,11 +236,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -319,7 +335,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -336,7 +352,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Documentation
      
     <span class="caret"></span>
@@ -360,7 +376,7 @@ $(document).ready(function () {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Examples
      
     <span class="caret"></span>
@@ -410,7 +426,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">GannetPreInitialise settings</h1>
-<h4 class="date">Last updated: January 19, 2022</h4>
+<h4 class="date">Last updated: September 23, 2022</h4>
 
 </div>
 
@@ -442,13 +458,24 @@ function topFunction() {
 <script src="js/hide-output.js"></script>
 <p><br></p>
 <div class="warning">
-<p><i class="fa fa-exclamation-circle" style="color: white"></i>   These examples were created in release 3.2.0. Be careful copy-pasting these example settings into your version of <code>GannetPreInitialise.m</code>. You may be using a different release that has older/newer variables that could result in an error during the analysis pipeline.</p>
+<p><i class="fa fa-exclamation-circle" style="color: white"></i>   These
+examples were created in release 3.2.0. Be careful copy-pasting these
+example settings into your version of
+<code>GannetPreInitialise.m</code>. You may be using a different release
+that has older/newer variables that could result in an error during the
+analysis pipeline.</p>
 </div>
-<div id="philips-data" class="section level2 tabset tabset-fade tabset-pills">
-<h2 class="tabset tabset-fade tabset-pills">Philips data</h2>
-<div id="gaba-edited-mega-press-data" class="section level3">
-<h3>GABA-edited MEGA-PRESS data</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Acquisition parameters</span></span>
+<div id="philips-data"
+class="section level2 tabset tabset-fade tabset-pills hasAnchor">
+<h2 class="tabset tabset-fade tabset-pills hasAnchor">Philips data<a
+href="#philips-data" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
+<div id="gaba-edited-mega-press-data" class="section level3 hasAnchor">
+<h3 class="hasAnchor">GABA-edited MEGA-PRESS data<a
+href="#gaba-edited-mega-press-data" class="anchor-section"
+aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Acquisition parameters</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">MRS_struct</span>.<span class="va">p</span>.<span class="va">target</span> <span class="op">=</span> {<span class="ss">&#39;GABAGlx&#39;</span>}<span class="op">;</span> <span class="co">% Edited metabolite(s) of interest; permitted options are:</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                                       <span class="co">% If MEGA-PRESS:</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                                       <span class="co">%   {&#39;GABAGlx&#39;}, {&#39;GSH&#39;}, {&#39;Lac&#39;}, or {&#39;EtOH&#39;}</span></span>
@@ -490,9 +517,12 @@ function topFunction() {
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                               <span class="co">% folder to be added to the search path and GhostScript to be installed)</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="va">MRS_struct</span>.<span class="va">p</span>.<span class="va">hide</span>     <span class="op">=</span> <span class="fl">0</span><span class="op">;</span> <span class="co">% Do not dynamically display output figures</span></span></code></pre></div>
 </div>
-<div id="gaba-gsh-edited-hermes-data" class="section level3">
-<h3>GABA-/GSH-edited HERMES data</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Acquisition parameters</span></span>
+<div id="gaba-gsh-edited-hermes-data" class="section level3 hasAnchor">
+<h3 class="hasAnchor">GABA-/GSH-edited HERMES data<a
+href="#gaba-gsh-edited-hermes-data" class="anchor-section"
+aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Acquisition parameters</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">MRS_struct</span>.<span class="va">p</span>.<span class="va">target</span> <span class="op">=</span> {<span class="ss">&#39;GABAGlx&#39;</span><span class="op">,</span><span class="ss">&#39;GSH&#39;</span>}<span class="op">;</span> <span class="co">% Edited metabolite(s) of interest; permitted options are:</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                                       <span class="co">% If MEGA-PRESS:</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                       <span class="co">%   {&#39;GABAGlx&#39;}, {&#39;GSH&#39;}, {&#39;Lac&#39;}, or {&#39;EtOH&#39;}</span></span>
