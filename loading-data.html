@@ -40,7 +40,6 @@
 <script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
-<!DOCTYPE html>
 <link rel="shortcut icon" href="images/logo.png" />
 
 <style type="text/css">
@@ -431,7 +430,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Loading data</h1>
-<h4 class="date">Last updated: January 07, 2026</h4>
+<h4 class="date">Last updated: March 16, 2026</h4>
 
 </div>
 
@@ -441,45 +440,81 @@ body .main-container {
   max-width: 1200px;
 }
 </style>
-<button onclick="topFunction()" id="myBtn" title="Go to top">
-Back to top
-</button>
+<div>
+<p><button id="myBtn" title="Go to top">Back to top</button></p>
 <script>
-//Get the button
-var mybutton = document.getElementById("myBtn");
+    const mybutton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+    // Show the button when the user scrolls down 20px from the top
+    window.addEventListener("scroll", function () {
+      mybutton.style.display =
+        document.body.scrollTop > 20 || document.documentElement.scrollTop > 20
+          ? "block"
+          : "none";
+    });
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
+    // Scroll to top when the button is clicked
+    mybutton.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</div>
+<script>
+  $(document).ready(function () {
+    // Add a copy button to each code block
+    $("pre").each(function () {
+      var $pre = $(this);
+      var $btn = $(
+        '<button class="copy-btn" title="Copy to clipboard">Copy</button>',
+      );
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+      $pre.css("position", "relative");
+      $pre.append($btn);
+
+      $btn.on("click", function () {
+        var code = $pre.find("code").text() || $pre.text();
+
+        navigator.clipboard
+          .writeText(code)
+          .then(function () {
+            $btn.text("Copied!");
+            setTimeout(function () {
+              $btn.text("Copy");
+            }, 2000);
+          })
+          .catch(function () {
+            // Fallback for older browsers
+            var $temp = $("<textarea>");
+            $("body").append($temp);
+            $temp.val(code).select();
+            document.execCommand("copy");
+            $temp.remove();
+            $btn.text("Copied!");
+            setTimeout(function () {
+              $btn.text("Copy");
+            }, 2000);
+          });
+      });
+    });
+  });
 </script>
 <p><br></p>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTG9hZGluZyBkYXRhIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKPHN0eWxlPgpib2R5IC5tYWluLWNvbnRhaW5lciB7CiAgbWF4LXdpZHRoOiAxMjAwcHg7Cn0KPC9zdHlsZT4KCmBgYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkKYGBgCgpgYGB7ciwgY2hpbGQgPSAianMvYmFjay10by10b3AuanMifQpgYGAKCjxicj4KCg==</div>
-<!DOCTYPE html>
-<br>
-<hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in <a
-    href="https://posit.co/products/open-source/rstudio/" target="_blank">RStudio</a>
-  <br>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTG9hZGluZyBkYXRhIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKPHN0eWxlPgpib2R5IC5tYWluLWNvbnRhaW5lciB7CiAgbWF4LXdpZHRoOiAxMjAwcHg7Cn0KPC9zdHlsZT4KCmBgYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkKYGBgCgpgYGB7ciwgY2hpbGQgPSBjKCJqcy9iYWNrLXRvLXRvcC5odG1sIiwgImpzL2NvcHktdG8tY2xpcGJvYXJkLmh0bWwiKX0KYGBgCgo8YnI+Cgo=</div>
+<hr />
+<p style="text-align: right">
+  Built with
+  <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in
+  <a href="https://posit.co/products/open-source/rstudio/" target="_blank"
+    >RStudio</a
+  >
 </p>
-<p style="text-align: right;">Copyright &copy; 2020&ndash;2026, Mark Mikkelsen <a
-    href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc"
-      style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img
-      id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;"
-      src="images/license/by-xlarge.png"></a>
+<p style="text-align: right">
+  Copyright &copy; 2020&ndash;2026, Mark Mikkelsen
+  <a href="https://creativecommons.org/licenses/by/4.0" target="_blank">
+    <img class="cc" src="images/license/cc-xlarge.png" alt="Creative Commons" />
+    <img class="cc" src="images/license/by-xlarge.png" alt="Attribution" />
+  </a>
 </p>
 
 

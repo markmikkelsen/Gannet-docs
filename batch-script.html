@@ -37,7 +37,6 @@
 <script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
-<!DOCTYPE html>
 <link rel="shortcut icon" href="images/logo.png" />
 
 <style type="text/css">
@@ -451,34 +450,68 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Batch processing script</h1>
-<h4 class="date">Last updated: January 07, 2026</h4>
+<h4 class="date">Last updated: March 16, 2026</h4>
 
 </div>
 
 
-<button onclick="topFunction()" id="myBtn" title="Go to top">
-Back to top
-</button>
+<div>
+<p><button id="myBtn" title="Go to top">Back to top</button></p>
 <script>
-//Get the button
-var mybutton = document.getElementById("myBtn");
+    const mybutton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+    // Show the button when the user scrolls down 20px from the top
+    window.addEventListener("scroll", function () {
+      mybutton.style.display =
+        document.body.scrollTop > 20 || document.documentElement.scrollTop > 20
+          ? "block"
+          : "none";
+    });
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
+    // Scroll to top when the button is clicked
+    mybutton.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</div>
+<script>
+  $(document).ready(function () {
+    // Add a copy button to each code block
+    $("pre").each(function () {
+      var $pre = $(this);
+      var $btn = $(
+        '<button class="copy-btn" title="Copy to clipboard">Copy</button>',
+      );
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+      $pre.css("position", "relative");
+      $pre.append($btn);
+
+      $btn.on("click", function () {
+        var code = $pre.find("code").text() || $pre.text();
+
+        navigator.clipboard
+          .writeText(code)
+          .then(function () {
+            $btn.text("Copied!");
+            setTimeout(function () {
+              $btn.text("Copy");
+            }, 2000);
+          })
+          .catch(function () {
+            // Fallback for older browsers
+            var $temp = $("<textarea>");
+            $("body").append($temp);
+            $temp.val(code).select();
+            document.execCommand("copy");
+            $temp.remove();
+            $btn.text("Copied!");
+            setTimeout(function () {
+              $btn.text("Copy");
+            }, 2000);
+          });
+      });
+    });
+  });
 </script>
 <style type="text/css">
 body .main-container {
@@ -487,45 +520,48 @@ body .main-container {
 </style>
 <p><br></p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">% Example batch script for Philips MEGA-PRESS data with accompanying water references and structural images</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co">% Remember to check GannetPreInitialise.m has the appropriate settings for your data</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>data_dir <span class="op">=</span> <span class="st">&#39;/Users/username/Documents/my_project/data&#39;</span><span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>metab <span class="op">=</span> {<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>         <span class="st">&#39;S02_GABA_68_act.sdat&#39;</span></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>         <span class="st">&#39;S03_GABA_68_act.sdat&#39;</span>}<span class="op">;</span></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>metab <span class="op">=</span> <span class="fu">fullfile</span>(data_dir<span class="op">,</span> metab)<span class="op">;</span> <span class="co">% It is good practice to include the full path of files</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>         </span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>water <span class="op">=</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span></span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>         <span class="st">&#39;S02_GABA_68_ref.sdat&#39;</span></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>         <span class="st">&#39;S03_GABA_68_ref.sdat&#39;</span>}<span class="op">;</span></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>water <span class="op">=</span> <span class="fu">fullfile</span>(data_dir<span class="op">,</span> water)<span class="op">;</span></span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>anat <span class="op">=</span> {<span class="st">&#39;S01_T1_anat.nii&#39;</span></span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>        <span class="st">&#39;S02_T1_anat.nii&#39;</span></span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>        <span class="st">&#39;S03_T1_anat.nii&#39;</span>}<span class="op">;</span></span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>anat <span class="op">=</span> <span class="fu">fullfile</span>(data_dir<span class="op">,</span> anat)<span class="op">;</span></span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>MRS <span class="op">=</span> GannetLoad(metab<span class="op">,</span> water)<span class="op">;</span></span>
-<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>MRS <span class="op">=</span> GannetFit(MRS)<span class="op">;</span></span>
-<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>MRS <span class="op">=</span> GannetCoRegister(MRS<span class="op">,</span> anat)<span class="op">;</span></span>
-<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>MRS <span class="op">=</span> GannetSegment(MRS)<span class="op">;</span></span>
-<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>MRS <span class="op">=</span> GannetQuantify(MRS)<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">% Example batch script for Philips MEGA-PRESS data with accompanying water</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co">% references and structural images Remember to check GannetPreInitialise.m</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">% has the appropriate settings for your data</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>data_dir <span class="op">=</span> <span class="st">&#39;/Users/username/Documents/my_project/data&#39;</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>metab <span class="op">=</span> {<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>         <span class="st">&#39;S02_GABA_68_act.sdat&#39;</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>         <span class="st">&#39;S03_GABA_68_act.sdat&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>metab <span class="op">=</span> <span class="fu">fullfile</span>(data_dir<span class="op">,</span> metab)<span class="op">;</span> <span class="co">% It is good practice to include the full path of files</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>         </span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>water <span class="op">=</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>         <span class="st">&#39;S02_GABA_68_ref.sdat&#39;</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>         <span class="st">&#39;S03_GABA_68_ref.sdat&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>water <span class="op">=</span> <span class="fu">fullfile</span>(data_dir<span class="op">,</span> water)<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>anat <span class="op">=</span> {<span class="st">&#39;S01_T1_anat.nii&#39;</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>        <span class="st">&#39;S02_T1_anat.nii&#39;</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>        <span class="st">&#39;S03_T1_anat.nii&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>anat <span class="op">=</span> <span class="fu">fullfile</span>(data_dir<span class="op">,</span> anat)<span class="op">;</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>MRS <span class="op">=</span> GannetLoad(metab<span class="op">,</span> water)<span class="op">;</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>MRS <span class="op">=</span> GannetFit(MRS)<span class="op">;</span></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>MRS <span class="op">=</span> GannetCoRegister(MRS<span class="op">,</span> anat)<span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>MRS <span class="op">=</span> GannetSegment(MRS)<span class="op">;</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>MRS <span class="op">=</span> GannetQuantify(MRS)<span class="op">;</span></span></code></pre></div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQmF0Y2ggcHJvY2Vzc2luZyBzY3JpcHQiCmRhdGU6ICJMYXN0IHVwZGF0ZWQ6IGByIGZvcm1hdChTeXMudGltZSgpLCAnJUIgJWQsICVZJylgIgpvdXRwdXQ6IGh0bWxfZG9jdW1lbnQKLS0tCgpgYGB7ciBzZXR1cCwgaW5jbHVkZSA9IEZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKYGBge3IsIGNoaWxkID0gImpzL2JhY2stdG8tdG9wLmpzIn0KYGBgCgpgYGB7Y3NzLCBlY2hvID0gRkFMU0V9CmJvZHkgLm1haW4tY29udGFpbmVyIHsKICBtYXgtd2lkdGg6IDkwMHB4Owp9CmBgYAoKPGJyPgoKYGBge29jdGF2ZSwgZXZhbCA9IEZBTFNFfQolIEV4YW1wbGUgYmF0Y2ggc2NyaXB0IGZvciBQaGlsaXBzIE1FR0EtUFJFU1MgZGF0YSB3aXRoIGFjY29tcGFueWluZyB3YXRlciByZWZlcmVuY2VzIGFuZCBzdHJ1Y3R1cmFsIGltYWdlcwolIFJlbWVtYmVyIHRvIGNoZWNrIEdhbm5ldFByZUluaXRpYWxpc2UubSBoYXMgdGhlIGFwcHJvcHJpYXRlIHNldHRpbmdzIGZvciB5b3VyIGRhdGEKCmRhdGFfZGlyID0gJy9Vc2Vycy91c2VybmFtZS9Eb2N1bWVudHMvbXlfcHJvamVjdC9kYXRhJzsKCm1ldGFiID0geydTMDFfR0FCQV82OF9hY3Quc2RhdCcKICAgICAgICAgJ1MwMl9HQUJBXzY4X2FjdC5zZGF0JwogICAgICAgICAnUzAzX0dBQkFfNjhfYWN0LnNkYXQnfTsKbWV0YWIgPSBmdWxsZmlsZShkYXRhX2RpciwgbWV0YWIpOyAlIEl0IGlzIGdvb2QgcHJhY3RpY2UgdG8gaW5jbHVkZSB0aGUgZnVsbCBwYXRoIG9mIGZpbGVzCiAgICAgICAgIAp3YXRlciA9IHsnUzAxX0dBQkFfNjhfcmVmLnNkYXQnCiAgICAgICAgICdTMDJfR0FCQV82OF9yZWYuc2RhdCcKICAgICAgICAgJ1MwM19HQUJBXzY4X3JlZi5zZGF0J307CndhdGVyID0gZnVsbGZpbGUoZGF0YV9kaXIsIHdhdGVyKTsKCmFuYXQgPSB7J1MwMV9UMV9hbmF0Lm5paScKICAgICAgICAnUzAyX1QxX2FuYXQubmlpJwogICAgICAgICdTMDNfVDFfYW5hdC5uaWknfTsKYW5hdCA9IGZ1bGxmaWxlKGRhdGFfZGlyLCBhbmF0KTsKCk1SUyA9IEdhbm5ldExvYWQobWV0YWIsIHdhdGVyKTsKTVJTID0gR2FubmV0Rml0KE1SUyk7Ck1SUyA9IEdhbm5ldENvUmVnaXN0ZXIoTVJTLCBhbmF0KTsKTVJTID0gR2FubmV0U2VnbWVudChNUlMpOwpNUlMgPSBHYW5uZXRRdWFudGlmeShNUlMpOwpgYGAK</div>
-<!DOCTYPE html>
-<br>
-<hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in <a
-    href="https://posit.co/products/open-source/rstudio/" target="_blank">RStudio</a>
-  <br>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQmF0Y2ggcHJvY2Vzc2luZyBzY3JpcHQiCmRhdGU6ICJMYXN0IHVwZGF0ZWQ6IGByIGZvcm1hdChTeXMudGltZSgpLCAnJUIgJWQsICVZJylgIgpvdXRwdXQ6IGh0bWxfZG9jdW1lbnQKLS0tCgpgYGB7ciBzZXR1cCwgaW5jbHVkZSA9IEZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKYGBge3IsIGNoaWxkID0gYygianMvYmFjay10by10b3AuaHRtbCIsICJqcy9jb3B5LXRvLWNsaXBib2FyZC5odG1sIil9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQpib2R5IC5tYWluLWNvbnRhaW5lciB7CiAgbWF4LXdpZHRoOiA5MDBweDsKfQpgYGAKCjxicj4KCmBgYHtvY3RhdmUsIGV2YWwgPSBGQUxTRX0KJSBFeGFtcGxlIGJhdGNoIHNjcmlwdCBmb3IgUGhpbGlwcyBNRUdBLVBSRVNTIGRhdGEgd2l0aCBhY2NvbXBhbnlpbmcgd2F0ZXIKJSByZWZlcmVuY2VzIGFuZCBzdHJ1Y3R1cmFsIGltYWdlcyBSZW1lbWJlciB0byBjaGVjayBHYW5uZXRQcmVJbml0aWFsaXNlLm0KJSBoYXMgdGhlIGFwcHJvcHJpYXRlIHNldHRpbmdzIGZvciB5b3VyIGRhdGEKCmRhdGFfZGlyID0gJy9Vc2Vycy91c2VybmFtZS9Eb2N1bWVudHMvbXlfcHJvamVjdC9kYXRhJzsKCm1ldGFiID0geydTMDFfR0FCQV82OF9hY3Quc2RhdCcKICAgICAgICAgJ1MwMl9HQUJBXzY4X2FjdC5zZGF0JwogICAgICAgICAnUzAzX0dBQkFfNjhfYWN0LnNkYXQnfTsKbWV0YWIgPSBmdWxsZmlsZShkYXRhX2RpciwgbWV0YWIpOyAlIEl0IGlzIGdvb2QgcHJhY3RpY2UgdG8gaW5jbHVkZSB0aGUgZnVsbCBwYXRoIG9mIGZpbGVzCiAgICAgICAgIAp3YXRlciA9IHsnUzAxX0dBQkFfNjhfcmVmLnNkYXQnCiAgICAgICAgICdTMDJfR0FCQV82OF9yZWYuc2RhdCcKICAgICAgICAgJ1MwM19HQUJBXzY4X3JlZi5zZGF0J307CndhdGVyID0gZnVsbGZpbGUoZGF0YV9kaXIsIHdhdGVyKTsKCmFuYXQgPSB7J1MwMV9UMV9hbmF0Lm5paScKICAgICAgICAnUzAyX1QxX2FuYXQubmlpJwogICAgICAgICdTMDNfVDFfYW5hdC5uaWknfTsKYW5hdCA9IGZ1bGxmaWxlKGRhdGFfZGlyLCBhbmF0KTsKCk1SUyA9IEdhbm5ldExvYWQobWV0YWIsIHdhdGVyKTsKTVJTID0gR2FubmV0Rml0KE1SUyk7Ck1SUyA9IEdhbm5ldENvUmVnaXN0ZXIoTVJTLCBhbmF0KTsKTVJTID0gR2FubmV0U2VnbWVudChNUlMpOwpNUlMgPSBHYW5uZXRRdWFudGlmeShNUlMpOwpgYGAK</div>
+<hr />
+<p style="text-align: right">
+  Built with
+  <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in
+  <a href="https://posit.co/products/open-source/rstudio/" target="_blank"
+    >RStudio</a
+  >
 </p>
-<p style="text-align: right;">Copyright &copy; 2020&ndash;2026, Mark Mikkelsen <a
-    href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc"
-      style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img
-      id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;"
-      src="images/license/by-xlarge.png"></a>
+<p style="text-align: right">
+  Copyright &copy; 2020&ndash;2026, Mark Mikkelsen
+  <a href="https://creativecommons.org/licenses/by/4.0" target="_blank">
+    <img class="cc" src="images/license/cc-xlarge.png" alt="Creative Commons" />
+    <img class="cc" src="images/license/by-xlarge.png" alt="Attribution" />
+  </a>
 </p>
 
 

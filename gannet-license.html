@@ -37,7 +37,6 @@
 <script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
-<!DOCTYPE html>
 <link rel="shortcut icon" href="images/logo.png" />
 
 <style type="text/css">
@@ -353,29 +352,63 @@ $(document).ready(function () {
 </div>
 
 
-<button onclick="topFunction()" id="myBtn" title="Go to top">
-Back to top
-</button>
+<div>
+<p><button id="myBtn" title="Go to top">Back to top</button></p>
 <script>
-//Get the button
-var mybutton = document.getElementById("myBtn");
+    const mybutton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+    // Show the button when the user scrolls down 20px from the top
+    window.addEventListener("scroll", function () {
+      mybutton.style.display =
+        document.body.scrollTop > 20 || document.documentElement.scrollTop > 20
+          ? "block"
+          : "none";
+    });
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
+    // Scroll to top when the button is clicked
+    mybutton.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</div>
+<script>
+  $(document).ready(function () {
+    // Add a copy button to each code block
+    $("pre").each(function () {
+      var $pre = $(this);
+      var $btn = $(
+        '<button class="copy-btn" title="Copy to clipboard">Copy</button>',
+      );
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+      $pre.css("position", "relative");
+      $pre.append($btn);
+
+      $btn.on("click", function () {
+        var code = $pre.find("code").text() || $pre.text();
+
+        navigator.clipboard
+          .writeText(code)
+          .then(function () {
+            $btn.text("Copied!");
+            setTimeout(function () {
+              $btn.text("Copy");
+            }, 2000);
+          })
+          .catch(function () {
+            // Fallback for older browsers
+            var $temp = $("<textarea>");
+            $("body").append($temp);
+            $temp.val(code).select();
+            document.execCommand("copy");
+            $temp.remove();
+            $btn.text("Copied!");
+            setTimeout(function () {
+              $btn.text("Copy");
+            }, 2000);
+          });
+      });
+    });
+  });
 </script>
 <p><br></p>
 <p>BSD-3-Clause License</p>
@@ -406,19 +439,21 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiR2FubmV0IGxpY2Vuc2UiCm91dHB1dDogaHRtbF9kb2N1bWVudAotLS0KCmBgYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkKYGBgCgpgYGB7ciwgY2hpbGQgPSAianMvYmFjay10by10b3AuanMifQpgYGAKCjxicj4KCkJTRC0zLUNsYXVzZSBMaWNlbnNlCgpDb3B5cmlnaHQgJmNvcHk7IDIwMTImbmRhc2g7MjAyNgoKUmVkaXN0cmlidXRpb24gYW5kIHVzZSBpbiBzb3VyY2UgYW5kIGJpbmFyeSBmb3Jtcywgd2l0aCBvciB3aXRob3V0IG1vZGlmaWNhdGlvbiwgYXJlIHBlcm1pdHRlZCBwcm92aWRlZCB0aGF0IHRoZSBmb2xsb3dpbmcgY29uZGl0aW9ucyBhcmUgbWV0OgoKMS4gUmVkaXN0cmlidXRpb25zIG9mIHNvdXJjZSBjb2RlIG11c3QgcmV0YWluIHRoZSBhYm92ZSBjb3B5cmlnaHQgbm90aWNlLCB0aGlzIGxpc3Qgb2YgY29uZGl0aW9ucyBhbmQgdGhlIGZvbGxvd2luZyBkaXNjbGFpbWVyLgoKMi4gUmVkaXN0cmlidXRpb25zIGluIGJpbmFyeSBmb3JtIG11c3QgcmVwcm9kdWNlIHRoZSBhYm92ZSBjb3B5cmlnaHQgbm90aWNlLCB0aGlzIGxpc3Qgb2YgY29uZGl0aW9ucyBhbmQgdGhlIGZvbGxvd2luZyBkaXNjbGFpbWVyIGluIHRoZSBkb2N1bWVudGF0aW9uIGFuZC9vciBvdGhlciBtYXRlcmlhbHMgcHJvdmlkZWQgd2l0aCB0aGUgZGlzdHJpYnV0aW9uLgoKMy4gTmVpdGhlciB0aGUgbmFtZSBvZiB0aGUgY29weXJpZ2h0IGhvbGRlciBub3IgdGhlIG5hbWVzIG9mIGl0cyBjb250cmlidXRvcnMgbWF5IGJlIHVzZWQgdG8gZW5kb3JzZSBvciBwcm9tb3RlIHByb2R1Y3RzIGRlcml2ZWQgZnJvbSB0aGlzIHNvZnR3YXJlIHdpdGhvdXQgc3BlY2lmaWMgcHJpb3Igd3JpdHRlbiBwZXJtaXNzaW9uLgoKVEhJUyBTT0ZUV0FSRSBJUyBQUk9WSURFRCBCWSBUSEUgQ09QWVJJR0hUIEhPTERFUlMgQU5EIENPTlRSSUJVVE9SUyAiQVMgSVMiIEFORCBBTlkgRVhQUkVTUyBPUiBJTVBMSUVEIFdBUlJBTlRJRVMsIElOQ0xVRElORywgQlVUIE5PVCBMSU1JVEVEIFRPLCBUSEUgSU1QTElFRCBXQVJSQU5USUVTIE9GIE1FUkNIQU5UQUJJTElUWSBBTkQgRklUTkVTUyBGT1IgQSBQQVJUSUNVTEFSIFBVUlBPU0UgQVJFIERJU0NMQUlNRUQuIElOIE5PIEVWRU5UIFNIQUxMIFRIRSBDT1BZUklHSFQgSE9MREVSIE9SIENPTlRSSUJVVE9SUyBCRSBMSUFCTEUgRk9SIEFOWSBESVJFQ1QsIElORElSRUNULCBJTkNJREVOVEFMLCBTUEVDSUFMLCBFWEVNUExBUlksIE9SIENPTlNFUVVFTlRJQUwgREFNQUdFUyAoSU5DTFVESU5HLCBCVVQgTk9UIExJTUlURUQgVE8sIFBST0NVUkVNRU5UIE9GIFNVQlNUSVRVVEUgR09PRFMgT1IgU0VSVklDRVM7IExPU1MgT0YgVVNFLCBEQVRBLCBPUiBQUk9GSVRTOyBPUiBCVVNJTkVTUyBJTlRFUlJVUFRJT04pIEhPV0VWRVIgQ0FVU0VEIEFORCBPTiBBTlkgVEhFT1JZIE9GIExJQUJJTElUWSwgV0hFVEhFUiBJTiBDT05UUkFDVCwgU1RSSUNUIExJQUJJTElUWSwgT1IgVE9SVCAoSU5DTFVESU5HIE5FR0xJR0VOQ0UgT1IgT1RIRVJXSVNFKSBBUklTSU5HIElOIEFOWSBXQVkgT1VUIE9GIFRIRSBVU0UgT0YgVEhJUyBTT0ZUV0FSRSwgRVZFTiBJRiBBRFZJU0VEIE9GIFRIRSBQT1NTSUJJTElUWSBPRiBTVUNIIERBTUFHRS4KCgoK</div>
-<!DOCTYPE html>
-<br>
-<hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in <a
-    href="https://posit.co/products/open-source/rstudio/" target="_blank">RStudio</a>
-  <br>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiR2FubmV0IGxpY2Vuc2UiCm91dHB1dDogaHRtbF9kb2N1bWVudAotLS0KCmBgYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkKYGBgCgpgYGB7ciwgY2hpbGQgPSBjKCJqcy9iYWNrLXRvLXRvcC5odG1sIiwgImpzL2NvcHktdG8tY2xpcGJvYXJkLmh0bWwiKX0KYGBgCgo8YnI+CgpCU0QtMy1DbGF1c2UgTGljZW5zZQoKQ29weXJpZ2h0ICZjb3B5OyAyMDEyJm5kYXNoOzIwMjYKClJlZGlzdHJpYnV0aW9uIGFuZCB1c2UgaW4gc291cmNlIGFuZCBiaW5hcnkgZm9ybXMsIHdpdGggb3Igd2l0aG91dCBtb2RpZmljYXRpb24sIGFyZSBwZXJtaXR0ZWQgcHJvdmlkZWQgdGhhdCB0aGUgZm9sbG93aW5nIGNvbmRpdGlvbnMgYXJlIG1ldDoKCjEuIFJlZGlzdHJpYnV0aW9ucyBvZiBzb3VyY2UgY29kZSBtdXN0IHJldGFpbiB0aGUgYWJvdmUgY29weXJpZ2h0IG5vdGljZSwgdGhpcyBsaXN0IG9mIGNvbmRpdGlvbnMgYW5kIHRoZSBmb2xsb3dpbmcgZGlzY2xhaW1lci4KCjIuIFJlZGlzdHJpYnV0aW9ucyBpbiBiaW5hcnkgZm9ybSBtdXN0IHJlcHJvZHVjZSB0aGUgYWJvdmUgY29weXJpZ2h0IG5vdGljZSwgdGhpcyBsaXN0IG9mIGNvbmRpdGlvbnMgYW5kIHRoZSBmb2xsb3dpbmcgZGlzY2xhaW1lciBpbiB0aGUgZG9jdW1lbnRhdGlvbiBhbmQvb3Igb3RoZXIgbWF0ZXJpYWxzIHByb3ZpZGVkIHdpdGggdGhlIGRpc3RyaWJ1dGlvbi4KCjMuIE5laXRoZXIgdGhlIG5hbWUgb2YgdGhlIGNvcHlyaWdodCBob2xkZXIgbm9yIHRoZSBuYW1lcyBvZiBpdHMgY29udHJpYnV0b3JzIG1heSBiZSB1c2VkIHRvIGVuZG9yc2Ugb3IgcHJvbW90ZSBwcm9kdWN0cyBkZXJpdmVkIGZyb20gdGhpcyBzb2Z0d2FyZSB3aXRob3V0IHNwZWNpZmljIHByaW9yIHdyaXR0ZW4gcGVybWlzc2lvbi4KClRISVMgU09GVFdBUkUgSVMgUFJPVklERUQgQlkgVEhFIENPUFlSSUdIVCBIT0xERVJTIEFORCBDT05UUklCVVRPUlMgIkFTIElTIiBBTkQgQU5ZIEVYUFJFU1MgT1IgSU1QTElFRCBXQVJSQU5USUVTLCBJTkNMVURJTkcsIEJVVCBOT1QgTElNSVRFRCBUTywgVEhFIElNUExJRUQgV0FSUkFOVElFUyBPRiBNRVJDSEFOVEFCSUxJVFkgQU5EIEZJVE5FU1MgRk9SIEEgUEFSVElDVUxBUiBQVVJQT1NFIEFSRSBESVNDTEFJTUVELiBJTiBOTyBFVkVOVCBTSEFMTCBUSEUgQ09QWVJJR0hUIEhPTERFUiBPUiBDT05UUklCVVRPUlMgQkUgTElBQkxFIEZPUiBBTlkgRElSRUNULCBJTkRJUkVDVCwgSU5DSURFTlRBTCwgU1BFQ0lBTCwgRVhFTVBMQVJZLCBPUiBDT05TRVFVRU5USUFMIERBTUFHRVMgKElOQ0xVRElORywgQlVUIE5PVCBMSU1JVEVEIFRPLCBQUk9DVVJFTUVOVCBPRiBTVUJTVElUVVRFIEdPT0RTIE9SIFNFUlZJQ0VTOyBMT1NTIE9GIFVTRSwgREFUQSwgT1IgUFJPRklUUzsgT1IgQlVTSU5FU1MgSU5URVJSVVBUSU9OKSBIT1dFVkVSIENBVVNFRCBBTkQgT04gQU5ZIFRIRU9SWSBPRiBMSUFCSUxJVFksIFdIRVRIRVIgSU4gQ09OVFJBQ1QsIFNUUklDVCBMSUFCSUxJVFksIE9SIFRPUlQgKElOQ0xVRElORyBORUdMSUdFTkNFIE9SIE9USEVSV0lTRSkgQVJJU0lORyBJTiBBTlkgV0FZIE9VVCBPRiBUSEUgVVNFIE9GIFRISVMgU09GVFdBUkUsIEVWRU4gSUYgQURWSVNFRCBPRiBUSEUgUE9TU0lCSUxJVFkgT0YgU1VDSCBEQU1BR0UuCgoKCg==</div>
+<hr />
+<p style="text-align: right">
+  Built with
+  <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in
+  <a href="https://posit.co/products/open-source/rstudio/" target="_blank"
+    >RStudio</a
+  >
 </p>
-<p style="text-align: right;">Copyright &copy; 2020&ndash;2026, Mark Mikkelsen <a
-    href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc"
-      style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img
-      id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;"
-      src="images/license/by-xlarge.png"></a>
+<p style="text-align: right">
+  Copyright &copy; 2020&ndash;2026, Mark Mikkelsen
+  <a href="https://creativecommons.org/licenses/by/4.0" target="_blank">
+    <img class="cc" src="images/license/cc-xlarge.png" alt="Creative Commons" />
+    <img class="cc" src="images/license/by-xlarge.png" alt="Attribution" />
+  </a>
 </p>
 
 
