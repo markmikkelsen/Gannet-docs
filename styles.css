@@ -190,6 +190,7 @@ img {
   cursor: pointer;
   opacity: 0.6;
 }
+
 .copy-btn:hover {
   opacity: 1;
   background: #e0e0e0;
